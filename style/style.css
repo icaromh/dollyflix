@@ -1,0 +1,29 @@
+body{
+  padding-top: 70px;
+}
+
+.movielist__item{
+  display: inline-block;
+  float: left;
+  width: 185px;
+  height: 240px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  margin: 2px;
+}
+
+.movielist__item__meta{
+  position: absolute;
+  bottom: 0;
+  transform: translate(0, 100%);
+  transition: transform 0.1s ease-in-out;
+  width: 100%;
+  background-color: #000;
+  color: #FFF;
+}
+
+.movielist__item:hover .movielist__item__meta{
+  transform: translate(0, 0);
+}
