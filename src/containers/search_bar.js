@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovie } from '../actions/index';
+import { fetchMovie, searchTerm } from '../actions/index';
+
 
 class SearchBar extends Component{
   constructor(props){
@@ -16,21 +17,18 @@ class SearchBar extends Component{
   }
 
   onInputChange(ev){
-    this.setState({
-      term: ev.target.value
-    })
+    this.setState({ term: ev.target.value });
   }
 
   onFormSubmit(ev){
     ev.preventDefault();
-
+    this.props.searchTerm(this.state.term);
     this.props.fetchMovie(this.state.term);
   }
 
   render(){
     return (
-      <form onSubmit={this.onFormSubmit} className="navbar-form navbar-left">
-        <div className="input-group">
+      <form onSubmit={this.onFormSubmit} className="navbar-form is-fluid">
           <input
             className="search_bar form-control"
             value={this.state.term}
@@ -38,18 +36,12 @@ class SearchBar extends Component{
             type="text"
             placeholder="Pesquise pelo nome"
           />
-
-          <span className="input-group-btn">
-            <button className="btn btn-default">Buscar</button>
-          </span>
-        </div>
       </form>
     );
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ fetchMovie }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(null, {
+  fetchMovie: fetchMovie,
+  searchTerm: searchTerm,
+})(SearchBar);

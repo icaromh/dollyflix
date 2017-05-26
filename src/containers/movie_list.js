@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovie } from '../actions/index';
+import Spinner from '../components/spinner';
 
 class MovieList extends Component{
   constructor(props){
@@ -20,23 +21,53 @@ class MovieList extends Component{
         style={itemStyle}>
 
         <span className="movielist__item__meta">
-          {movie.title}
+          <a
+            target="_blank"
+            href={`http://www.imdb.com/title/${movie.imdb}/`}>
+            {movie.title}
+          </a>
         </span>
       </div>
     );
   }
 
+  renderLoader(){
+    console.log(this.props.search.term);
+    if(this.props.search.term !== null){
+      return (
+        <div>
+          <h1>Searching for "{this.props.search.term}"</h1>
+          <Spinner />
+        </div>
+      )
+    }
+
+    return false;
+
+  }
+
+  renderList(){
+    return (
+      <div>
+        <h1>Results for "{this.props.search.term}"</h1>
+        {this.props.movies.map(this.renderMovie)}
+      </div>
+    )
+  }
+
   render(){
     return (
       <div>
-        {this.props.movies.map(this.renderMovie)}
+        {this.props.search.loading
+          ? this.renderLoader()
+          : this.renderList()}
       </div>
     );
   }
 }
 
-function mapStateToProps({ movies }) {
-  return { movies };
+function mapStateToProps({ movies, search }) {
+  return { movies, search };
 }
 
 export default connect(mapStateToProps)(MovieList);

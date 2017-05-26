@@ -12,6 +12,7 @@ body{
   background-position: center center;
   position: relative;
   margin: 2px;
+  margin-bottom: 20px;
 }
 
 .movielist__item__meta{
@@ -26,4 +27,34 @@ body{
 
 .movielist__item:hover .movielist__item__meta{
   transform: translate(0, 0);
+}
+
+.navbar-form.is-fluid .form-control{
+  width: 100%;
+}
+
+.navbar-brand-image{
+  float: left;
+  margin-right: 5px;
+  margin-top: -10px;
+}
+
+.navbar-inverse .navbar-brand{
+  color: #fff;
+}
+
+
+.spinner{
+  display: block;
+  margin: 30px auto;
+}
+
+.spinner-animated{
+  animation: loop 1s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes loop {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
