@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovie } from '../actions/index';
+import { selectMedia } from '../actions/index';
 import Spinner from '../components/spinner';
 
 class MovieList extends Component{
   constructor(props){
     super(props);
+
+    this.renderMovie = this.renderMovie.bind(this);
+  }
+
+  selectMedia(media){
+    this.props.selectMedia(media);
   }
 
   renderMovie(movie){
@@ -18,6 +24,7 @@ class MovieList extends Component{
       <div
         key={movie.id}
         className="thumbnail movielist__item"
+        onClick={() => this.selectMedia(movie)}
         style={itemStyle}>
 
         <span className="movielist__item__meta">
@@ -32,7 +39,6 @@ class MovieList extends Component{
   }
 
   renderLoader(){
-    console.log(this.props.search.term);
     if(this.props.search.term !== null){
       return (
         <div>
@@ -47,17 +53,21 @@ class MovieList extends Component{
   }
 
   renderList(){
-    return (
-      <div>
-        <h1>Results for "{this.props.search.term}"</h1>
-        {this.props.movies.map(this.renderMovie)}
-      </div>
-    )
+    if(this.props.search.term !== null){
+      return (
+        <div>
+          <h1>Results for "{this.props.search.term}"</h1>
+          {this.props.movies.map(this.renderMovie)}
+        </div>
+      )
+    }
+
+    return false;
   }
 
   render(){
     return (
-      <div>
+      <div className="container">
         {this.props.search.loading
           ? this.renderLoader()
           : this.renderList()}
@@ -70,4 +80,6 @@ function mapStateToProps({ movies, search }) {
   return { movies, search };
 }
 
-export default connect(mapStateToProps)(MovieList);
+export default connect(mapStateToProps, {
+  selectMedia: selectMedia
+})(MovieList);

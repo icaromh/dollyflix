@@ -1,5 +1,11 @@
 body{
-  padding-top: 70px;
+  padding-top: 50px;
+}
+
+iframe{
+  border: 0;
+  display: block;
+  margin: 0 auto;
 }
 
 .movielist__item{
@@ -57,4 +63,11 @@ body{
 @keyframes loop {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.media-wrapper{
+  background-color: #000;
+  width: 100%;
+  height: auto;
 }
