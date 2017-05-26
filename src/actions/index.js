@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = `http://api.torrentsapi.com/?cb=&sort=year`;
+const ROOT_URL = `https://api.torrentsapi.com/?cb=&sort=year`;
 
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 export const SEARCH_TERM = 'SEARCH_TERM';

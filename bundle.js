@@ -23674,7 +23674,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ROOT_URL = 'http://api.torrentsapi.com/?cb=&sort=year';
+	var ROOT_URL = 'https://api.torrentsapi.com/?cb=&sort=year';
 
 	var FETCH_MOVIE = exports.FETCH_MOVIE = 'FETCH_MOVIE';
 	var SEARCH_TERM = exports.SEARCH_TERM = 'SEARCH_TERM';
