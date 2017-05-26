@@ -28,9 +28,9 @@ class SearchBar extends Component{
 
   render(){
     return (
-      <form onSubmit={this.onFormSubmit} className="navbar-form is-fluid">
+      <form onSubmit={this.onFormSubmit} className="navbar-form is-fluid search-bar">
           <input
-            className="search_bar form-control"
+            className="search-input form-control"
             value={this.state.term}
             onChange={this.onInputChange}
             type="text"

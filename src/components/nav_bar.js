@@ -5,16 +5,18 @@ export default function(){
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="container">
-        <div className="col-md-6">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="#/">
-              <img alt="Brand" className="navbar-brand-image" src="./images/dollyflix.png" height="40px" />
-              DollyFlix
-            </a>
+        <div className="row">
+          <div className="col-md-6 col-xs-5">
+            <div className="navbar-header">
+              <a className="navbar-brand" href="/">
+                <img alt="Brand" className="navbar-brand-image" src="./images/dollyflix.png" height="40px" />
+                <span className="hidden-xs">DollyFlix</span>
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="col-md-6">
-          <SearchBar />
+          <div className="col-md-6 col-xs-7">
+            <SearchBar />
+          </div>
         </div>
       </div>
     </nav>
