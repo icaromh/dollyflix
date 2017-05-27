@@ -1,27 +1,41 @@
-body{
-  padding-top: 50px;
+*, *:before, *:after{
+  box-sizing: border-box;
 }
 
-iframe{
-  border: 0;
-  display: block;
-  margin: 0 auto;
+body{
+  font-size: 16px;
+  padding-top: 50px;
+  background-color: #333;
+}
+
+
+.page-title{
+  font-size: 2rem;
+  color: #fefefe;
+  letter-spacing: 1px;
+}
+
+.medialist{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 
 .movielist__item{
+  position: relative;
   display: inline-block;
-  float: left;
-  width: 185px;
-  height: 240px;
+  width: 45%;
+  margin: 1%;
+  padding-bottom: 60%;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
-  position: relative;
-  margin: 2px;
   margin-bottom: 20px;
 }
 
 .movielist__item__meta{
+  box-sizing: border-box;
   display: block;
   position: absolute;
   left: 0;
@@ -79,6 +93,14 @@ iframe{
   height: auto;
 }
 
+.media-frame{
+  width: 100%;
+  height: calc(100vw * 0.6);
+  border: 0;
+  display: block;
+  margin: 0 auto;
+}
+
 .search-bar{
   box-shadow: none;
   border: 0;
@@ -90,5 +112,19 @@ iframe{
   .search-bar{
     margin-top: 8px;
     margin-bottom: 8px;
+  }
+
+  .movielist__item {
+    width: 185px;
+    height: 240px;
+    padding-bottom: 0;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .media-frame{
+    width: 854px;
+    height: 480px;
   }
 }

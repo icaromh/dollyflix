@@ -42,7 +42,9 @@ class MovieList extends Component{
     if(this.props.search.term !== null){
       return (
         <div>
-          <h1>Searching for "{this.props.search.term}"</h1>
+          <h1 className="page-title">
+            Searching for "{this.props.search.term}"
+          </h1>
           <Spinner />
         </div>
       )
@@ -56,8 +58,12 @@ class MovieList extends Component{
     if(this.props.search.term !== null){
       return (
         <div>
-          <h1>Results for "{this.props.search.term}"</h1>
-          {this.props.movies.map(this.renderMovie)}
+          <h1 className="page-title">
+            Results for "{this.props.search.term}"
+          </h1>
+          <div className="medialist">
+            {this.props.movies.map(this.renderMovie)}
+          </div>
         </div>
       )
     }

@@ -23634,9 +23634,9 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { onSubmit: this.onFormSubmit, className: 'navbar-form is-fluid' },
+	        { onSubmit: this.onFormSubmit, className: 'navbar-form is-fluid search-bar' },
 	        _react2.default.createElement('input', {
-	          className: 'search_bar form-control',
+	          className: 'search-input form-control',
 	          value: this.state.term,
 	          onChange: this.onInputChange,
 	          type: 'text',
@@ -24862,7 +24862,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'h1',
-	            null,
+	            { className: 'page-title' },
 	            'Searching for "',
 	            this.props.search.term,
 	            '"'
@@ -24882,12 +24882,16 @@
 	          null,
 	          _react2.default.createElement(
 	            'h1',
-	            null,
+	            { className: 'page-title' },
 	            'Results for "',
 	            this.props.search.term,
 	            '"'
 	          ),
-	          this.props.movies.map(this.renderMovie)
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'medialist' },
+	            this.props.movies.map(this.renderMovie)
+	          )
 	        );
 	      }
 
@@ -25019,13 +25023,14 @@
 	});
 
 	exports.default = function (props) {
-	  var height = props.height || "315";
-	  var width = props.width || 1.78 * height;
+	  var width = props.width || "auto";
+	  var height = props.height || "auto";
 
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "media-wrapper" },
 	    _react2.default.createElement("iframe", {
+	      className: "media-frame",
 	      width: width,
 	      height: height,
 	      src: "https://www.youtube.com/embed/" + props.trailer,
@@ -25059,22 +25064,30 @@
 	      { className: 'container' },
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'col-md-6' },
+	        { className: 'row' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'navbar-header' },
+	          { className: 'col-md-6 col-xs-5' },
 	          _react2.default.createElement(
-	            'a',
-	            { className: 'navbar-brand', href: '#/' },
-	            _react2.default.createElement('img', { alt: 'Brand', className: 'navbar-brand-image', src: './images/dollyflix.png', height: '40px' }),
-	            'DollyFlix'
+	            'div',
+	            { className: 'navbar-header' },
+	            _react2.default.createElement(
+	              'a',
+	              { className: 'navbar-brand', href: '/' },
+	              _react2.default.createElement('img', { alt: 'Brand', className: 'navbar-brand-image', src: './images/dollyflix.png', height: '40px' }),
+	              _react2.default.createElement(
+	                'span',
+	                { className: 'hidden-xs' },
+	                'DollyFlix'
+	              )
+	            )
 	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-md-6 col-xs-7' },
+	          _react2.default.createElement(_search_bar2.default, null)
 	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'col-md-6' },
-	        _react2.default.createElement(_search_bar2.default, null)
 	      )
 	    )
 	  );
