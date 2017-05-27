@@ -1,12 +1,13 @@
 import React from 'react';
 
 export default function (props){
-  const height = props.height || "315";
-  const width = props.width || 1.78 * height;
+  const width = props.width || "auto";
+  const height = props.height || "auto";
 
   return (
     <div className="media-wrapper">
       <iframe
+        className="media-frame"
         width={width}
         height={height}
         src={`https://www.youtube.com/embed/${props.trailer}`}
