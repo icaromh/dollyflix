@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovie, searchTerm } from '../actions/index';
-
+import SearchIcon from '../components/SearchIcon';
 
 class SearchBar extends Component{
   constructor(props){
@@ -22,21 +22,37 @@ class SearchBar extends Component{
 
   onFormSubmit(ev){
     ev.preventDefault();
-    this.props.searchTerm(this.state.term);
-    this.props.fetchMovie(this.state.term);
+    const term = this.state.term.trim();
+    this.props.searchTerm(term);
+    this.props.fetchMovie(term);
+    this.inputSearch.blur();
+  }
+
+  renderForm(){
+    return (
+      <div>
+        <form onSubmit={this.onFormSubmit} className="searchbox__form is-fluid">
+          <SearchIcon className="searchbox__icon__form" />
+          <input
+            ref={(el) => { this.inputSearch = el; }}
+            className="searchbar__input"
+            value={this.state.term}
+            onChange={this.onInputChange}
+            type="text"
+            placeholder="Título do filme"
+          />
+        </form>
+      </div>
+    );
   }
 
   render(){
     return (
-      <form onSubmit={this.onFormSubmit} className="navbar-form is-fluid search-bar">
-          <input
-            className="search-input form-control"
-            value={this.state.term}
-            onChange={this.onInputChange}
-            type="text"
-            placeholder="Pesquise pelo nome"
-          />
-      </form>
+      <div className="searchbar-wrapper">
+        <div className="searchbar__box">
+          { this.renderForm() }
+        </div>
+      </div>
     );
   }
 }
