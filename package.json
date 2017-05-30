@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js",
     "build": "./node_modules/webpack/bin/webpack.js -p --progress",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./ -p 6006",
     "build-storybook": "build-storybook"
   },
   "author": "",
