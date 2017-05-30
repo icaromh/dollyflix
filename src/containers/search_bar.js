@@ -14,6 +14,7 @@ class SearchBar extends Component{
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
   }
 
   onInputChange(ev){
@@ -44,6 +45,10 @@ class SearchBar extends Component{
         </form>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.props.fetchMovie();
   }
 
   render(){

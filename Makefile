@@ -12,4 +12,4 @@ build:
 	npm run build
 
 run-locally:
-	node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js
+	node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base ./ --hot

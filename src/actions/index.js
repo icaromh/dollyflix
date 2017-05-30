@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ROOT_URL = `https://api.torrentsapi.com/?cb=&sort=year`;
+const ROOT_URL = `https://dollyflix-api.herokuapp.com/movies/1?&sort=year`;
 
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 export const SEARCH_TERM = 'SEARCH_TERM';
@@ -13,8 +13,12 @@ export function searchTerm(movie) {
   }
 }
 
-export function fetchMovie(movie) {
-  const url = `${ROOT_URL}&keywords=${movie}`;
+export function fetchMovie(movie = "") {
+  let url = `${ROOT_URL}`;
+  if (movie !== "") {
+    url += `&keywords=${movie}`;
+  }
+
   const request = axios.get(url);
 
   return {
