@@ -6,17 +6,20 @@
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
     "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js",
-    "build": "./node_modules/webpack/bin/webpack.js -p --progress"
+    "build": "./node_modules/webpack/bin/webpack.js -p --progress",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.1.18",
-    "webpack-dev-server": "^1.14.0",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "axios": "^0.8.1",
