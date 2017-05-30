@@ -1,4 +1,5 @@
 run:
+	make build
 	node server.js
 
 build:

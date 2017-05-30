@@ -9,6 +9,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(port, => {
+app.listen(port, () => {
   console.log('Our app is running on http://localhost:' + port);
 });
