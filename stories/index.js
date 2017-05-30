@@ -29,4 +29,3 @@ storiesOf('SVG Icons', module)
       <h1 className="page-title">Search Icon</h1>
       <SearchIcon />
     </div>
-  ));
