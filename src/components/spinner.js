@@ -5,7 +5,7 @@ export default function(props){
     <img
       alt="Loading"
       className="spinner spinner-animated"
-      src="./images/dollyflix.png"
+      src="/assets/images/dollyflix.png"
       height={props.height || '120px'}
     />
   )

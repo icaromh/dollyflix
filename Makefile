@@ -1,6 +1,8 @@
 run:
-	npm start
+	node server.js
 
-build-serve:
+build:
 	npm run build
-	python -m SimpleHTTPServer 8080
+
+run-locally:
+	node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js

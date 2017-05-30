@@ -9,7 +9,7 @@ export default function(){
           <div className="col-md-6 col-xs-5">
             <div className="navbar-header">
               <a className="navbar-brand" href="/">
-                <img alt="Brand" className="navbar-brand-image" src="./images/dollyflix.png" height="40px" />
+                <img alt="Brand" className="navbar-brand-image" src="/assets/images/dollyflix.png" height="40px" />
                 <span className="hidden-xs">DollyFlix</span>
               </a>
             </div>
