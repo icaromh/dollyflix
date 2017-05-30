@@ -17,12 +17,12 @@ class MovieList extends Component{
 
   renderMovie(movie){
     const itemStyle = {
-      backgroundImage: `url(${movie.poster_med})`,
+      backgroundImage: `url(${movie.images.banner})`,
     };
 
     return (
       <div
-        key={movie.id}
+        key={movie.imdb_id}
         className="thumbnail movielist__item"
         onClick={() => this.selectMedia(movie)}
         style={itemStyle}>
@@ -30,7 +30,7 @@ class MovieList extends Component{
         <span className="movielist__item__meta">
           <a
             target="_blank"
-            href={`http://www.imdb.com/title/${movie.imdb}/`}>
+            href={`http://www.imdb.com/title/${movie.imdb_id}/`}>
             {movie.title}
           </a>
         </span>
@@ -54,29 +54,42 @@ class MovieList extends Component{
 
   }
 
-  renderList(){
-    if(this.props.search.term !== null){
+  renderTitle() {
+    if (this.props.search.loading) {
+      return this.renderLoader();
+    }
+
+    if (this.props.search.term !== null) {
       return (
         <div>
           <h1 className="page-title">
             Results for "{this.props.search.term}"
           </h1>
-          <div className="medialist">
-            {this.props.movies.map(this.renderMovie)}
-          </div>
         </div>
       )
     }
 
-    return false;
+    return (
+      <div>
+        <h1 className="page-title">Latest movies</h1>
+      </div>
+    )
+  }
+
+  renderList(){
+    return (
+      <div className="medialist">
+        {this.props.movies.map(this.renderMovie)}
+      </div>
+    )
   }
 
   render(){
+    console.log(this.props.movies);
     return (
       <div className="container">
-        {this.props.search.loading
-          ? this.renderLoader()
-          : this.renderList()}
+        {this.renderTitle()}
+        {this.renderList()}
       </div>
     );
   }
