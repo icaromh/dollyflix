@@ -1,9 +1,11 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action, linkTo } from '@storybook/react';
 
 import MediaItem from '../src/components/mediaItem';
 import Spinner from '../src/components/spinner';
 import SearchIcon from '../src/components/SearchIcon';
+
+import Series from 'fixtures/series';
 
 storiesOf('MediaItem', module)
   .add('without trailer', () => (
