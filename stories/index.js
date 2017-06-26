@@ -17,6 +17,14 @@ storiesOf('SerieItem', module)
       onClick={() => console.log('click')}
       />))
 
+storiesOf('MediaItem', module)
+  .add('without trailer', () => (
+    <MediaItem />
+  ))
+  .add('with trailer', () => (
+    <MediaItem width="560px" height="315px" trailer="ONHBaC-pfsk" />
+  ));
+
 storiesOf('Loader', module)
   .add('spinning', () => (
     <Spinner />
