@@ -4,34 +4,34 @@ import { bindActionCreators } from 'redux';
 import { selectMedia } from '../actions/index';
 import Spinner from '../components/spinner';
 
-class MovieList extends Component{
+class SerieList extends Component{
   constructor(props){
     super(props);
 
-    this.renderMovie = this.renderMovie.bind(this);
+    this.renderSerie = this.renderSerie.bind(this);
   }
 
   selectMedia(media){
     this.props.selectMedia(media);
   }
 
-  renderMovie(movie){
+  renderSerie(serie){
     const itemStyle = {
-      backgroundImage: `url(${movie.images.banner})`,
+      backgroundImage: `url(${serie.images.banner})`,
     };
 
     return (
       <div
-        key={movie.imdb_id}
-        className="thumbnail movielist__item"
-        onClick={() => this.selectMedia(movie)}
+        key={serie.imdb_id}
+        className="thumbnail serielist__item"
+        onClick={() => this.selectMedia(serie)}
         style={itemStyle}>
 
-        <span className="movielist__item__meta">
+        <span className="serielist__item__meta">
           <a
             target="_blank"
-            href={`http://www.imdb.com/title/${movie.imdb_id}/`}>
-            {movie.title}
+            href={`http://www.imdb.com/title/${serie.imdb_id}/`}>
+            {serie.title}
           </a>
         </span>
       </div>
@@ -71,7 +71,7 @@ class MovieList extends Component{
 
     return (
       <div>
-        <h1 className="page-title">Latest movies</h1>
+        <h1 className="page-title">Latest Series</h1>
       </div>
     )
   }
@@ -79,13 +79,13 @@ class MovieList extends Component{
   renderList(){
     return (
       <div className="medialist">
-        {this.props.movies.map(this.renderMovie)}
+        {this.props.series.map(this.renderSerie)}
       </div>
     )
   }
 
   render(){
-    console.log(this.props.movies);
+    console.log(this.props.series);
     return (
       <div className="container">
         {this.renderTitle()}
@@ -95,10 +95,10 @@ class MovieList extends Component{
   }
 }
 
-function mapStateToProps({ movies, search }) {
-  return { movies, search };
+function mapStateToProps({ series, search }) {
+  return { series, search };
 }
 
 export default connect(mapStateToProps, {
   selectMedia: selectMedia
-})(MovieList);
+})(SerieList);

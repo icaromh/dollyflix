@@ -24,7 +24,7 @@ body{
   margin-top: -10px;
 }
 
-.movielist__item{
+.serielist__item{
   position: relative;
   flex: 1 0 140px;
   margin-left: 10px;
@@ -37,7 +37,7 @@ body{
   max-width: 200px;
 }
 
-.movielist__item__meta{
+.serielist__item__meta{
   box-sizing: border-box;
   display: block;
   position: absolute;
@@ -52,11 +52,11 @@ body{
   transition: transform 0.1s ease-in-out;
 }
 
-.movielist__item__meta > a{
+.serielist__item__meta > a{
   color: #FFF;
 }
 
-.movielist__item:hover .movielist__item__meta{
+.serielist__item:hover .serielist__item__meta{
   transform: translate(0, 0);
 }
 
@@ -161,7 +161,7 @@ body{
     margin-bottom: 8px;
   }
 
-  .movielist__item {
+  .serielist__item {
     width: 185px;
     height: 240px;
     padding-bottom: 0;
