@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovie, searchTerm } from '../actions/index';
+import { fetchSerie, searchTerm } from '../actions/index';
 import SearchIcon from '../components/SearchIcon';
 
 class SearchBar extends Component{
@@ -14,6 +14,7 @@ class SearchBar extends Component{
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
   }
 
   onInputChange(ev){
@@ -24,7 +25,7 @@ class SearchBar extends Component{
     ev.preventDefault();
     const term = this.state.term.trim();
     this.props.searchTerm(term);
-    this.props.fetchMovie(term);
+    this.props.fetchSerie(term);
     this.inputSearch.blur();
   }
 
@@ -39,11 +40,15 @@ class SearchBar extends Component{
             value={this.state.term}
             onChange={this.onInputChange}
             type="text"
-            placeholder="Título do filme"
+            placeholder="Título da série"
           />
         </form>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.props.fetchSerie();
   }
 
   render(){
@@ -58,6 +63,6 @@ class SearchBar extends Component{
 }
 
 export default connect(null, {
-  fetchMovie: fetchMovie,
+  fetchSerie: fetchSerie,
   searchTerm: searchTerm,
 })(SearchBar);
