@@ -1,0 +1,177 @@
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 16px;
+  padding-top: 50px;
+  background-color: #333;
+}
+
+
+.page-title{
+  font-size: 2rem;
+  color: #fefefe;
+  letter-spacing: 1px;
+}
+
+.medialist{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+
+.serielist__item{
+  position: relative;
+  flex: 1 0 140px;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-bottom: 60%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  margin-bottom: 0;
+  max-width: 200px;
+}
+
+.serielist__item__meta{
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+  color: #FFF;
+  background-color: rgba(0,0,0,.5);
+  transform: translate(0, 100%);
+  transition: transform 0.1s ease-in-out;
+}
+
+.serielist__item__meta > a{
+  color: #FFF;
+}
+
+.serielist__item:hover .serielist__item__meta{
+  transform: translate(0, 0);
+}
+
+.navbar-form.is-fluid .form-control{
+  width: 100%;
+}
+
+.navbar-brand-image{
+  float: left;
+  margin-right: 5px;
+  margin-top: -10px;
+}
+
+.navbar-inverse .navbar-brand{
+  color: #fff;
+}
+
+
+.spinner{
+  display: block;
+  margin: 30px auto;
+}
+
+.spinner-animated{
+  animation: loop 1s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes loop {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.media-wrapper{
+  background-color: #000;
+  width: 100%;
+  height: auto;
+}
+
+.media-frame{
+  width: 100%;
+  height: calc(100vw * 0.6);
+  border: 0;
+  display: block;
+  margin: 0 auto;
+}
+
+/**
+ * Search Bar Block Element Modifier
+ */
+.searchbar{
+  box-shadow: none;
+  border: 0;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.searchbar-wrapper{
+  height: 50px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.searchbar__box{
+  float: right;
+  max-width: 100%;
+}
+
+.searchbar__icon{
+  float: left;
+  display: inline-block;
+}
+
+.searchbox__form{
+  position: relative;
+}
+
+.searchbox__icon__form{
+  position: absolute;
+  top: 2px;
+}
+
+.searchbar__input{
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  padding: 2px;
+  padding-left: 25px;
+  max-width: 100%;
+}
+
+.searchbar__label{
+  color: #fff;
+  display: inline-block;
+  font-weight: 200;
+  margin-left: 5px;
+}
+
+@media (min-width: 768px) {
+  .searchbar{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .serielist__item {
+    width: 185px;
+    height: 240px;
+    padding-bottom: 0;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .media-frame{
+    width: 854px;
+    height: 480px;
+  }
+}

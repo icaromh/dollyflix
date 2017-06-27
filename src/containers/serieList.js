@@ -10,6 +10,7 @@ class SerieList extends Component{
     super(props);
 
     this.renderSerie = this.renderSerie.bind(this);
+    this.selectMedia = this.selectMedia.bind(this);
   }
 
   selectMedia(media){
@@ -17,12 +18,25 @@ class SerieList extends Component{
   }
 
   renderSerie(serie){
+    const itemStyle = {
+      backgroundImage: `url(${serie.images.banner})`,
+    };
 
     return (
-      <SerieItem
-        serie={serie}
+      <div
+        key={serie.imdb_id}
+        className="thumbnail serielist__item"
         onClick={() => this.selectMedia(serie)}
-        />
+        style={itemStyle}>
+
+        <span className="serielist__item__meta">
+          <a
+            target="_blank"
+            href={`http://www.imdb.com/title/${serie.imdb_id}/`}>
+            {serie.title}
+          </a>
+        </span>
+      </div>
     );
   }
 

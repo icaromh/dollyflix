@@ -9,7 +9,6 @@ export default function (props){
     <div
       key={props.serie.imdb_id}
       className="thumbnail serielist__item"
-      onClick={props.onClick}
       style={itemStyle}>
 
       <span className="serielist__item__meta">

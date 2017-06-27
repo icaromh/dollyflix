@@ -9,7 +9,7 @@ run:
 	node server.js
 
 build:
-	npm run build
+	yarn build
 
 run-locally:
-	node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base ./ --hot
+	NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base ./
