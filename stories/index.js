@@ -22,7 +22,6 @@ storiesOf('Loader', module)
     <Spinner />
   ));
 
-
 storiesOf('SVG Icons', module)
   .add('Search', () => (
     <div style={{position: "relative", padding: "20px"}}>
