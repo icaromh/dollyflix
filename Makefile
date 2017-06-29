@@ -7,5 +7,5 @@ setup:
 build:
 	yarn build
 
-run-locally:
+run:
 	yarn start:local

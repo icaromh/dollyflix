@@ -10,6 +10,13 @@ import SerieList from '../src/containers/serieList';
 
 import series from './fixtures/series';
 
+storiesOf('Serie Selected', module)
+  .add('all', () => (
+    <SerieItem
+      serie={series[1]}
+      onClick={() => console.log('click')}
+      />))
+
 storiesOf('SerieItem', module)
   .add('all', () => (
     <SerieItem

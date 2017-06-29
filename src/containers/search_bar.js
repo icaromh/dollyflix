@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
+import { Redirect } from 'react-router';
+
 import { fetchSerie, searchTerm } from '../actions/index';
 import SearchIcon from '../components/SearchIcon';
 
@@ -18,14 +20,20 @@ class SearchBar extends Component{
   }
 
   onInputChange(ev){
-    this.setState({ term: ev.target.value });
+    const term = ev.target.value;
+    this.setState({ term: term });
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    console.log(browserHistory.getCurrentLocation())
+    Object.assign(location.query, { q: term });
+    browserHistory.push(location);
   }
 
   onFormSubmit(ev){
     ev.preventDefault();
     const term = this.state.term.trim();
-    this.props.searchTerm(term);
-    this.props.fetchSerie(term);
+    // this.props.searchTerm(term);
+    // this.props.fetchSerie(term);
+
     this.inputSearch.blur();
   }
 

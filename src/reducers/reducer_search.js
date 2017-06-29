@@ -11,6 +11,7 @@ export default function(state = initialState, action) {
       return { term: action.payload, loading: true };
     case FETCH_SERIE:
       return { ...state, loading: false }
+    default:
+      return state;
   }
-  return state;
 }

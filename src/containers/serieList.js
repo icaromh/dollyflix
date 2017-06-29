@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { selectMedia } from '../actions/index';
 import Spinner from '../components/spinner';
-import SerieItem from '../components/serieItem';
 
 class SerieList extends Component{
   constructor(props){
@@ -32,6 +30,7 @@ class SerieList extends Component{
         <span className="serielist__item__meta">
           <a
             target="_blank"
+            rel="noopener noreferrer"
             href={`http://www.imdb.com/title/${serie.imdb_id}/`}>
             {serie.title}
           </a>
@@ -87,7 +86,6 @@ class SerieList extends Component{
   }
 
   render(){
-    console.log(this.props.series);
     return (
       <div className="container">
         {this.renderTitle()}

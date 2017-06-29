@@ -9,8 +9,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        {this.props.children}
+        <h2 className="page-title">Bonito</h2>
       </div>
     );
   }
