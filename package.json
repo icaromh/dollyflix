@@ -6,10 +6,10 @@
   "homepage": "https://dollyflix.herokuapp.com",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
-    "start": "./node_modules/serve/bin/serve.js build",
+    "start": "./node_modules/serve/bin/serve.js -s build",
     "storybook": "start-storybook -s ./ -p 6006",
     "build-storybook": "build-storybook",
-    "run": "react-scripts start",
+    "start:local": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
