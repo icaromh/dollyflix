@@ -70,13 +70,37 @@ class SerieView extends Component {
   }
 
   render() {
+    if(!this.state.currentMedia) {
+      return (
+        <div className="container">
+          <h1>Loading</h1>
+        </div>
+      );
+    }
+
+    const serie = this.state.currentMedia;
+
     return (
       <div>
-        <div className="container">
-          {this.state.currentMedia ?
-            <h1 className="page-title">{ this.state.currentMedia.title }</h1>
-            : <h1 className="page-title">Loading</h1>}
+        <div className="serie-featured-wrapper">
+          <div className="serie-data">
+            <h1 className="serie-title">{serie.title}</h1>
+            <div className="serie-metadata">
+              <span className="serie-metadata-item">{serie.year}</span>
+              <span className="serie-metadata-item">{serie.network}</span>
+              <span className="serie-metadata-item">{serie.num_seasons} Seasons</span>
+            </div>
+            <div className="serie-synopsis">
+              <p>{serie.synopsis}</p>
+            </div>
+          </div>
+          <div className="serie-featured-player">
+            <div className="serie-featured-bg" style={{backgroundImage: `url(${serie.images.fanart})`}}></div>
+            <div className="serie-featured-player-icon"></div>
+          </div>
+        </div>
 
+        <div className="container">
           {this.state.currentMedia && this.renderSeason()}
         </div>
       </div>
