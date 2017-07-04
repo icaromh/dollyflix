@@ -23,23 +23,49 @@ class SerieView extends Component {
     }
   }
 
-  renderEpisodes(){
+  renderSeason(){
+    const seasons = this.state.currentMedia.episodes.map(ep => ep.season)
+      .reduce((acc, el) => {
+        return acc.indexOf(el) === -1
+        ? acc.concat(el)
+        : acc;
+      }, []);
+
+    return seasons.sort().map(season => {
+      return (
+        <div>
+          <h1 className="page-title">Season {season}</h1>
+          <div className="medialist" key={season}>
+            {this.renderEpisodes(season)}
+          </div>
+        </div>
+
+      )
+    })
+  }
+
+  renderEpisodes(season){
+
     return this.state.currentMedia.episodes.map((ep) => {
       const itemStyle = {
         backgroundImage: `url(${(ep.images && ep.images.medium) || this.state.currentMedia.images.poster})`,
       };
 
-      return (
-        <div
-          key={ep.imdb_id}
-          className="thumbnail serielist__item serielist__item--episode"
-          style={itemStyle}
-        >
-          <span className="serielist__item__meta">
-            {`${ep.episode}. ${ep.title}`}
-          </span>
-        </div>
-      );
+      if(ep.season === season){
+        console.log(ep)
+        return (
+          <div
+            key={ep.imdb_id}
+            className="thumbnail serielist__item serielist__item--episode"
+            style={itemStyle}
+          >
+            <span className="serielist__item__meta">
+              {`${ep.episode}. ${ep.title}`}
+            </span>
+          </div>
+        );
+      }
+      return;
     })
   }
 
@@ -50,9 +76,8 @@ class SerieView extends Component {
           {this.state.currentMedia ?
             <h1 className="page-title">{ this.state.currentMedia.title }</h1>
             : <h1 className="page-title">Loading</h1>}
-          <div className="medialist">
-            {this.state.currentMedia && this.renderEpisodes()}
-          </div>
+
+          {this.state.currentMedia && this.renderSeason()}
         </div>
       </div>
     );
