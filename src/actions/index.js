@@ -6,6 +6,7 @@ export const FETCH_SERIES = 'FETCH_SERIES';
 export const GET_SERIE = 'GET_SERIE';
 export const SEARCH_TERM = 'SEARCH_TERM';
 export const SELECT_MEDIA = 'SELECT_MEDIA';
+export const SELECT_EPISODE = 'SELECT_EPISODE';
 
 export function searchTerm(serie) {
   return {
@@ -44,5 +45,12 @@ export function selectMedia(media) {
   return {
     type: SELECT_MEDIA,
     payload: media,
+  };
+}
+
+export function selectEpisode(episode) {
+  return {
+    type: SELECT_EPISODE,
+    payload: episode,
   };
 }

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getSerie } from '../actions'
+import { getSerie, selectEpisode } from '../actions';
+import MediaItem from '../components/mediaItem';
+import SerieHeader from '../components/serieHeader';
 
 class SerieView extends Component {
   constructor(props){
     super(props);
+
     this.state = {
       currentMedia: this.props.currentMedia || false
     }
+
+    this.selectEpisode = this.selectEpisode.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -23,6 +28,11 @@ class SerieView extends Component {
     }
   }
 
+  selectEpisode(ep){
+    console.log(ep);
+    this.setState({epSelected: ep})
+  }
+
   renderSeason(){
     const seasons = this.state.currentMedia.episodes.map(ep => ep.season)
       .reduce((acc, el) => {
@@ -33,40 +43,55 @@ class SerieView extends Component {
 
     return seasons.sort().map(season => {
       return (
-        <div>
+        <div key={season}>
           <h1 className="page-title">Season {season}</h1>
-          <div className="medialist" key={season}>
+          <div className="episodes-list" key={season}>
             {this.renderEpisodes(season)}
           </div>
         </div>
-
       )
     })
   }
 
   renderEpisodes(season){
 
-    return this.state.currentMedia.episodes.map((ep) => {
+    return this.state.currentMedia.episodes.map((ep, i) => {
       const itemStyle = {
         backgroundImage: `url(${(ep.images && ep.images.medium) || this.state.currentMedia.images.poster})`,
       };
 
       if(ep.season === season){
-        console.log(ep)
         return (
           <div
-            key={ep.imdb_id}
-            className="thumbnail serielist__item serielist__item--episode"
-            style={itemStyle}
+            className='episode'
+            onClick={() => this.selectEpisode(ep)}
+            key={i}
           >
-            <span className="serielist__item__meta">
-              {`${ep.episode}. ${ep.title}`}
-            </span>
+            <div className="episode__bg" style={itemStyle}>
+              <div className="episode__number">
+                {ep.episode}
+              </div>
+            </div>
+            <div className="episode__meta">
+              {ep.title}
+            </div>
           </div>
         );
       }
-      return;
-    })
+    });
+  }
+
+  renderMedia(ep){
+    return (
+      <div>
+        <select onChange={(ev) => this.setState({link: ev.target.value})} className="select-provider">
+          {ep.providers.map((p) => {
+            return (<option value={p.link}>{p.name}</option>)
+          })}
+        </select>
+        <MediaItem link={this.state.link || ep.providers[0].link} />
+      </div>
+    )
   }
 
   render() {
@@ -82,23 +107,10 @@ class SerieView extends Component {
 
     return (
       <div>
-        <div className="serie-featured-wrapper">
-          <div className="serie-data">
-            <h1 className="serie-title">{serie.title}</h1>
-            <div className="serie-metadata">
-              <span className="serie-metadata-item">{serie.year}</span>
-              <span className="serie-metadata-item">{serie.network}</span>
-              <span className="serie-metadata-item">{serie.num_seasons} Seasons</span>
-            </div>
-            <div className="serie-synopsis">
-              <p>{serie.synopsis}</p>
-            </div>
-          </div>
-          <div className="serie-featured-player">
-            <div className="serie-featured-bg" style={{backgroundImage: `url(${serie.images.fanart})`}}></div>
-            <div className="serie-featured-player-icon"></div>
-          </div>
-        </div>
+        {this.state.epSelected ?
+          this.renderMedia(this.state.epSelected)
+          : <SerieHeader serie={serie} />
+        }
 
         <div className="container">
           {this.state.currentMedia && this.renderSeason()}
@@ -113,5 +125,6 @@ function mapStateToProps({ currentMedia }) {
 }
 
 export default connect(mapStateToProps, {
-  getSerie: getSerie
+  getSerie: getSerie,
+  selectEpisode: selectEpisode
 })(SerieView);
