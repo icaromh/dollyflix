@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { Redirect } from 'react-router';
 
-import { fetchSerie, searchTerm } from '../actions/index';
+import { fetchSeries, searchTerm } from '../actions/index';
 import SearchIcon from '../components/SearchIcon';
 
 class SearchBar extends Component{
@@ -16,24 +15,31 @@ class SearchBar extends Component{
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.changePath = this.changePath.bind(this);
+    this.search = this.search.bind(this);
+  }
 
+  changePath(term){
+    const location = Object.assign({}, browserHistory.getCurrentLocation());
+    location.pathname = `/search/${term}`;
+    browserHistory.push(location);
   }
 
   onInputChange(ev){
     const term = ev.target.value;
     this.setState({ term: term });
-    const location = Object.assign({}, browserHistory.getCurrentLocation());
-    console.log(browserHistory.getCurrentLocation())
-    Object.assign(location.query, { q: term });
-    browserHistory.push(location);
+  }
+
+  search(term){
+    this.changePath(term);
+    this.props.searchTerm(term);
+    this.props.fetchSeries(term);
   }
 
   onFormSubmit(ev){
     ev.preventDefault();
     const term = this.state.term.trim();
-    // this.props.searchTerm(term);
-    // this.props.fetchSerie(term);
-
+    this.search(term);
     this.inputSearch.blur();
   }
 
@@ -56,7 +62,7 @@ class SearchBar extends Component{
   }
 
   componentDidMount() {
-    this.props.fetchSerie();
+    this.props.fetchSeries();
   }
 
   render(){
@@ -71,6 +77,6 @@ class SearchBar extends Component{
 }
 
 export default connect(null, {
-  fetchSerie: fetchSerie,
+  fetchSeries: fetchSeries,
   searchTerm: searchTerm,
 })(SearchBar);

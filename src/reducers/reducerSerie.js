@@ -1,10 +1,10 @@
-import { FETCH_SERIE } from '../actions/index';
+import { FETCH_SERIES } from '../actions/index';
 
 export default function(state = [], action) {
   switch (action.type) {
-  case FETCH_SERIE:
-    return action.payload.data;
-  default:
-    return state;
+    case FETCH_SERIES:
+      return action.payload.data;
+    default:
+      return state;
   }
 }

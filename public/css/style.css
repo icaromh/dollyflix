@@ -166,6 +166,13 @@ body{
     height: 240px;
     padding-bottom: 0;
   }
+
+  .serielist__item--episode{
+    padding-bottom: 0;
+    max-width: none;
+    flex: 1 0 20%;
+    height: 150px;
+  }
 }
 
 
