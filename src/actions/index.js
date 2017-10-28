@@ -4,7 +4,9 @@ const ROOT_URL = `https://dollyflix-api.herokuapp.com`;
 
 export const FETCH_SERIES = 'FETCH_SERIES';
 export const GET_SERIE = 'GET_SERIE';
+
 export const SEARCH_TERM = 'SEARCH_TERM';
+
 export const SELECT_MEDIA = 'SELECT_MEDIA';
 export const SELECT_EPISODE = 'SELECT_EPISODE';
 

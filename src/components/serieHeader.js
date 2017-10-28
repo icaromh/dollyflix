@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default (props) => {
+  if(!props.serie.title)
+    return false;
+
   return (
     <div className="serie-featured-wrapper">
       <div className="serie-data">
@@ -16,7 +19,7 @@ export default (props) => {
       </div>
       <div className="serie-featured-player">
         <div className="serie-featured-bg" style={{backgroundImage: `url(${props.serie.images.fanart})`}}></div>
-        <div className="serie-featured-player-icon"></div>
+        {/* <div className="serie-featured-player-icon"></div> */}
       </div>
     </div>
   )

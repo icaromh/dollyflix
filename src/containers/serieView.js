@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import { getSerie, selectEpisode } from '../actions';
 import MediaItem from '../components/mediaItem';
 import SerieHeader from '../components/serieHeader';
+import EpisodesList from '../components/EpisodesList';
+import SeasonSelector from '../components/SeasonSelector';
 
 class SerieView extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-      currentMedia: this.props.currentMedia || false
+      currentMedia: this.props.currentMedia || {},
+      seasons: [],
+      seasonSelected: 1,
     }
 
     this.selectEpisode = this.selectEpisode.bind(this);
@@ -33,52 +37,10 @@ class SerieView extends Component {
     this.setState({epSelected: ep})
   }
 
-  renderSeason(){
-    const seasons = this.state.currentMedia.episodes.map(ep => ep.season)
-      .reduce((acc, el) => {
-        return acc.indexOf(el) === -1
-        ? acc.concat(el)
-        : acc;
-      }, []);
-
-    return seasons.sort().map(season => {
-      return (
-        <div key={season}>
-          <h1 className="page-title">Season {season}</h1>
-          <div className="episodes-list" key={season}>
-            {this.renderEpisodes(season)}
-          </div>
-        </div>
-      )
+  handleChangeSeason = (ev) => {
+    this.setState({
+      seasonSelected: parseInt(ev.target.value, 10)
     })
-  }
-
-  renderEpisodes(season){
-
-    return this.state.currentMedia.episodes.map((ep, i) => {
-      const itemStyle = {
-        backgroundImage: `url(${(ep.images && ep.images.medium) || this.state.currentMedia.images.poster})`,
-      };
-
-      if(ep.season === season){
-        return (
-          <div
-            className='episode'
-            onClick={() => this.selectEpisode(ep)}
-            key={i}
-          >
-            <div className="episode__bg" style={itemStyle}>
-              <div className="episode__number">
-                {ep.episode}
-              </div>
-            </div>
-            <div className="episode__meta">
-              {ep.title}
-            </div>
-          </div>
-        );
-      }
-    });
   }
 
   renderMedia(ep){
@@ -95,15 +57,16 @@ class SerieView extends Component {
   }
 
   render() {
-    if(!this.state.currentMedia) {
+    const serie = this.state.currentMedia;
+    const episodes = serie.episodes && serie.episodes.filter(ep => ep.season === this.state.seasonSelected)
+
+    if(!serie) {
       return (
         <div className="container">
           <h1>Loading</h1>
         </div>
       );
     }
-
-    const serie = this.state.currentMedia;
 
     return (
       <div>
@@ -112,16 +75,25 @@ class SerieView extends Component {
           : <SerieHeader serie={serie} />
         }
 
-        <div className="container">
-          {this.state.currentMedia && this.renderSeason()}
+        <div className="container container--padding">
+          <SeasonSelector
+            seasons={this.props.seasons}
+            onChange={this.handleChangeSeason}
+          />
+
+          <EpisodesList
+            season={this.state.seasonSelected}
+            episodes={episodes}
+            onSelectEpisode={(el) => console.log(el)}
+          />
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ currentMedia }) {
-  return { currentMedia };
+function mapStateToProps({ currentMedia, seasons }) {
+  return { currentMedia, seasons };
 }
 
 export default connect(mapStateToProps, {
