@@ -9,6 +9,7 @@ export default function (props){
   return (
     <div className="media-wrapper">
       <iframe
+        title="Episode Player"
         className="media-frame"
         width={width}
         height={height}

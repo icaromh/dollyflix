@@ -22,7 +22,7 @@ class MediaContainer extends Component {
       if(!seasons[ep.season]){
         seasons[ep.season] = [];
       }
-      seasons[ep.season].push(ep);
+      return seasons[ep.season].push(ep);
     });
 
     return Object.keys(seasons).map(season => {
@@ -55,7 +55,6 @@ class MediaContainer extends Component {
   }
 
   render() {
-    console.log(this.props.currentMedia);
     if (!this.props.currentMedia) {
       return false;
     }

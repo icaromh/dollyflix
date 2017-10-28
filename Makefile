@@ -7,5 +7,8 @@ setup:
 build:
 	yarn build
 
-run-locally:
+run:
 	yarn start:local
+
+deploy: build
+	surge -d dollyflix.surge.sh -p ./build

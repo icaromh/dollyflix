@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
+
 import { selectMedia } from '../actions/index';
 import Spinner from '../components/spinner';
-import SerieItem from '../components/serieItem';
+
 
 class SerieList extends Component{
   constructor(props){
@@ -23,20 +24,17 @@ class SerieList extends Component{
     };
 
     return (
-      <div
+      <Link
         key={serie.imdb_id}
         className="thumbnail serielist__item"
         onClick={() => this.selectMedia(serie)}
-        style={itemStyle}>
-
+        to={`/serie/${serie.slug}`}
+        style={itemStyle}
+      >
         <span className="serielist__item__meta">
-          <a
-            target="_blank"
-            href={`http://www.imdb.com/title/${serie.imdb_id}/`}>
-            {serie.title}
-          </a>
+          {serie.title}
         </span>
-      </div>
+      </Link>
     );
   }
 
@@ -87,7 +85,6 @@ class SerieList extends Component{
   }
 
   render(){
-    console.log(this.props.series);
     return (
       <div className="container">
         {this.renderTitle()}

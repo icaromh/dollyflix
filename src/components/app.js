@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-import SerieList from '../containers/serieList';
-import MediaContainer from '../containers/media_container';
-
 import NavBar from './nav_bar';
 
 export default class App extends Component {
@@ -10,8 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <NavBar />
-        <MediaContainer />
-        <SerieList />
+        {this.props.children}
       </div>
     );
   }
