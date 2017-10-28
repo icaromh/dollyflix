@@ -9,3 +9,6 @@ build:
 
 run:
 	yarn start:local
+
+deploy: build
+	surge -d dollyflix.surge.sh -p ./build
