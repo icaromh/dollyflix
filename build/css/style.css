@@ -285,6 +285,11 @@ body{
   margin-bottom: 20px;
 }
 
+.episode a {
+  color: #FFF;
+  text-decoration: none;
+}
+
 .episode__bg{
   padding-bottom: 50%;
   background-size: cover;
@@ -334,15 +339,17 @@ body{
   }
 }
 
-.select-provider{
-  margin: 20px;
-  position: absolute;
+.select{
   border: 1px solid #fefefe;
   padding: 5px;
   background-color: transparent;
-  width: 120px;
+  min-width: 120px;
 }
 
-.select-provider option{
+.select option{
   background-color: #000;
+}
+
+.container--padding{
+  padding: 20px 0 20px 0;
 }
