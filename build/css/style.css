@@ -353,3 +353,9 @@ body{
 .container--padding{
   padding: 20px 0 20px 0;
 }
+
+
+.video-js{
+  width: 100vw;
+  height: 100vh;
+}

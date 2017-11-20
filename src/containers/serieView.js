@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getSerie, selectEpisode } from '../actions';
-import MediaItem from '../components/mediaItem';
 import SerieHeader from '../components/serieHeader';
 import EpisodesList from '../components/EpisodesList';
 import SeasonSelector from '../components/SeasonSelector';
@@ -12,29 +11,28 @@ class SerieView extends Component {
     super(props);
 
     this.state = {
-      currentMedia: this.props.currentMedia || {},
+      currentShow: this.props.currentShow || {},
       seasons: [],
       seasonSelected: 1,
     }
 
-    this.selectEpisode = this.selectEpisode.bind(this);
+    this.handleOnClickEpisode = this.handleOnClickEpisode.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.currentMedia){
-      this.setState({ currentMedia: nextProps.currentMedia });
+    if(nextProps.currentShow){
+      this.setState({ currentShow: nextProps.currentShow });
     }
   }
 
   componentWillMount(){
-    if(!this.props.currentMedia){
+    if(!this.props.currentShow){
       this.props.getSerie(this.props.params.slug)
     }
   }
 
-  selectEpisode(ep){
-    console.log(ep);
-    this.setState({epSelected: ep})
+  handleOnClickEpisode(episode){
+    this.props.selectEpisode(episode)
   }
 
   handleChangeSeason = (ev) => {
@@ -43,21 +41,8 @@ class SerieView extends Component {
     })
   }
 
-  renderMedia(ep){
-    return (
-      <div>
-        <select onChange={(ev) => this.setState({link: ev.target.value})} className="select-provider">
-          {ep.providers.map((p) => {
-            return (<option value={p.link}>{p.name}</option>)
-          })}
-        </select>
-        <MediaItem link={this.state.link || ep.providers[0].link} />
-      </div>
-    )
-  }
-
   render() {
-    const show = this.state.currentMedia;
+    const show = this.state.currentShow;
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
 
     if(!show) {
@@ -82,6 +67,7 @@ class SerieView extends Component {
             show={show}
             season={this.state.seasonSelected}
             episodes={episodes}
+            onClick={this.handleOnClickEpisode}
           />
         </div>
       </div>
@@ -89,8 +75,8 @@ class SerieView extends Component {
   }
 }
 
-function mapStateToProps({ currentMedia, seasons }) {
-  return { currentMedia, seasons };
+function mapStateToProps({ currentShow, seasons }) {
+  return { currentShow, seasons };
 }
 
 export default connect(mapStateToProps, {

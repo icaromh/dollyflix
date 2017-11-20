@@ -13,6 +13,7 @@ const EpisodesList = (props) => {
             key={episode.id}
             data={episode}
             show={props.show}
+            onClick={props.onClick}
           />
         )
       })}

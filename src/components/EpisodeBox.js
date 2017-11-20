@@ -17,6 +17,7 @@ const EpisodeBox = (props) => {
       <Link
         key={props.data.number}
         to={linkTo}
+        onClick={() => props.onClick(props.data)}
       >
       <div className="episode__bg" style={episodeStyle(props.data)}>
         <div className="episode__number">

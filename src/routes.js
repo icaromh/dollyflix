@@ -3,14 +3,16 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
 import IndexView from './components/indexView';
-import SerieView from './containers/serieView';
 import SearchView from './components/searchView';
+
+import SerieView from './containers/serieView';
+import PlayerView from './containers/playerView';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={IndexView} />
     <Route path="serie/:slug" component={SerieView} />
-    <Route path="player/:slug/:season/:episode" component={SerieView} />
+    <Route path="player/:slug/:season/:episode" component={PlayerView} />
     <Route path="search/:term" component={SearchView} />
 
   </Route>
