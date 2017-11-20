@@ -3,7 +3,6 @@ import EpisodeBox from './EpisodeBox';
 
 
 const EpisodesList = (props) => {
-
   if(!props.episodes) return false;
 
   return (
@@ -11,9 +10,9 @@ const EpisodesList = (props) => {
       {props.episodes.map((episode) => {
         return (
           <EpisodeBox
-            key={episode.tvdb_id}
+            key={episode.id}
             data={episode}
-            onClick={(episode) => props.onSelectEpisode(episode)}
+            show={props.show}
           />
         )
       })}

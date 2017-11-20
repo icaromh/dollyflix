@@ -285,6 +285,11 @@ body{
   margin-bottom: 20px;
 }
 
+.episode a {
+  color: #FFF;
+  text-decoration: none;
+}
+
 .episode__bg{
   padding-bottom: 50%;
   background-size: cover;

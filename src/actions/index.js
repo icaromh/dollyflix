@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const ROOT_URL = `https://dollyflix-api.herokuapp.com`;
 
-export const FETCH_SERIES = 'FETCH_SERIES';
-export const GET_SERIE = 'GET_SERIE';
+export const FETCH_SHOWS = 'FETCH_SHOWS';
+export const GET_SHOW = 'GET_SHOW';
 
 export const SEARCH_TERM = 'SEARCH_TERM';
 
-export const SELECT_MEDIA = 'SELECT_MEDIA';
+export const SELECT_SHOW = 'SELECT_SHOW';
 export const SELECT_EPISODE = 'SELECT_EPISODE';
 
 export function searchTerm(serie) {
@@ -28,7 +28,7 @@ export function fetchSeries(serie = "") {
   const request = axios.get(url);
 
   return {
-    type: FETCH_SERIES,
+    type: FETCH_SHOWS,
     payload: request,
   };
 }
@@ -38,14 +38,14 @@ export function getSerie(slug = "") {
   const request = axios.get(url);
 
   return {
-    type: GET_SERIE,
+    type: GET_SHOW,
     payload: request,
   };
 }
 
 export function selectMedia(media) {
   return {
-    type: SELECT_MEDIA,
+    type: SELECT_SHOW,
     payload: media,
   };
 }

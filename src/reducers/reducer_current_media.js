@@ -1,13 +1,13 @@
 import {
-  SELECT_MEDIA,
-  GET_SERIE
+  SELECT_SHOW,
+  GET_SHOW
 } from '../actions/index';
 
 export default function(state = null, action) {
   switch (action.type) {
-    case SELECT_MEDIA:
+    case SELECT_SHOW:
       return action.payload;
-    case GET_SERIE:
+    case GET_SHOW:
       return action.payload.data;
     default:
       return state;

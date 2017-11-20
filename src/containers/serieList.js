@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import { selectMedia } from '../actions/index';
 import Spinner from '../components/spinner';
-
+import SerieItem from '../components/serieItem'
 
 class SerieList extends Component{
   constructor(props){
@@ -19,21 +19,14 @@ class SerieList extends Component{
   }
 
   renderSerie(serie){
-    const itemStyle = {
-      backgroundImage: `url(${serie.images.banner})`,
-    };
 
     return (
       <Link
-        key={serie.imdb_id}
-        className="thumbnail serielist__item"
+        key={serie.slug}
         onClick={() => this.selectMedia(serie)}
         to={`/serie/${serie.slug}`}
-        style={itemStyle}
       >
-        <span className="serielist__item__meta">
-          {serie.title}
-        </span>
+        <SerieItem serie={serie} />
       </Link>
     );
   }

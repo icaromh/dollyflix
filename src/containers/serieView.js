@@ -57,10 +57,10 @@ class SerieView extends Component {
   }
 
   render() {
-    const serie = this.state.currentMedia;
-    const episodes = serie.episodes && serie.episodes.filter(ep => ep.season === this.state.seasonSelected)
+    const show = this.state.currentMedia;
+    const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
 
-    if(!serie) {
+    if(!show) {
       return (
         <div className="container">
           <h1>Loading</h1>
@@ -70,10 +70,7 @@ class SerieView extends Component {
 
     return (
       <div>
-        {this.state.epSelected ?
-          this.renderMedia(this.state.epSelected)
-          : <SerieHeader serie={serie} />
-        }
+        <SerieHeader serie={show} />
 
         <div className="container container--padding">
           <SeasonSelector
@@ -82,9 +79,9 @@ class SerieView extends Component {
           />
 
           <EpisodesList
+            show={show}
             season={this.state.seasonSelected}
             episodes={episodes}
-            onSelectEpisode={(el) => console.log(el)}
           />
         </div>
       </div>

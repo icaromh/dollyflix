@@ -7,16 +7,12 @@ export default function (props){
 
   return(
     <div
-      key={props.serie.imdb_id}
+      key={props.serie.slug}
       className="thumbnail serielist__item"
       style={itemStyle}>
 
       <span className="serielist__item__meta">
-        <a
-          target="_blank"
-          href={`http://www.imdb.com/title/${props.serie.imdb_id}/`}>
-          {props.serie.title}
-        </a>
+        {props.serie.title}
       </span>
     </div>
   )
