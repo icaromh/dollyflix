@@ -48,7 +48,7 @@ class PlayerView extends Component {
       controls: true,
       poster: this.state.currentEpisode.image,
       sources: [{
-        src: `http://www.blogger.com/video-play.mp4?contentId=${this.state.currentEpisode.id}`,
+        src: `https://www.blogger.com/video-play.mp4?contentId=${this.state.currentEpisode.id}`,
         type: 'video/mp4'
       }]
     }
