@@ -1,3 +1,4 @@
+
 *, *:before, *:after{
   box-sizing: border-box;
 }
@@ -354,8 +355,21 @@ body{
   padding: 20px 0 20px 0;
 }
 
-
-.video-js{
+/**
+ * VIDEO JS
+ */
+.player-area{
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 50px);
+}
+
+.player-area .video-js{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.video-js .vjs-big-play-button{
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
 }
