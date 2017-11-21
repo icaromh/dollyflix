@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 import { selectMedia } from '../actions/index';
 import Spinner from '../components/spinner';
@@ -88,6 +89,7 @@ class SerieList extends Component{
 
     return (
       <div className="container">
+        <Helmet title={`Dollyflix`} />
         {this.renderTitle()}
         {this.renderList()}
       </div>
