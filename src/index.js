@@ -21,6 +21,13 @@ const createStoreWithMiddleware = applyMiddleware(
   ReduxPromise
 )(createStore);
 
+browserHistory.listen(function (location) {
+  if(window.ga){
+    window.ga('set', 'page', location.pathname + location.search);
+    window.ga('send', 'pageview', location.pathname + location.search);
+  }
+});
+
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory} routes={routes} />
@@ -36,3 +43,5 @@ function loadLinks(){
     link.setAttribute('media', 'all')
   })
 }
+
+loadLinks()
