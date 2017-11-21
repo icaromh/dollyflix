@@ -1,10 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dollyflix",
+  "name": "Assista séries online sem anúncios",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192",
+      "src": "images/dollyflix.png",
+      "sizes": "800x800",
       "type": "image/png"
     }
   ],
