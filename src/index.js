@@ -6,6 +6,9 @@ import { Router, browserHistory } from 'react-router';
 import ReduxPromise from 'redux-promise';
 // import logger from 'redux-logger'
 
+import registerServiceWorker from './registerServiceWorker';
+
+
 import reducers from './reducers';
 import routes from './routes';
 
@@ -21,3 +24,6 @@ ReactDOM.render(
     <Router history={browserHistory} routes={routes} />
   </Provider>
   , document.querySelector('#dollyflix'));
+
+
+registerServiceWorker();
