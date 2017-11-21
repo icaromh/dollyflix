@@ -62,11 +62,7 @@ class SerieList extends Component{
       )
     }
 
-    return (
-      <div>
-        <h1 className="page-title">Latest Series</h1>
-      </div>
-    )
+    return false
   }
 
   renderList(){

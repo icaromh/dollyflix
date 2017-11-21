@@ -6,6 +6,8 @@ import { Router, browserHistory } from 'react-router';
 import ReduxPromise from 'redux-promise';
 // import logger from 'redux-logger'
 
+import './style.css'
+
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -27,3 +29,10 @@ ReactDOM.render(
 
 
 registerServiceWorker();
+
+function loadLinks(){
+  if (Array.prototype.forEach)
+    Array.prototype.forEach.call(document.querySelectorAll('link[media="none"]'), function(link) {
+    link.setAttribute('media', 'all')
+  })
+}
