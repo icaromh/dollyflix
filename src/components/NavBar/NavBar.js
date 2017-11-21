@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import SearchBar from '../containers/search_bar';
+import SearchBar from '../../containers/search_bar';
 
-export default function(){
+const NavBar = () => {
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="container">
@@ -24,3 +24,5 @@ export default function(){
     </nav>
   )
 }
+
+export default NavBar

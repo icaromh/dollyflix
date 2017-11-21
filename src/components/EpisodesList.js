@@ -2,21 +2,14 @@ import React from 'react'
 import EpisodeBox from './EpisodeBox';
 
 
-const EpisodesList = (props) => {
-  if(!props.episodes) return false;
+const EpisodesList = ({episodes, show, onClick}) => {
+  if(!episodes) return false;
 
   return (
     <div className="episodes-list">
-      {props.episodes.map((episode) => {
-        return (
-          <EpisodeBox
-            key={episode.id}
-            data={episode}
-            show={props.show}
-            onClick={props.onClick}
-          />
-        )
-      })}
+      {episodes.map(ep => (
+        <EpisodeBox key={ep.id} episode={ep} show={show} onClick={onClick} />
+      ))}
     </div>
   )
 }

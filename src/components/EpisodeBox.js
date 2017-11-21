@@ -7,26 +7,22 @@ const episodeStyle = (episode) => {
   };
 }
 
-const EpisodeBox = (props) => {
-  const episode = parseInt(props.data.number, 10)
-  const season  = parseInt(props.data.season, 10)
-  const linkTo = `/show/${props.show.slug}/${season}/${episode}`
+const EpisodeBox = ({ episode, show, onClick }) => {
+  const number = parseInt(episode.number, 10)
+  const season  = parseInt(episode.season, 10)
+  const linkTo = `/show/${show.slug}/${season}/${number}`
 
   return (
     <div className='episode'>
-      <Link
-        key={props.data.number}
-        to={linkTo}
-        onClick={() => props.onClick(props.data)}
-      >
-      <div className="episode__bg" style={episodeStyle(props.data)}>
-        <div className="episode__number">
-          {props.data.number}
+      <Link key={number} to={linkTo} onClick={() => onClick(episode)}>
+        <div className="episode__bg" style={episodeStyle(episode)}>
+          <div className="episode__number">
+            {number}
+          </div>
         </div>
-      </div>
-      <div className="episode__meta">
-        {props.data.title}
-      </div>
+        <div className="episode__meta">
+          {episode.title}
+        </div>
       </Link>
     </div>
   )

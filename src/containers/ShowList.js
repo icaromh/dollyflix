@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import { selectShow } from '../actions/index';
+import { selectShow, fetchSeries } from '../actions/index';
 
 import ShowItem from '../components/ShowItem'
 import Loader from '../components/Loader'
 
 
 class ShowList extends Component {
+
+  componentDidMount(){
+    this.props.fetchSeries()
+  }
 
   handleSelectShow = (show) => {
     this.props.selectShow(show);
@@ -53,5 +57,6 @@ function mapStateToProps({ series, search }) {
 }
 
 export default connect(mapStateToProps, {
-  selectShow: selectShow
+  selectShow,
+  fetchSeries
 })(ShowList);

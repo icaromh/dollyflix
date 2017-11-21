@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function(props) {
+export default ({className, color}) => {
   return (
     <svg
-      className={props.className || "searchbar__icon"}
-      fill={props.color || "#FFFFFF"}
+      className={className || "searchbar__icon"}
+      fill={color || "#FFFFFF"}
       height="24"
       viewBox="0 0 24 24"
       width="24"
