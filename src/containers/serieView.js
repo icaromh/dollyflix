@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from "react-helmet";
 
 import { getSerie, selectEpisode } from '../actions';
 import SerieHeader from '../components/serieHeader';
 import EpisodesList from '../components/EpisodesList';
 import SeasonSelector from '../components/SeasonSelector';
+import Spinner from '../components/spinner';
 
 class SerieView extends Component {
   constructor(props){
@@ -48,13 +50,24 @@ class SerieView extends Component {
     if(!show) {
       return (
         <div className="container">
-          <h1>Loading</h1>
+          <h1 className="page-title">
+            Loading
+          </h1>
+          <Spinner />
         </div>
       );
     }
 
     return (
       <div>
+        <Helmet title={`Dollyflix - assistir ${show.title}`}>
+          <link rel="canonical" href={`https://dollyflix.herokuapp.com/serie/${show.slug}`} />
+          <meta property="og:type" content="video.tv_show" />
+          <meta property="og:title" content={show.title} />
+          <meta property="og:url" content={`https://dollyflix.herokuapp.com/serie/${show.slug}`} />
+          <meta property="og:image" content={show.images ? show.images.fanart: ''} />
+        </Helmet>
+
         <SerieHeader serie={show} />
 
         <div className="container container--padding">

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import { getSerie, selectEpisode } from '../actions';
 import VideoPlayer from '../components/VideoPlayer';
+import Spinner from '../components/spinner';
 
 
 class PlayerView extends Component {
@@ -33,28 +35,42 @@ class PlayerView extends Component {
   }
 
   render() {
-    const show = this.state.currentEpisode;
+    const episode = this.state.currentEpisode;
+    const show = this.state.currentShow;
 
-    if(!show) {
+    if(!episode) {
       return (
         <div className="container">
-          <h1>Loading</h1>
+          <h1 className="page-title">
+            Loading
+          </h1>
+          <Spinner />
         </div>
       );
     }
 
+
+    const canonicalUrl = `https://dollyflix.herokuapp.com/player/${show.slug}/${episode.season}/${episode.number}`;
     const videoJsOptions = {
       autoplay: false,
       controls: true,
-      poster: this.state.currentEpisode.image,
+      poster: episode.image,
       sources: [{
-        src: `https://www.blogger.com/video-play.mp4?contentId=${this.state.currentEpisode.id}`,
+        src: `https://www.blogger.com/video-play.mp4?contentId=${episode.id}`,
         type: 'video/mp4'
       }]
     }
 
     return (
       <div className="player-area">
+        <Helmet title={`Dollyflix - assistir ${show.title}`}>
+          <link rel="canonical" href={canonicalUrl} />
+          <meta property="og:type" content="video.episode" />
+          <meta property="og:title" content={show.title + ' - ' + episode.title} />
+          <meta property="og:url" content={canonicalUrl} />
+          <meta property="og:image" content={episode.image} />
+        </Helmet>
+
         <VideoPlayer { ...videoJsOptions } />
       </div>
     )

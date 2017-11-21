@@ -74,6 +74,18 @@ class SerieList extends Component{
   }
 
   render(){
+
+    if(!this.props.series.length){
+      return (
+        <div className="container">
+          <h1 className="page-title">
+            Loading
+          </h1>
+          <Spinner />
+        </div>
+      )
+    }
+
     return (
       <div className="container">
         {this.renderTitle()}
