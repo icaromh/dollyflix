@@ -9,11 +9,10 @@ import SerieView from './containers/serieView';
 import PlayerView from './containers/playerView';
 
 export default (
-  <Route path="/" component={App}>
+  <Route path="/" component={App} onChange={() => window.scrollTo(0, 0)}>
     <IndexRoute component={IndexView} />
     <Route path="serie/:slug" component={SerieView} />
     <Route path="player/:slug/:season/:episode" component={PlayerView} />
     <Route path="search/:term" component={SearchView} />
-
   </Route>
 );
