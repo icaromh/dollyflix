@@ -43,7 +43,7 @@ export function getSerie(slug = "") {
   };
 }
 
-export function selectMedia(media) {
+export function selectShow(media) {
   return {
     type: SELECT_SHOW,
     payload: media,

@@ -28,7 +28,7 @@ body{
   margin-bottom: 40px;
 }
 
-.showlist__link{
+.show-item__link{
   width: 30%;
   margin-top: 10px;
   margin: 5px;
@@ -303,7 +303,7 @@ body{
   }
 
 
-  .showlist__link{
+  .show-item__link{
     width: 150px;
     height: 225px;
     margin-top: 10px;

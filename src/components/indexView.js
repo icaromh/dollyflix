@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import SerieList from '../containers/serieList';
+import ShowList from '../containers/ShowList';
 
 export default class App extends Component {
   render() {
     return (
-      <SerieList />
+      <ShowList />
     );
   }
 }

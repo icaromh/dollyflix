@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import SerieList from '../containers/serieList';
+import ShowList from '../containers/ShowList';
 
 export default class SearchView extends Component {
   render() {
     return (
       <div>
-        <SerieList />
+        <ShowList />
       </div>
     );
   }
