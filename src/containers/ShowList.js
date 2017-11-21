@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import { selectShow, fetchSeries } from '../actions/index';
+import { selectShow, fetchShows } from '../actions/index';
 
 import ShowItem from '../components/ShowItem'
 import Loader from '../components/Loader'
@@ -11,7 +11,7 @@ import Loader from '../components/Loader'
 class ShowList extends Component {
 
   componentDidMount(){
-    this.props.fetchSeries()
+    this.props.fetchShows()
   }
 
   handleSelectShow = (show) => {
@@ -58,5 +58,5 @@ function mapStateToProps({ series, search }) {
 
 export default connect(mapStateToProps, {
   selectShow,
-  fetchSeries
+  fetchShows
 })(ShowList);

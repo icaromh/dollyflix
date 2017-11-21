@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import SearchBar from '../../containers/search_bar';
+import SearchBar from '../../containers/SearchBar';
 
 const NavBar = () => {
   return (

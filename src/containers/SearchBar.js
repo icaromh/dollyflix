@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 
-import { fetchSeries, searchTerm } from '../actions/index';
+import { fetchShows, searchTerm } from '../actions/index';
 import SearchForm from '../components/Search';
 
 class SearchBar extends Component{
 
   handleFormSubmit = (term) => {
     this.props.searchTerm(term);
-    this.props.fetchSeries(term);
+    this.props.fetchShows(term);
   }
 
   render(){
@@ -24,6 +23,6 @@ class SearchBar extends Component{
 }
 
 export default connect(null, {
-  fetchSeries: fetchSeries,
+  fetchShows: fetchShows,
   searchTerm: searchTerm,
 })(SearchBar);

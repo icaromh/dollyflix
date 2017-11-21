@@ -4,20 +4,18 @@ const ROOT_URL = `https://dollyflix-api.herokuapp.com`;
 
 export const FETCH_SHOWS = 'FETCH_SHOWS';
 export const GET_SHOW = 'GET_SHOW';
-
 export const SEARCH_TERM = 'SEARCH_TERM';
-
 export const SELECT_SHOW = 'SELECT_SHOW';
 export const SELECT_EPISODE = 'SELECT_EPISODE';
 
-export function searchTerm(serie) {
+export const searchTerm = serie => {
   return {
     type: SEARCH_TERM,
     payload: serie,
   }
 }
 
-export function fetchSeries(serie = "") {
+export const fetchShows = (serie = "") => {
   let url = `${ROOT_URL}`;
   if (serie !== "") {
     url += `/search/?q=${serie}`;
@@ -33,7 +31,7 @@ export function fetchSeries(serie = "") {
   };
 }
 
-export function getSerie(slug = "") {
+export const fetchShow = (slug = "") => {
   let url = `${ROOT_URL}/serie/${slug}`;
   const request = axios.get(url);
 
@@ -43,14 +41,14 @@ export function getSerie(slug = "") {
   };
 }
 
-export function selectShow(media) {
+export const selectShow = (media) => {
   return {
     type: SELECT_SHOW,
     payload: media,
   };
 }
 
-export function selectEpisode(episode) {
+export const selectEpisode = (episode) => {
   return {
     type: SELECT_EPISODE,
     payload: episode,

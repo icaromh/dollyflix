@@ -1,59 +1,48 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 
-import { getSerie, selectEpisode } from '../actions';
-import VideoPlayer from '../components/VideoPlayer';
-import Spinner from '../components/spinner';
-
+import { fetchShow, selectEpisode } from '../actions'
+import VideoPlayer from '../components/VideoPlayer'
+import Loader from '../components/Loader'
 
 class PlayerView extends Component {
   constructor(props){
-    super(props);
+    super(props)
 
     this.state = {
-      number: props.params.episode,
-      season: props.params.season,
-      currentShow: props.currentShow,
-      currentEpisode: props.currentEpisode,
+      episode: props.currentEpisode
     }
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.currentShow){
-      this.setState({
-        currentShow: nextProps.currentShow,
-        currentEpisode: nextProps.currentEpisode
-      });
+    const {season, episode} = this.props.params
+
+    const filterSeason = ep => parseInt(ep.season, 10) === parseInt(season, 10)
+    const filterEpisode = ep => parseInt(ep.number, 10) === parseInt(episode, 10)
+
+    if (nextProps.currentShow) {
+      const currentEpisode = nextProps.currentShow.episodes
+        .filter(filterSeason)
+        .filter(filterEpisode)
+
+      if(currentEpisode.length === 1){
+        this.setState({episode: currentEpisode[0]})
+      }
     }
   }
 
   componentWillMount(){
-    if(!this.props.currentShow){
-      this.props.getSerie(this.props.params.slug)
+    if (!this.props.currentShow) {
+      this.props.fetchShow(this.props.params.slug)
     }
   }
 
-  render() {
-    const episode = this.state.currentEpisode;
-    const show = this.state.currentShow;
-
-    if(!episode) {
-      return (
-        <div className="container">
-          <h1 className="page-title">
-            Loading
-          </h1>
-          <Spinner />
-        </div>
-      );
-    }
-
-
-    const canonicalUrl = `https://dollyflix.herokuapp.com/player/${show.slug}/${episode.season}/${episode.number}`;
-    const videoJsOptions = {
-      autoplay: false,
-      controls: true,
+  renderContent = () => {
+    const { episode } = this.state
+    const show = this.props.currentShow
+    const canonicalUrl = `https://dollyflix.herokuapp.com/show/${show.slug}/${episode.season}/${episode.number}`
+    const options = {
       poster: episode.image,
       sources: [{
         src: `https://www.blogger.com/video-play.mp4?contentId=${episode.id}`,
@@ -71,18 +60,22 @@ class PlayerView extends Component {
           <meta property="og:image" content={episode.image} />
         </Helmet>
 
-        <VideoPlayer { ...videoJsOptions } />
+        <VideoPlayer options={options} />
       </div>
     )
+  }
 
+  render () {
+    const episode = this.state.episode
+    return (<Loader for={episode} render={this.renderContent} />)
   }
 }
 
 function mapStateToProps({ currentShow, currentEpisode }) {
-  return { currentShow, currentEpisode };
+  return { currentShow, currentEpisode }
 }
 
 export default connect(mapStateToProps, {
-  getSerie: getSerie,
-  selectEpisode: selectEpisode
-})(PlayerView);
+  fetchShow,
+  selectEpisode
+})(PlayerView)

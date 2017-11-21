@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from '../spinner';
+import Spinner from './Spinner';
 
 export default class Loader extends React.Component {
   render() {

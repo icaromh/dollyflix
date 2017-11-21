@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
 
-import { getSerie, selectEpisode } from '../actions';
-import SerieHeader from '../components/serieHeader';
+import { fetchShow, selectEpisode } from '../actions';
+import ShowHeader from '../components/ShowHeader';
 import EpisodesList from '../components/EpisodesList';
 import SeasonSelector from '../components/SeasonSelector';
-import Spinner from '../components/spinner';
 
 class SerieView extends Component {
   constructor(props){
@@ -29,7 +28,7 @@ class SerieView extends Component {
 
   componentWillMount(){
     if(!this.props.currentShow){
-      this.props.getSerie(this.props.params.slug)
+      this.props.fetchShow(this.props.params.slug)
     }
   }
 
@@ -53,7 +52,6 @@ class SerieView extends Component {
           <h1 className="page-title">
             Loading
           </h1>
-          <Spinner />
         </div>
       );
     }
@@ -68,7 +66,7 @@ class SerieView extends Component {
           <meta property="og:image" content={show.images ? show.images.fanart: ''} />
         </Helmet>
 
-        <SerieHeader serie={show} />
+        <ShowHeader show={show} />
 
         <div className="container container--padding">
           <SeasonSelector
@@ -93,6 +91,6 @@ function mapStateToProps({ currentShow, seasons }) {
 }
 
 export default connect(mapStateToProps, {
-  getSerie: getSerie,
+  fetchShow: fetchShow,
   selectEpisode: selectEpisode
 })(SerieView);

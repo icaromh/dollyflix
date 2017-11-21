@@ -3,17 +3,23 @@ import videojs from 'video.js'
 
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
+    const options = {
+      autoplay: false,
+      controls: true,
+      ...this.props.options
+    }
+
+    this.player = videojs(this.videoNode, options, function onPlayerReady() {
       // console.log('onPlayerReady', this)
     });
   }
 
   // destroy player on unmount
   componentWillUnmount() {
-    // if (this.player) {
-    //   this.player.dispose()
-    //   this.videoPlayer = undefined;
-    // }
+    if (this.player) {
+      this.player.dispose()
+      this.videoPlayer = undefined;
+    }
   }
 
   // wrap the player in a div with a `data-vjs-player` attribute
