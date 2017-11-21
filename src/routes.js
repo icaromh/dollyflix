@@ -12,5 +12,6 @@ export default (
     <IndexRoute component={IndexView} />
     <Route path="show/:slug" component={SerieView} />
     <Route path="show/:slug/:season/:episode" component={PlayerView} />
+    <Route path="search/:slug" component={IndexView} />
   </Route>
 );

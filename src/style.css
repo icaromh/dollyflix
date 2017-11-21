@@ -17,6 +17,12 @@ body{
   letter-spacing: 1px;
 }
 
+.clearSearch{
+  font-size: .8em;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
 
 .showlist{
   display: flex;
@@ -486,7 +492,7 @@ body{
 },
 
 .video-js:hover .vjs-big-play-button{
-  background-color: rgba(0,0,0,.3);  
+  background-color: rgba(0,0,0,.3);
 }
 
 .video-js .vjs-big-play-button:hover,
