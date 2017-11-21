@@ -1,5 +1,6 @@
 import React from 'react';
 import videojs from 'video.js'
+import ReactGA from 'react-ga'
 
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ export default class VideoPlayer extends React.Component {
     }
 
     this.player = videojs(this.videoNode, options, function onPlayerReady() {
-      // console.log('onPlayerReady', this)
+      ReactGA.event({category: 'Video', action: 'Video Ready'})
     });
   }
 
