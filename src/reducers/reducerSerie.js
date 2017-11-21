@@ -1,4 +1,4 @@
-import { FETCH_SHOWS, SELECT_EPISODE } from '../actions/index';
+import { FETCH_SHOWS } from '../actions/index';
 
 export default function(state = [], action) {
   switch (action.type) {

@@ -4,7 +4,7 @@ import videojs from 'video.js'
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
     this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-      console.log('onPlayerReady', this)
+      // console.log('onPlayerReady', this)
     });
   }
 

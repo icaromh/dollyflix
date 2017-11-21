@@ -481,12 +481,16 @@ body{
   width: 120px;
   border-radius: 100%;
   border: 5px solid #fefefe;
-  background-color: rgba(0,0,0,.3);
   transition: transform .2s ease-in;
+  background-color: rgba(0,0,0,.3);
+},
+
+.video-js:hover .vjs-big-play-button{
+  background-color: rgba(0,0,0,.3);  
 }
 
 .video-js .vjs-big-play-button:hover,
-.video-js .vjs-big-play-button:focus, .video-js:hover .vjs-big-play-button{
+.video-js .vjs-big-play-button:focus{
   background:none repeat scroll 0 0 rgba(0,0,0,.5)
 }
 

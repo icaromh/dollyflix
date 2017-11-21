@@ -23,7 +23,7 @@ class SerieList extends Component{
       <Link
         key={serie.slug}
         onClick={() => this.selectMedia(serie)}
-        to={`/serie/${serie.slug}`}
+        to={`/show/${serie.slug}`}
         className='showlist__link'
       >
         <SerieItem serie={serie} />

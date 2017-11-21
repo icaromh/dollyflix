@@ -10,7 +10,7 @@ const episodeStyle = (episode) => {
 const EpisodeBox = (props) => {
   const episode = parseInt(props.data.number, 10)
   const season  = parseInt(props.data.season, 10)
-  const linkTo = `/player/${props.show.slug}/${season}/${episode}`
+  const linkTo = `/show/${props.show.slug}/${season}/${episode}`
 
   return (
     <div className='episode'>
