@@ -19,12 +19,12 @@ class SerieList extends Component{
   }
 
   renderSerie(serie){
-
     return (
       <Link
         key={serie.slug}
         onClick={() => this.selectMedia(serie)}
         to={`/serie/${serie.slug}`}
+        className='showlist__link'
       >
         <SerieItem serie={serie} />
       </Link>
@@ -71,7 +71,7 @@ class SerieList extends Component{
 
   renderList(){
     return (
-      <div className="medialist">
+      <div className="showlist">
         {this.props.series.map(this.renderSerie)}
       </div>
     )

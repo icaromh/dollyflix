@@ -17,32 +17,65 @@ body{
   letter-spacing: 1px;
 }
 
-.medialist{
+.showlist{
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-  margin-left: -10px;
-  margin-top: -10px;
+  justify-content: space-around;
+  align-content: space-around;
   margin-bottom: 40px;
 }
 
-.serielist__item{
-  position: relative;
-  flex: 1 0 140px;
-  margin-left: 10px;
+.showlist__link{
+  width: 30%;
   margin-top: 10px;
-  padding-bottom: 60%;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center center;
   margin-bottom: 0;
-  max-width: 200px;
 }
 
-.serielist__item__meta{
-  box-sizing: border-box;
+.show-item{
+  position: relative;
+  height: 100%;
+}
+
+.show-item__image img{
+  max-width: 100%;
+}
+
+.show-item__image img:before {
+  content: " ";
   display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  border: 2px dotted rgb(200, 200, 200);
+}
+
+.show-item__image img:after {
+  content: "\f127" " Broken Image of " attr(alt);
+  display: flex;
+  align-items: center;
+
+  font-size: 16px;
+  font-style: normal;
+  font-family: FontAwesome;
+  color: rgb(100, 100, 100);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+
+.show-item__title{
+  display: none;
+  box-sizing: border-box;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -55,11 +88,11 @@ body{
   transition: transform 0.1s ease-in-out;
 }
 
-.serielist__item__meta > a{
+.showlist__item__meta > a{
   color: #FFF;
 }
 
-.serielist__item:hover .serielist__item__meta{
+.serielist__item:hover .showlist__item__meta{
   transform: translate(0, 0);
 }
 
@@ -317,12 +350,19 @@ body{
     margin-bottom: 8px;
   }
 
-  .serielist__item {
-    flex: 0 0 15%;
-    width: 185px;
-    height: 240px;
-    padding-bottom: 0;
+  .showlist__link{
+    /*width: 15%;*/
+    width: 150px;
+    height: 225px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
+
+  .show-item__image img{
+    width: 150px;
+    height: 225px;
+  }
+
 
   .serielist__item--episode{
     padding-bottom: 0;
