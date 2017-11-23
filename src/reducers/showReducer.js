@@ -5,7 +5,7 @@ import {
 } from '../actions/index'
 
 
-export const currentShow = function (state = null, action) {
+export const currentShow = (state = null, action) => {
   switch (action.type) {
 
     case SELECT_SHOW:
@@ -20,7 +20,7 @@ export const currentShow = function (state = null, action) {
 }
 
 
-export const currentEpisode = function (state = null, action) {
+export const currentEpisode = (state = null, action) => {
   switch (action.type) {
     case SELECT_EPISODE:
       return action.payload

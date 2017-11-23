@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import SearchIcon from './SearchIcon'
 
 class SearchForm extends Component {
@@ -11,16 +13,15 @@ class SearchForm extends Component {
     }
   }
 
+  onInputChange = (ev) => {
+    const term = ev.target.value
+    this.setState({ term })
+  }
+
   handleFormSubmit = (ev) => {
     ev.preventDefault()
     const term = this.state.term.trim()
     this.props.onSubmit(term)
-  }
-
-
-  onInputChange = (ev) => {
-    const term = ev.target.value
-    this.setState({ term })
   }
 
   render() {
@@ -39,6 +40,10 @@ class SearchForm extends Component {
     )
   }
 
+}
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default SearchForm

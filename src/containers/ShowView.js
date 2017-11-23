@@ -1,23 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import PropTypes from 'prop-types'
 
 import { fetchShow, selectEpisode } from '../actions'
 import ShowHeader from '../components/ShowHeader'
 import EpisodesList from '../components/EpisodesList'
 import SeasonSelector from '../components/SeasonSelector'
 
-class SerieView extends Component {
+class ShowView extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      currentShow: this.props.currentShow || {},
+      currentShow: this.props.currentShow,
       seasons: [],
       seasonSelected: 1,
     }
 
     this.handleOnClickEpisode = this.handleOnClickEpisode.bind(this)
+  }
+
+  componentWillMount() {
+    if (!this.props.currentShow) {
+      this.props.fetchShow(this.props.params.slug)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,11 +33,6 @@ class SerieView extends Component {
     }
   }
 
-  componentWillMount() {
-    if (!this.props.currentShow) {
-      this.props.fetchShow(this.props.params.slug)
-    }
-  }
 
   handleOnClickEpisode(episode) {
     this.props.selectEpisode(episode)
@@ -90,7 +92,20 @@ function mapStateToProps({ currentShow, seasons }) {
   return { currentShow, seasons }
 }
 
+ShowView.propTypes = {
+  currentShow: PropTypes.object,
+  params: PropTypes.object.isRequired,
+  fetchShow: PropTypes.func.isRequired,
+  selectEpisode: PropTypes.func.isRequired,
+  seasons: PropTypes.array,
+}
+
+ShowView.defaultProps = {
+  currentShow: {},
+  seasons: [],
+}
+
 export default connect(mapStateToProps, {
   fetchShow,
   selectEpisode,
-})(SerieView)
+})(ShowView)

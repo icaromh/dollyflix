@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import PropTypes from 'prop-types'
 
 import { fetchShow, selectEpisode } from '../actions'
 import VideoPlayer from '../components/VideoPlayer'
@@ -71,11 +72,19 @@ class PlayerView extends Component {
   }
 }
 
-function mapStateToProps({ currentShow, currentEpisode }) {
-  return { currentShow, currentEpisode }
+PlayerView.propTypes = {
+  currentEpisode: PropTypes.object,
+  currentShow: PropTypes.object,
+  fetchShow: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
 }
 
-export default connect(mapStateToProps, {
-  fetchShow,
-  selectEpisode,
-})(PlayerView)
+PlayerView.defaultProps = {
+  currentEpisode: {},
+  currentShow: {},
+}
+
+const mapStateToProps = ({ currentShow, currentEpisode }) => ({ currentShow, currentEpisode })
+const mapDispathToProps = () => ({ fetchShow, selectEpisode })
+
+export default connect(mapStateToProps, mapDispathToProps)(PlayerView)

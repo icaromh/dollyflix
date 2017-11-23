@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default ({ show }) => {
+const ShowHeader = ({ show }) => {
   if (!show.title) { return false }
 
   return (
@@ -24,3 +25,9 @@ export default ({ show }) => {
     </div>
   )
 }
+
+ShowHeader.propTypes = {
+  show: PropTypes.object.isRequired,
+}
+
+export default ShowHeader

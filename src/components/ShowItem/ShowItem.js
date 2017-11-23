@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
+import PropTypes from 'prop-types'
 
 const resizeImage = (url, size) => url.replace('w500', size)
 
-export default function ({ show, onClick }) {
+const ShowItem = ({ show, onClick }) => {
   const image = show.images.banner
-
 
   return (
     <Link
@@ -26,3 +26,10 @@ export default function ({ show, onClick }) {
     </Link>
   )
 }
+
+ShowItem.propTypes = {
+  show: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
+
+export default ShowItem

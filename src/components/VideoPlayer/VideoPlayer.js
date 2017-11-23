@@ -1,8 +1,10 @@
+/* eslint:  */
 import React from 'react'
 import videojs from 'video.js'
 import ReactGA from 'react-ga'
+import PropTypes from 'prop-types'
 
-export default class VideoPlayer extends React.Component {
+class VideoPlayer extends React.Component {
   componentDidMount() {
     const options = {
       autoplay: false,
@@ -29,8 +31,19 @@ export default class VideoPlayer extends React.Component {
   render() {
     return (
       <div data-vjs-player>
-        <video ref={node => this.videoNode = node} className="video-js" />
+        <video
+          ref={(el) => { this.videoNode = el }}
+          className="video-js"
+        >
+          <track kind="captions" />
+        </video>
       </div>
     )
   }
 }
+
+VideoPlayer.propTypes = {
+  options: PropTypes.object.isRequired,
+}
+
+export default VideoPlayer
