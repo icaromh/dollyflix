@@ -4,6 +4,14 @@ import videojs from 'video.js'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 
+import {
+  EVENT_CATEGORY_VIDEO,
+  VIDEO_READY,
+  VIDEO_PLAY,
+  VIDEO_PAUSE,
+} from '../../constants'
+
+
 class VideoPlayer extends React.Component {
   componentDidMount() {
     const options = {
@@ -13,12 +21,12 @@ class VideoPlayer extends React.Component {
     }
 
     this.player = videojs(this.videoNode, options, function onPlayerReady() {
-      const player = this;
+      const player = this
 
       ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY })
-      player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }));
-      player.on('pause', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PAUSE }));
-    });
+      player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }))
+      player.on('pause', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PAUSE }))
+    })
   }
 
   // destroy player on unmount

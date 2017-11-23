@@ -19,13 +19,13 @@ class Loader extends Component {
 }
 
 Loader.propTypes = {
-  for: PropTypes.boolean.isRequired,
+  for: PropTypes.any.isRequired,
   render: PropTypes.func.isRequired,
   title: PropTypes.string,
 }
 
 Loader.defaultProps = {
-  title: false,
+  title: '',
 }
 
 export default Loader

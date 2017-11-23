@@ -71,24 +71,17 @@ class ShowList extends Component {
 }
 
 ShowList.propTypes = {
-  search: PropTypes.object,
-  series: PropTypes.series,
+  search: PropTypes.object.isRequired,
+  series: PropTypes.array.isRequired,
   selectShow: PropTypes.func.isRequired,
   fetchShows: PropTypes.func.isRequired,
   searchTerm: PropTypes.func.isRequired,
 }
 
-ShowList.defaultProps = {
-  series: [],
-  search: { term: false },
-}
-
 const mapStateToProps = ({ series, search }) => ({ series, search })
 
-const mapDispathToProps = () => ({
+export default connect(mapStateToProps, {
   selectShow,
   fetchShows,
   searchTerm,
-})
-
-export default connect(mapStateToProps, mapDispathToProps)(ShowList)
+})(ShowList)
