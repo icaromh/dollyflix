@@ -1,34 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import SearchIcon from './SearchIcon'
 
 class SearchForm extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
       term: '',
-    };
+    }
+  }
+
+  onInputChange = (ev) => {
+    const term = ev.target.value
+    this.setState({ term })
   }
 
   handleFormSubmit = (ev) => {
-    ev.preventDefault();
-    const term = this.state.term.trim();
+    ev.preventDefault()
+    const term = this.state.term.trim()
     this.props.onSubmit(term)
-  }
-
-
-  onInputChange = (ev) => {
-    const term = ev.target.value;
-    this.setState({ term: term });
   }
 
   render() {
     return (
-      <form onSubmit={(ev) => this.handleFormSubmit(ev)} className="searchbox__form is-fluid">
+      <form onSubmit={ev => this.handleFormSubmit(ev)} className="searchbox__form is-fluid">
         <SearchIcon className="searchbox__icon__form" />
         <input
-          ref={(el) => { this.inputSearch = el; }}
+          ref={(el) => { this.inputSearch = el }}
           className="searchbar__input"
           value={this.state.term}
           onChange={this.onInputChange}
@@ -36,9 +37,13 @@ class SearchForm extends Component {
           placeholder="Título da série"
         />
       </form>
-    );
+    )
   }
 
+}
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default SearchForm

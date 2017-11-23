@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import NavBar from './NavBar';
+import NavBar from './NavBar'
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <NavBar />
-        {this.props.children}
-      </div>
-    );
-  }
+const App = props => (
+  <div>
+    <NavBar />
+    {props.children}
+  </div>
+  )
+
+App.propTypes = {
+  children: PropTypes.object.isRequired,
 }
+
+export default App
