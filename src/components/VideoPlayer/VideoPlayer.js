@@ -12,9 +12,13 @@ class VideoPlayer extends React.Component {
       ...this.props.options,
     }
 
-    this.player = videojs(this.videoNode, options, () => {
-      ReactGA.event({ category: 'Video', action: 'Video Ready' })
-    })
+    this.player = videojs(this.videoNode, options, function onPlayerReady() {
+      const player = this;
+
+      ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY })
+      player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }));
+      player.on('pause', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PAUSE }));
+    });
   }
 
   // destroy player on unmount

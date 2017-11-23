@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 
 import { fetchShow, selectEpisode } from '../actions'
+
 import ShowHeader from '../components/ShowHeader'
 import EpisodesList from '../components/EpisodesList'
 import SeasonSelector from '../components/SeasonSelector'
+
+import {
+  EVENT_CATEGORY_NAVIGATION,
+  NAVIGATION_SEASON_CLICK,
+  NAVIGATION_SEASON_SELECT_CLICK,
+} from '../constants'
 
 class ShowView extends Component {
   constructor(props) {
@@ -38,7 +46,13 @@ class ShowView extends Component {
     this.props.selectEpisode(episode)
   }
 
+  handleSeasonClick = () => {
+    ReactGA.event({ category: EVENT_CATEGORY_NAVIGATION, action: NAVIGATION_SEASON_SELECT_CLICK })
+  }
+
   handleChangeSeason = (ev) => {
+    ReactGA.event({ category: EVENT_CATEGORY_NAVIGATION, action: NAVIGATION_SEASON_CLICK })
+
     this.setState({
       seasonSelected: parseInt(ev.target.value, 10),
     })
@@ -74,6 +88,7 @@ class ShowView extends Component {
           <SeasonSelector
             seasons={this.props.seasons}
             onChange={this.handleChangeSeason}
+            onClick={this.handleSeasonClick}
           />
 
           <EpisodesList
