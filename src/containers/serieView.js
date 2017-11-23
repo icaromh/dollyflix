@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Helmet } from "react-helmet";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 
-import { fetchShow, selectEpisode } from '../actions';
-import ShowHeader from '../components/ShowHeader';
-import EpisodesList from '../components/EpisodesList';
-import SeasonSelector from '../components/SeasonSelector';
+import { fetchShow, selectEpisode } from '../actions'
+import ShowHeader from '../components/ShowHeader'
+import EpisodesList from '../components/EpisodesList'
+import SeasonSelector from '../components/SeasonSelector'
 
 class SerieView extends Component {
-  constructor(props){
-    super(props);
+  constructor(props) {
+    super(props)
 
     this.state = {
       currentShow: this.props.currentShow || {},
@@ -17,43 +17,43 @@ class SerieView extends Component {
       seasonSelected: 1,
     }
 
-    this.handleOnClickEpisode = this.handleOnClickEpisode.bind(this);
+    this.handleOnClickEpisode = this.handleOnClickEpisode.bind(this)
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.currentShow){
-      this.setState({ currentShow: nextProps.currentShow });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentShow) {
+      this.setState({ currentShow: nextProps.currentShow })
     }
   }
 
-  componentWillMount(){
-    if(!this.props.currentShow){
+  componentWillMount() {
+    if (!this.props.currentShow) {
       this.props.fetchShow(this.props.params.slug)
     }
   }
 
-  handleOnClickEpisode(episode){
+  handleOnClickEpisode(episode) {
     this.props.selectEpisode(episode)
   }
 
   handleChangeSeason = (ev) => {
     this.setState({
-      seasonSelected: parseInt(ev.target.value, 10)
+      seasonSelected: parseInt(ev.target.value, 10),
     })
   }
 
   render() {
-    const show = this.state.currentShow;
+    const show = this.state.currentShow
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
 
-    if(!show) {
+    if (!show) {
       return (
         <div className="container">
           <h1 className="page-title">
             Loading
           </h1>
         </div>
-      );
+      )
     }
 
     return (
@@ -63,7 +63,7 @@ class SerieView extends Component {
           <meta property="og:type" content="video.tv_show" />
           <meta property="og:title" content={show.title} />
           <meta property="og:url" content={`https://dollyflix.herokuapp.com/serie/${show.slug}`} />
-          <meta property="og:image" content={show.images ? show.images.fanart: ''} />
+          <meta property="og:image" content={show.images ? show.images.fanart : ''} />
         </Helmet>
 
         <ShowHeader show={show} />
@@ -82,15 +82,15 @@ class SerieView extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
 function mapStateToProps({ currentShow, seasons }) {
-  return { currentShow, seasons };
+  return { currentShow, seasons }
 }
 
 export default connect(mapStateToProps, {
-  fetchShow: fetchShow,
-  selectEpisode: selectEpisode
-})(SerieView);
+  fetchShow,
+  selectEpisode,
+})(SerieView)

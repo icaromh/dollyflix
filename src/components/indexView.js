@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-import ShowList from '../containers/ShowList';
+import ShowList from '../containers/ShowList'
 
-export default class App extends Component {
-  render() {
-    return (
-      <ShowList />
-    );
-  }
-}
+export default () => <ShowList />

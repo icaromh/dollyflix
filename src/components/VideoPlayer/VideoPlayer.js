@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import videojs from 'video.js'
 import ReactGA from 'react-ga'
 
@@ -7,19 +7,19 @@ export default class VideoPlayer extends React.Component {
     const options = {
       autoplay: false,
       controls: true,
-      ...this.props.options
+      ...this.props.options,
     }
 
-    this.player = videojs(this.videoNode, options, function onPlayerReady() {
-      ReactGA.event({category: 'Video', action: 'Video Ready'})
-    });
+    this.player = videojs(this.videoNode, options, () => {
+      ReactGA.event({ category: 'Video', action: 'Video Ready' })
+    })
   }
 
   // destroy player on unmount
   componentWillUnmount() {
     if (this.player) {
       this.player.dispose()
-      this.videoPlayer = undefined;
+      this.videoPlayer = undefined
     }
   }
 
@@ -29,7 +29,7 @@ export default class VideoPlayer extends React.Component {
   render() {
     return (
       <div data-vjs-player>
-        <video ref={ node => this.videoNode = node } className="video-js"></video>
+        <video ref={node => this.videoNode = node} className="video-js" />
       </div>
     )
   }

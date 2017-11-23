@@ -1,8 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-export default ({show}) => {
-  if(!show.title)
-    return false;
+export default ({ show }) => {
+  if (!show.title) { return false }
 
   return (
     <div className="show-featured">
