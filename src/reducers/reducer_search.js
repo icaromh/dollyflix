@@ -3,15 +3,18 @@ import {
   FETCH_SHOWS,
 } from '../actions/index'
 
-const initialState = { term: null, loading: false }
+const initialState = { term: '', loading: false }
 
-export default function (state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case SEARCH_TERM:
+    case SEARCH_TERM: {
       return { term: action.payload, loading: true }
-    case FETCH_SHOWS:
+    }
+    case FETCH_SHOWS: {
       return { ...state, loading: false }
-    default:
+    }
+    default: {
       return state
+    }
   }
 }

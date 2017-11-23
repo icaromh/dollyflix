@@ -1,10 +1,12 @@
 import { FETCH_SHOWS } from '../actions/index'
 
-export default function (state = [], action) {
+export default (state = [], action) => {
   switch (action.type) {
-    case FETCH_SHOWS:
+    case FETCH_SHOWS: {
       return action.payload.data
-    default:
+    }
+    default: {
       return state
+    }
   }
 }
