@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+      "browser": true,
+      "node": true,
+      "jest": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/label-has-for": "off",
+    "max-len": 0,
+    "no-plusplus": [2, {"allowForLoopAfterthoughts": true}],
+    "react/forbid-prop-types": 0,
+    "react/prop-types": [2, {"skipUndeclared": false}],
+    "semi": [2, "never"]
+  }
+}
