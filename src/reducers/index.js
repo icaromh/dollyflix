@@ -5,6 +5,7 @@ import {
   itemsHasErrored,
   itemsIsLoading,
   selectItem,
+  selectEpisode,
   showHasErrored,
   showIsLoading,
 } from './showReducer'
@@ -13,7 +14,9 @@ const rootReducer = combineReducers({
   items,
   itemsHasErrored,
   itemsIsLoading,
+
   currentItem: selectItem,
+  currentEpisode: selectEpisode,
 
   showHasErrored,
   showIsLoading,
