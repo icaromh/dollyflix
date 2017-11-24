@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
+import { selectEpisode } from '../actions/show'
+
 import VideoPlayer from '../components/VideoPlayer'
 import Loader from '../components/Loader'
 

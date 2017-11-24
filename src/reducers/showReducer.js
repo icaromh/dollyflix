@@ -1,6 +1,5 @@
 import {
   SELECT_SHOW,
-  SELECT_EPISODE,
   FETCH_SHOW_REQUEST,
   FETCH_SHOW_SUCCESS,
   FETCH_SHOW_FAILURE,
@@ -12,6 +11,22 @@ import {
   FETCH_SHOWS_FAILURE,
 } from '../actions/shows'
 
+import {
+  FETCH_SHOWS_REQUEST,
+  FETCH_SHOWS_SUCCESS,
+  FETCH_SHOWS_FAILURE,
+} from '../actions/shows'
+
+
+export function itemsHasErrored(state = false, action) {
+  switch (action.type) {
+    case FETCH_SHOWS_FAILURE:
+      return action.hasErrored
+
+    default:
+      return state
+  }
+}
 
 export function itemsHasErrored(state = false, action) {
   switch (action.type) {
@@ -72,17 +87,6 @@ export function showIsLoading(state = false, action) {
   switch (action.type) {
     case FETCH_SHOW_REQUEST:
       return action.isLoading
-
-    default:
-      return state
-  }
-}
-
-
-export function selectEpisode(state = {}, action) {
-  switch (action.type) {
-    case SELECT_EPISODE:
-      return action.payload
 
     default:
       return state
