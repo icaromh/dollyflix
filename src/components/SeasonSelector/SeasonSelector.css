@@ -1,0 +1,18 @@
+.select{
+  border: 1px solid #fefefe;
+  padding: 5px;
+  margin: 5px;
+  background-color: transparent;
+  min-width: 120px;
+}
+
+.select option{
+  background-color: #000;
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+
+}

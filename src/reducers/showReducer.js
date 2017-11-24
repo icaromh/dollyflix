@@ -1,29 +1,76 @@
 import {
   SELECT_SHOW,
-  SELECT_EPISODE,
-  GET_SHOW,
-} from '../actions/index'
+  FETCH_SHOW_REQUEST,
+  FETCH_SHOW_SUCCESS,
+  FETCH_SHOW_FAILURE,
+} from '../actions/show'
+
+import {
+  FETCH_SHOWS_REQUEST,
+  FETCH_SHOWS_SUCCESS,
+  FETCH_SHOWS_FAILURE,
+} from '../actions/shows'
 
 
-export const currentShow = (state = null, action) => {
+export function itemsHasErrored(state = false, action) {
   switch (action.type) {
-
-    case SELECT_SHOW:
-      return action.payload
-
-    case GET_SHOW:
-      return action.payload.data
+    case FETCH_SHOWS_FAILURE:
+      return action.hasErrored
 
     default:
       return state
   }
 }
 
-
-export const currentEpisode = (state = null, action) => {
+export function itemsIsLoading(state = false, action) {
   switch (action.type) {
-    case SELECT_EPISODE:
+    case FETCH_SHOWS_REQUEST:
+      return action.isLoading
+
+    default:
+      return state
+  }
+}
+
+export function items(state = [], action) {
+  switch (action.type) {
+    case FETCH_SHOWS_SUCCESS:
+      return action.items
+
+    default:
+      return state
+  }
+}
+
+export function selectItem(state = {}, action) {
+  switch (action.type) {
+    case FETCH_SHOW_SUCCESS: {
+      return { ...action.item }
+    }
+    case SELECT_SHOW: {
       return action.payload
+    }
+    default: {
+      return state
+    }
+
+  }
+}
+
+export function showHasErrored(state = false, action) {
+  switch (action.type) {
+    case FETCH_SHOW_FAILURE:
+      return action.hasErrored
+
+    default:
+      return state
+  }
+}
+
+export function showIsLoading(state = false, action) {
+  switch (action.type) {
+    case FETCH_SHOW_REQUEST:
+      return action.isLoading
 
     default:
       return state

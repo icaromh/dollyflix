@@ -1,16 +1,22 @@
 import { combineReducers } from 'redux'
-import SerieReducer from './reducerSerie'
-import SearchReducer from './reducer_search'
-import SeasonReducer from './reducer_seasons'
 
-import { currentShow, currentEpisode } from './showReducer'
+import {
+  items,
+  itemsHasErrored,
+  itemsIsLoading,
+  selectItem,
+  showHasErrored,
+  showIsLoading,
+} from './showReducer'
 
 const rootReducer = combineReducers({
-  series: SerieReducer,
-  search: SearchReducer,
-  currentShow,
-  currentEpisode,
-  seasons: SeasonReducer,
+  items,
+  itemsHasErrored,
+  itemsIsLoading,
+  currentItem: selectItem,
+
+  showHasErrored,
+  showIsLoading,
 })
 
 export default rootReducer

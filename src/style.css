@@ -34,76 +34,6 @@ body{
   margin-bottom: 40px;
 }
 
-.show-item__link{
-  width: 30%;
-  margin-top: 10px;
-  margin: 5px;
-}
-
-.show-item{
-  position: relative;
-  height: 100%;
-}
-
-.show-item__image img{
-  max-width: 100%;
-}
-
-.show-item__image img:before {
-  content: " ";
-  display: block;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgb(230, 230, 230);
-  border: 2px dotted rgb(200, 200, 200);
-}
-
-.show-item__image img:after {
-  content: "\f127" " Broken Image of " attr(alt);
-  display: flex;
-  align-items: center;
-
-  font-size: 16px;
-  font-style: normal;
-  font-family: FontAwesome;
-  color: rgb(100, 100, 100);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  padding: 10px;
-}
-
-
-.show-item__title{
-  display: none;
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 5px;
-  height: 100%;
-  width: 100%;
-  color: #FFF;
-  background-color: rgba(0,0,0,.5);
-  transform: translate(0, 100%);
-  transition: transform 0.1s ease-in-out;
-}
-
-.showlist__item__meta > a{
-  color: #FFF;
-}
-
-.serielist__item:hover .showlist__item__meta{
-  transform: translate(0, 0);
-}
 
 .navbar-form.is-fluid .form-control{
   width: 100%;
@@ -308,26 +238,6 @@ body{
     margin-bottom: 40px;
   }
 
-
-  .show-item__link{
-    width: 150px;
-    height: 225px;
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
-
-  .show-item__image img{
-    width: 150px;
-    height: 225px;
-  }
-
-  .serielist__item--episode{
-    padding-bottom: 0;
-    max-width: none;
-    flex: 0 0 20%;
-    height: 150px;
-  }
-
   /**
    * Serie Featured
    */
@@ -452,17 +362,6 @@ body{
 
 @media (min-width: 992px) {
 
-}
-
-.select{
-  border: 1px solid #fefefe;
-  padding: 5px;
-  background-color: transparent;
-  min-width: 120px;
-}
-
-.select option{
-  background-color: #000;
 }
 
 /**

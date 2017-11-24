@@ -1,3 +1,5 @@
+export const API_URL = 'https://dollyflix-api.herokuapp.com'
+
 export const GOOGLE_ANALYTICS_KEY = 'UA-50597564-8'
 
 

@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
-import { fetchShow, selectEpisode } from '../actions'
+import { selectEpisode } from '../actions/show'
+
 import VideoPlayer from '../components/VideoPlayer'
 import Loader from '../components/Loader'
 
@@ -85,6 +86,6 @@ PlayerView.defaultProps = {
 }
 
 const mapStateToProps = ({ currentShow, currentEpisode }) => ({ currentShow, currentEpisode })
-const mapDispathToProps = () => ({ fetchShow, selectEpisode })
+const mapDispathToProps = () => ({ selectEpisode })
 
 export default connect(mapStateToProps, mapDispathToProps)(PlayerView)
