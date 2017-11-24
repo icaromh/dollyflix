@@ -89,11 +89,11 @@ class ShowView extends Component {
   }
 
   render() {
-    const hasShow = Object.keys(this.props.show).length === 0
+    const hasShow = Object.keys(this.props.show).length !== 0
 
     return (
       <Loader
-        for={!this.props.showIsLoading && !hasShow}
+        for={!this.props.showIsLoading && hasShow}
         render={this.renderContent}
       />
     )

@@ -1,5 +1,6 @@
 import {
   SELECT_SHOW,
+  SELECT_EPISODE,
   FETCH_SHOW_REQUEST,
   FETCH_SHOW_SUCCESS,
   FETCH_SHOW_FAILURE,
@@ -71,6 +72,17 @@ export function showIsLoading(state = false, action) {
   switch (action.type) {
     case FETCH_SHOW_REQUEST:
       return action.isLoading
+
+    default:
+      return state
+  }
+}
+
+
+export function selectEpisode(state = {}, action) {
+  switch (action.type) {
+    case SELECT_EPISODE:
+      return action.payload
 
     default:
       return state

@@ -32,13 +32,11 @@ export function showFetchData(slug) {
 
   return (dispatch) => {
     dispatch(showIsLoading(true))
-
     fetch(callUrl)
     .then((response) => {
       if (!response.ok) {
         throw Error(response.statusText)
       }
-
       dispatch(showIsLoading(false))
 
       return response
