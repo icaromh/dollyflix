@@ -85,7 +85,6 @@ PlayerView.propTypes = {
   episode: PropTypes.object,
   fetchShow: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
-  showIsLoading: PropTypes.bool.isRequired,
 }
 
 PlayerView.defaultProps = {
@@ -93,10 +92,9 @@ PlayerView.defaultProps = {
   episode: {},
 }
 
-const mapStateToProps = ({ currentItem, currentEpisode, showIsLoading }) => ({
-  showIsLoading,
+const mapStateToProps = ({ currentItem, currentEpisode }) => ({
   show: currentItem,
-  currentEpisode,
+  episode: currentEpisode,
 })
 
 const mapDispathToProps = dispatch => ({

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
+import { browserHistory } from 'react-router'
 
 import { showFetchData, selectEpisode } from '../actions/show'
 
@@ -22,7 +23,7 @@ class ShowView extends Component {
     super(props)
 
     this.state = {
-      seasonSelected: 1,
+      seasonSelected: this.props.params.season ? parseInt(this.props.params.season, 10) : 1,
     }
   }
 
@@ -38,6 +39,14 @@ class ShowView extends Component {
     }
   }
 
+  changePath = (season) => {
+    const { slug } = this.props.params
+    const location = Object.assign({}, browserHistory.getCurrentLocation())
+    location.pathname = `/show/${slug}/${season}`
+    browserHistory.push(location)
+  }
+
+
   handleOnClickEpisode = episode => (
     this.props.selectEpisode(episode)
   )
@@ -47,10 +56,12 @@ class ShowView extends Component {
   }
 
   handleChangeSeason = (ev) => {
+    const season = parseInt(ev.target.value, 10)
     ReactGA.event({ category: EVENT_CATEGORY_NAVIGATION, action: NAVIGATION_SEASON_CLICK })
 
+    this.changePath(season)
     this.setState({
-      seasonSelected: parseInt(ev.target.value, 10),
+      seasonSelected: season,
     })
   }
 
@@ -72,6 +83,7 @@ class ShowView extends Component {
 
         <div className="container container--padding">
           <SeasonSelector
+            value={this.state.seasonSelected}
             seasons={this.props.seasons}
             onChange={this.handleChangeSeason}
             onClick={this.handleSeasonClick}

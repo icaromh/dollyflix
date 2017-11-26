@@ -12,6 +12,7 @@ export default (
   <Route path="/" component={App} onChange={() => window.scrollTo(0, 0)}>
     <IndexRoute component={ShowList} />
     <Route path="show/:slug" component={ShowView} />
+    <Route path="show/:slug/:season" component={ShowView} />
     <Route path="show/:slug/:season/:episode" component={PlayerView} />
     <Route path="search/:slug" component={SearchView} />
   </Route>
