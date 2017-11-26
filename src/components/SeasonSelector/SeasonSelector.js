@@ -6,9 +6,15 @@ const SeasonSelector = props => (
     className="select"
     onChange={ev => props.onChange(ev)}
     onClick={ev => props.onClick(ev)}
+    value={props.value}
   >
     {props.seasons.map(season => (
-      <option key={season} value={season}>Temporada {season}</option>
+      <option
+        key={season}
+        value={season}
+      >
+        Temporada {season}
+      </option>
     ))}
   </select>
 )
@@ -17,11 +23,13 @@ SeasonSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   seasons: PropTypes.array,
+  value: PropTypes.number,
 }
 
 SeasonSelector.defaultProps = {
   seasons: [],
   onClick: () => {},
+  value: 1,
 }
 
 export default SeasonSelector
