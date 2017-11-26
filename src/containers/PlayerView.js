@@ -13,7 +13,7 @@ class PlayerView extends Component {
     super(props)
 
     this.state = {
-      episode: props.currentEpisode,
+      episode: props.episode,
     }
   }
 
