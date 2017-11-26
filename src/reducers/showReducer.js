@@ -12,22 +12,6 @@ import {
   FETCH_SHOWS_FAILURE,
 } from '../actions/shows'
 
-import {
-  FETCH_SHOWS_REQUEST,
-  FETCH_SHOWS_SUCCESS,
-  FETCH_SHOWS_FAILURE,
-} from '../actions/shows'
-
-
-export function itemsHasErrored(state = false, action) {
-  switch (action.type) {
-    case FETCH_SHOWS_FAILURE:
-      return action.hasErrored
-
-    default:
-      return state
-  }
-}
 
 export function itemsHasErrored(state = false, action) {
   switch (action.type) {
