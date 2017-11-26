@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
-import { fetchShow, selectEpisode } from '../actions'
 import VideoPlayer from '../components/VideoPlayer'
 import Loader from '../components/Loader'
+
+import { showFetchData } from '../actions/show'
 
 class PlayerView extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class PlayerView extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.currentShow) {
+    if (Object.keys(this.props.show).length === 0) {
       this.props.fetchShow(this.props.params.slug)
     }
   }
@@ -28,8 +29,9 @@ class PlayerView extends Component {
     const filterSeason = ep => parseInt(ep.season, 10) === parseInt(season, 10)
     const filterEpisode = ep => parseInt(ep.number, 10) === parseInt(episode, 10)
 
-    if (nextProps.currentShow) {
-      const currentEpisode = nextProps.currentShow.episodes
+
+    if (Object.keys(nextProps.show).length !== 0) {
+      const currentEpisode = nextProps.show.episodes
         .filter(filterSeason)
         .filter(filterEpisode)
 
@@ -41,7 +43,7 @@ class PlayerView extends Component {
 
   renderContent = () => {
     const { episode } = this.state
-    const show = this.props.currentShow
+    const show = this.props.show
     const canonicalUrl = `https://dollyflix.herokuapp.com/show/${show.slug}/${episode.season}/${episode.number}`
     const options = {
       poster: episode.image,
@@ -67,24 +69,38 @@ class PlayerView extends Component {
   }
 
   render() {
-    const episode = this.state.episode
-    return (<Loader for={episode} render={this.renderContent} />)
+    const hasShow = Object.keys(this.props.show).length !== 0
+
+    return (
+      <Loader
+        for={hasShow}
+        render={this.renderContent}
+      />
+    )
   }
 }
 
 PlayerView.propTypes = {
-  currentEpisode: PropTypes.object,
-  currentShow: PropTypes.object,
+  show: PropTypes.object,
+  episode: PropTypes.object,
   fetchShow: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
+  showIsLoading: PropTypes.bool.isRequired,
 }
 
 PlayerView.defaultProps = {
-  currentEpisode: {},
-  currentShow: {},
+  show: {},
+  episode: {},
 }
 
-const mapStateToProps = ({ currentShow, currentEpisode }) => ({ currentShow, currentEpisode })
-const mapDispathToProps = () => ({ fetchShow, selectEpisode })
+const mapStateToProps = ({ currentItem, currentEpisode, showIsLoading }) => ({
+  showIsLoading,
+  show: currentItem,
+  currentEpisode,
+})
+
+const mapDispathToProps = dispatch => ({
+  fetchShow: slug => dispatch(showFetchData(slug)),
+})
 
 export default connect(mapStateToProps, mapDispathToProps)(PlayerView)

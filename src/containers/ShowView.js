@@ -4,11 +4,12 @@ import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 
-import { fetchShow, selectEpisode } from '../actions'
+import { showFetchData, selectEpisode } from '../actions/show'
 
 import ShowHeader from '../components/ShowHeader'
 import EpisodesList from '../components/EpisodesList'
 import SeasonSelector from '../components/SeasonSelector'
+import Loader from '../components/Loader'
 
 import {
   EVENT_CATEGORY_NAVIGATION,
@@ -21,30 +22,25 @@ class ShowView extends Component {
     super(props)
 
     this.state = {
-      currentShow: this.props.currentShow,
-      seasons: [],
       seasonSelected: 1,
     }
-
-    this.handleOnClickEpisode = this.handleOnClickEpisode.bind(this)
   }
 
   componentWillMount() {
-    if (!this.props.currentShow) {
+    if (Object.keys(this.props.show).length === 0) {
       this.props.fetchShow(this.props.params.slug)
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentShow) {
-      this.setState({ currentShow: nextProps.currentShow })
+    if (nextProps.show) {
+      this.setState({ show: nextProps.show })
     }
   }
 
-
-  handleOnClickEpisode(episode) {
+  handleOnClickEpisode = episode => (
     this.props.selectEpisode(episode)
-  }
+  )
 
   handleSeasonClick = () => {
     ReactGA.event({ category: EVENT_CATEGORY_NAVIGATION, action: NAVIGATION_SEASON_SELECT_CLICK })
@@ -58,19 +54,9 @@ class ShowView extends Component {
     })
   }
 
-  render() {
-    const show = this.state.currentShow
+  renderContent = () => {
+    const show = this.props.show
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
-
-    if (!show) {
-      return (
-        <div className="container">
-          <h1 className="page-title">
-            Loading
-          </h1>
-        </div>
-      )
-    }
 
     return (
       <div>
@@ -101,26 +87,51 @@ class ShowView extends Component {
       </div>
     )
   }
-}
 
-function mapStateToProps({ currentShow, seasons }) {
-  return { currentShow, seasons }
+  render() {
+    const hasShow = Object.keys(this.props.show).length !== 0
+
+    return (
+      <Loader
+        for={!this.props.showIsLoading && hasShow}
+        render={this.renderContent}
+      />
+    )
+  }
 }
 
 ShowView.propTypes = {
-  currentShow: PropTypes.object,
+  show: PropTypes.object,
   params: PropTypes.object.isRequired,
   fetchShow: PropTypes.func.isRequired,
   selectEpisode: PropTypes.func.isRequired,
   seasons: PropTypes.array,
+  showIsLoading: PropTypes.bool.isRequired,
 }
 
 ShowView.defaultProps = {
-  currentShow: {},
+  show: {},
   seasons: [],
 }
 
-export default connect(mapStateToProps, {
-  fetchShow,
-  selectEpisode,
-})(ShowView)
+const mapStateToProps = state => ({
+  showIsLoading: state.showIsLoading,
+  show: state.currentItem,
+  seasons: (() => {
+    const sortCriteria = (a, b) => a - b
+    const getSeasons = episodes => (
+      episodes
+        .map(ep => parseInt(ep.season, 10))
+        .reduce((acc, el) => (acc.indexOf(el) === -1 ? acc.concat(el) : acc), [])
+        .sort(sortCriteria)
+    )
+    return state.currentItem.episodes ? getSeasons(state.currentItem.episodes) : []
+  })(),
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchShow: slug => dispatch(showFetchData(slug)),
+  selectEpisode: episode => dispatch(selectEpisode(episode)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowView)

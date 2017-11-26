@@ -12,7 +12,7 @@ class Loader extends Component {
     return (
       <div className="loader">
         {title}
-        <Spinner />
+        {this.props.children}
       </div>
     )
   }
@@ -22,10 +22,12 @@ Loader.propTypes = {
   for: PropTypes.any.isRequired,
   render: PropTypes.func.isRequired,
   title: PropTypes.string,
+  children: PropTypes.any,
 }
 
 Loader.defaultProps = {
   title: '',
+  children: <Spinner />,
 }
 
 export default Loader
