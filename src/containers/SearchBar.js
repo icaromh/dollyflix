@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import { searchShow, searchTerm } from '../actions/index'
+import { searchShowFetchData } from '../actions/search'
+
 import SearchForm from '../components/Search'
 
 class SearchBar extends Component {
@@ -16,8 +17,7 @@ class SearchBar extends Component {
 
   handleFormSubmit = (term) => {
     this.changePath(term)
-    this.props.searchTerm(term)
-    this.props.searchShow(term)
+    this.props.search(term)
   }
 
   render() {
@@ -32,11 +32,11 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  searchTerm: PropTypes.func.isRequired,
-  searchShow: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired,
 }
 
-export default connect(null, {
-  searchShow,
-  searchTerm,
-})(SearchBar)
+const mapDispatchToProps = dispatch => ({
+  search: term => dispatch(searchShowFetchData(term)),
+})
+
+export default connect(null, mapDispatchToProps)(SearchBar)

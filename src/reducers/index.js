@@ -10,6 +10,8 @@ import {
   showIsLoading,
 } from './showReducer'
 
+import search from './searchReducer'
+
 const rootReducer = combineReducers({
   items,
   itemsHasErrored,
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
 
   showHasErrored,
   showIsLoading,
+
+  search,
 })
 
 export default rootReducer
