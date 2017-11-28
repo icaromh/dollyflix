@@ -20,12 +20,17 @@ class VideoPlayer extends React.Component {
       ...this.props.options,
     }
 
+    const props = this.props
+
     this.player = videojs(this.videoNode, options, function onPlayerReady() {
       const player = this
+
+      player.volume(props.volume)
 
       ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY })
       player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }))
       player.on('pause', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PAUSE }))
+      player.on('volumechange', () => props.onVolumeChange(player.volume()))
     })
   }
 
@@ -56,6 +61,13 @@ class VideoPlayer extends React.Component {
 
 VideoPlayer.propTypes = {
   options: PropTypes.object.isRequired,
+  volume: PropTypes.number,
+  onVolumeChange: PropTypes.func.isRequired,
 }
+
+VideoPlayer.defaultProps = {
+  volume: 0.5,
+}
+
 
 export default VideoPlayer

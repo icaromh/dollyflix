@@ -7,6 +7,7 @@ import VideoPlayer from '../components/VideoPlayer'
 import Loader from '../components/Loader'
 
 import { showFetchData } from '../actions/show'
+import { playerChangeVolume } from '../actions/player'
 
 class PlayerView extends Component {
   constructor(props) {
@@ -41,6 +42,10 @@ class PlayerView extends Component {
     }
   }
 
+  handlePlayerVolumeChange = (volume) => {
+    this.props.changeVolume(volume)
+  }
+
   renderContent = () => {
     const { episode } = this.state
     const show = this.props.show
@@ -63,7 +68,11 @@ class PlayerView extends Component {
           <meta property="og:image" content={episode.image} />
         </Helmet>
 
-        <VideoPlayer options={options} />
+        <VideoPlayer
+          options={options}
+          onVolumeChange={this.handlePlayerVolumeChange}
+          volume={this.props.player.volume}
+        />
       </div>
     )
   }
@@ -84,7 +93,9 @@ PlayerView.propTypes = {
   show: PropTypes.object,
   episode: PropTypes.object,
   fetchShow: PropTypes.func.isRequired,
+  changeVolume: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
+  player: PropTypes.object.isRequired,
 }
 
 PlayerView.defaultProps = {
@@ -92,13 +103,15 @@ PlayerView.defaultProps = {
   episode: {},
 }
 
-const mapStateToProps = ({ currentItem, currentEpisode }) => ({
+const mapStateToProps = ({ currentItem, currentEpisode, player }) => ({
   show: currentItem,
   episode: currentEpisode,
+  player,
 })
 
 const mapDispathToProps = dispatch => ({
   fetchShow: slug => dispatch(showFetchData(slug)),
+  changeVolume: vol => dispatch(playerChangeVolume(vol)),
 })
 
 export default connect(mapStateToProps, mapDispathToProps)(PlayerView)
