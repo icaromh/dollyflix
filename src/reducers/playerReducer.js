@@ -3,7 +3,7 @@ import {
 } from '../actions/player'
 
 const initialState = {
-  volume: window.localStorage.getItem('volume') || 0.5,
+  volume: window.localStorage.getItem('volume') || '0.5',
 }
 
 export default function search(state = initialState, action) {

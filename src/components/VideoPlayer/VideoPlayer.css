@@ -1,6 +1,7 @@
 .player-area{
   width: 100vw;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 51px);
+  overflow: hidden;
 }
 
 .player-area .video-js{
