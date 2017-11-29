@@ -5,45 +5,31 @@ import PropTypes from 'prop-types'
 
 import VideoPlayer from '../components/VideoPlayer'
 import Loader from '../components/Loader'
+import NextEpisode from '../components/VideoPlayer/NextEpisode'
 
-import { showFetchData } from '../actions/show'
+import { showFetchData, selectEpisode } from '../actions/show'
+import { playerChangeVolume } from '../actions/player'
 
 class PlayerView extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      episode: props.episode,
-    }
-  }
 
   componentWillMount() {
+    const { slug, season, episode } = this.props.params
     if (Object.keys(this.props.show).length === 0) {
-      this.props.fetchShow(this.props.params.slug)
+      this.props.fetchShowEpisode(slug, season, episode)
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { season, episode } = this.props.params
+  handlePlayerVolumeChange = (volume) => {
+    this.props.changeVolume(volume)
+  }
 
-    const filterSeason = ep => parseInt(ep.season, 10) === parseInt(season, 10)
-    const filterEpisode = ep => parseInt(ep.number, 10) === parseInt(episode, 10)
-
-
-    if (Object.keys(nextProps.show).length !== 0) {
-      const currentEpisode = nextProps.show.episodes
-        .filter(filterSeason)
-        .filter(filterEpisode)
-
-      if (currentEpisode.length === 1) {
-        this.setState({ episode: currentEpisode[0] })
-      }
-    }
+  handlePlayerNextEpisodeClick = (episode) => {
+    this.props.selectEpisode(episode)
   }
 
   renderContent = () => {
-    const { episode } = this.state
-    const show = this.props.show
+    const { show, episode, nextEpisode } = this.props
+
     const canonicalUrl = `https://dollyflix.herokuapp.com/show/${show.slug}/${episode.season}/${episode.number}`
     const options = {
       poster: episode.image,
@@ -63,17 +49,30 @@ class PlayerView extends Component {
           <meta property="og:image" content={episode.image} />
         </Helmet>
 
-        <VideoPlayer options={options} />
+        <VideoPlayer
+          episodeId={episode.id}
+          options={options}
+          onVolumeChange={this.handlePlayerVolumeChange}
+          volume={parseInt(this.props.player.volume, 10)}
+        >
+          <NextEpisode
+            show={show}
+            episode={nextEpisode}
+            onNextEspisodeClick={this.handlePlayerNextEpisodeClick}
+          />
+        </VideoPlayer>
       </div>
     )
   }
 
   render() {
     const hasShow = Object.keys(this.props.show).length !== 0
+    const hasEpisode = Object.keys(this.props.episode).length !== 0
+    const hasNextEpisode = Object.keys(this.props.nextEpisode).length !== 0
 
     return (
       <Loader
-        for={hasShow}
+        for={hasShow && hasEpisode && hasNextEpisode}
         render={this.renderContent}
       />
     )
@@ -83,22 +82,44 @@ class PlayerView extends Component {
 PlayerView.propTypes = {
   show: PropTypes.object,
   episode: PropTypes.object,
-  fetchShow: PropTypes.func.isRequired,
+  nextEpisode: PropTypes.object,
   params: PropTypes.object.isRequired,
+  player: PropTypes.object.isRequired,
+  fetchShowEpisode: PropTypes.func.isRequired,
+  changeVolume: PropTypes.func.isRequired,
+  selectEpisode: PropTypes.func.isRequired,
 }
 
 PlayerView.defaultProps = {
   show: {},
   episode: {},
+  nextEpisode: {},
 }
 
-const mapStateToProps = ({ currentItem, currentEpisode }) => ({
-  show: currentItem,
-  episode: currentEpisode,
+const mapStateToProps = state => ({
+  show: state.currentItem,
+  episode: state.currentEpisode,
+  nextEpisode: (() => {
+    if (state.currentItem.episodes && state.currentEpisode.season) {
+      const filterSeason = ep => parseInt(ep.season, 10) === parseInt(state.currentEpisode.season, 10)
+      const filterNextEpisode = ep => parseInt(ep.number, 10) === (parseInt(state.currentEpisode.number, 10) + 1)
+
+      const nextEpisode = state.currentItem.episodes
+        .filter(filterSeason)
+        .filter(filterNextEpisode)
+
+      return nextEpisode[0]
+    }
+
+    return {}
+  })(),
+  player: state.player,
 })
 
 const mapDispathToProps = dispatch => ({
-  fetchShow: slug => dispatch(showFetchData(slug)),
+  fetchShowEpisode: (slug, season, episode) => dispatch(showFetchData(slug, season, episode)),
+  changeVolume: vol => dispatch(playerChangeVolume(vol)),
+  selectEpisode: episode => dispatch(selectEpisode(episode)),
 })
 
 export default connect(mapStateToProps, mapDispathToProps)(PlayerView)

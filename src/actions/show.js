@@ -17,9 +17,11 @@ export const showIsLoading = bool => ({
   isLoading: bool,
 })
 
-export const showFetchDataSuccess = item => ({
+export const showFetchDataSuccess = (item, season, episode) => ({
   type: FETCH_SHOW_SUCCESS,
   item,
+  season,
+  episode,
 })
 
 export const selectShow = show => ({
@@ -27,7 +29,7 @@ export const selectShow = show => ({
   payload: show,
 })
 
-export function showFetchData(slug) {
+export function showFetchData(slug, season, episode) {
   const callUrl = `${API_URL}/serie/${slug}`
 
   return (dispatch) => {
@@ -42,7 +44,7 @@ export function showFetchData(slug) {
       return response
     })
     .then(response => response.json())
-    .then(items => dispatch(showFetchDataSuccess(items)))
+    .then(show => dispatch(showFetchDataSuccess(show, season, episode)))
     .catch(() => dispatch(showHasErrored(true)))
   }
 }

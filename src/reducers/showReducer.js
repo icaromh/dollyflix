@@ -81,6 +81,20 @@ export function showIsLoading(state = false, action) {
 
 export function selectEpisode(state = {}, action) {
   switch (action.type) {
+    case FETCH_SHOW_SUCCESS: {
+      if (action.season && action.episode) {
+        const filterSeason = ep => parseInt(ep.season, 10) === parseInt(action.season, 10)
+        const filterEpisode = ep => parseInt(ep.number, 10) === parseInt(action.episode, 10)
+
+        const currentEpisode = action.item.episodes
+          .filter(filterSeason)
+          .filter(filterEpisode)
+
+        return { ...currentEpisode[0] }
+      }
+
+      return { ...state }
+    }
     case SELECT_EPISODE:
       return action.payload
 

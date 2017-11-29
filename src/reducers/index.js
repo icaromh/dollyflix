@@ -12,6 +12,8 @@ import {
 
 import search from './searchReducer'
 
+import player from './playerReducer'
+
 const rootReducer = combineReducers({
   items,
   itemsHasErrored,
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   showIsLoading,
 
   search,
+
+  player,
 })
 
 export default rootReducer
