@@ -24,10 +24,7 @@ class PlayerView extends Component {
   }
 
   handlePlayerNextEpisodeClick = (episode) => {
-    const { slug } = this.props.params
-    const { number, season } = episode
     this.props.selectEpisode(episode)
-    this.props.router.push(`/show/${slug}/${season}/${number}`)
   }
 
   renderContent = () => {

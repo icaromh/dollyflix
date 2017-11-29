@@ -1,4 +1,3 @@
-/* eslint:  */
 import React from 'react'
 import videojs from 'video.js'
 import ReactGA from 'react-ga'
@@ -22,18 +21,18 @@ class VideoPlayer extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setupPlayerJs()
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.episodeId !== this.props.episodeId) {
       this.player.src(nextProps.options.sources)
       this.player.poster(nextProps.options.poster)
       this.player.loop(true)
       this.player.play()
-      this.setState({showNext: false})
+      this.setState({ showNext: false })
     }
-  }
-
-  componentDidMount() {
-    this.setupPlayerJs()
   }
 
   // destroy player on unmount
@@ -52,7 +51,7 @@ class VideoPlayer extends React.Component {
     this.player = videojs(this.videoNode, options, function onPlayerReady() {
       const player = this
 
-      player.volume(component.props.volume)
+      player.volume(component.props.volume) // set default volume
 
       ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY })
       player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }))
@@ -96,9 +95,10 @@ class VideoPlayer extends React.Component {
 }
 
 VideoPlayer.propTypes = {
+  episodeId: PropTypes.string.isRequired,
   options: PropTypes.object.isRequired,
-  volume: PropTypes.number,
-  onVolumeChange: PropTypes.func.isRequired,
+  volume: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
+  onVolumeChange: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   children: PropTypes.any,
 }
 

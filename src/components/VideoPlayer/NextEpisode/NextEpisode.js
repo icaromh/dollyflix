@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 import {
   REMAIN_TIME_TO_SHOW_NEXT_EPISODE,
@@ -52,12 +53,13 @@ class NextEpisode extends Component {
           <p id="nextCountdown">{this.state.countdown}</p>
         </div>
         <div className="pn_btns">
-          <button
+          <Link
+            to={`/show/${show.slug}/${episode.season}/${episode.number}`}
             className="auto-next-btn"
             onClick={() => this.props.onNextEspisodeClick(episode)}
           >
             Reproduzir Agora
-          </button>
+          </Link>
         </div>
       </div>
     )
