@@ -5,7 +5,11 @@ import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 
-import { showFetchData, selectEpisode } from '../actions/show'
+import {
+  showFetchData,
+  selectEpisode,
+  doFavoriteShow,
+} from '../actions/show'
 
 import ShowHeader from '../components/ShowHeader'
 import EpisodesList from '../components/EpisodesList'
@@ -65,6 +69,10 @@ class ShowView extends Component {
     })
   }
 
+  handleFavoriteClick = (show) => {
+    this.props.favoriteShow(show)
+  }
+
   renderContent = () => {
     const show = this.props.show
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
@@ -79,7 +87,10 @@ class ShowView extends Component {
           <meta property="og:image" content={show.images ? show.images.fanart : ''} />
         </Helmet>
 
-        <ShowHeader show={show} />
+        <ShowHeader
+          onFavoriteClick={this.handleFavoriteClick}
+          show={show}
+        />
 
         <div className="container container--padding">
           <SeasonSelector
@@ -117,6 +128,7 @@ ShowView.propTypes = {
   params: PropTypes.object.isRequired,
   fetchShow: PropTypes.func.isRequired,
   selectEpisode: PropTypes.func.isRequired,
+  favoriteShow: PropTypes.func.isRequired,
   seasons: PropTypes.array,
   showIsLoading: PropTypes.bool.isRequired,
 }
@@ -144,6 +156,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchShow: slug => dispatch(showFetchData(slug)),
   selectEpisode: episode => dispatch(selectEpisode(episode)),
+  favoriteShow: show => dispatch(doFavoriteShow(show)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowView)

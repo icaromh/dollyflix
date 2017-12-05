@@ -7,6 +7,8 @@ export const FETCH_SHOW_FAILURE = 'FETCH_SHOW_FAILURE'
 export const SELECT_SHOW = 'SELECT_SHOW'
 export const SELECT_EPISODE = 'SELECT_EPISODE'
 
+export const FAVORITE_SHOW = 'FAVORITE_SHOW'
+
 export const showHasErrored = bool => ({
   type: FETCH_SHOW_FAILURE,
   hasErrored: bool,
@@ -27,6 +29,11 @@ export const showFetchDataSuccess = (item, season, episode) => ({
 export const selectShow = show => ({
   type: SELECT_SHOW,
   payload: show,
+})
+
+export const doFavoriteShow = show => ({
+  type: FAVORITE_SHOW,
+  show,
 })
 
 export function showFetchData(slug, season, episode) {

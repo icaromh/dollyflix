@@ -11,8 +11,14 @@ import registerServiceWorker from './registerServiceWorker'
 
 import routes from './routes'
 import configureStore from './store/configureStore'
+import { loadState, saveState } from './store'
 
-const store = configureStore()
+const initialState = loadState()
+const store = configureStore(initialState)
+
+store.subscribe(() => {
+  saveState(store.getState())
+})
 
 ReactGA.initialize(GOOGLE_ANALYTICS_KEY, {
   debug: false,
