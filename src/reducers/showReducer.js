@@ -4,6 +4,7 @@ import {
   FETCH_SHOW_REQUEST,
   FETCH_SHOW_SUCCESS,
   FETCH_SHOW_FAILURE,
+  FAVORITE_SHOW,
 } from '../actions/show'
 
 import {
@@ -40,6 +41,18 @@ export function items(state = [], action) {
 
     default:
       return state
+  }
+}
+
+export function favoriteShowItems(state = [], action) {
+  switch (action.type) {
+    case FAVORITE_SHOW: {
+      return [action.show, ...state]
+    }
+    default: {
+      return [...state]
+    }
+
   }
 }
 

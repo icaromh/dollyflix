@@ -8,6 +8,7 @@ import {
   selectEpisode,
   showHasErrored,
   showIsLoading,
+  favoriteShowItems,
 } from './showReducer'
 
 import search from './searchReducer'
@@ -18,6 +19,8 @@ const rootReducer = combineReducers({
   items,
   itemsHasErrored,
   itemsIsLoading,
+
+  favoriteItems: favoriteShowItems,
 
   currentItem: selectItem,
   currentEpisode: selectEpisode,

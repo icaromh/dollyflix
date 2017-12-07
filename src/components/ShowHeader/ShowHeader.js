@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ShowHeader = ({ show }) => {
+import FavoriteIcon from '../Icons'
+
+const ShowHeader = ({ show, onFavoriteClick }) => {
   if (!show.title) { return false }
 
   return (
@@ -16,6 +18,15 @@ const ShowHeader = ({ show }) => {
         <div className="show-featured__synopsis">
           <p>{show.synopsis}</p>
         </div>
+
+        <div className="show-featured__actions">
+          <button
+            onClick={() => onFavoriteClick(show)}
+            className="show-featured__actions__button"
+          >
+            <FavoriteIcon color="#f00" /> Favoritar
+          </button>
+        </div>
       </div>
       <div className="show-featured__image">
         <picture>
@@ -28,6 +39,7 @@ const ShowHeader = ({ show }) => {
 
 ShowHeader.propTypes = {
   show: PropTypes.object.isRequired,
+  onFavoriteClick: PropTypes.func.isRequired,
 }
 
 export default ShowHeader

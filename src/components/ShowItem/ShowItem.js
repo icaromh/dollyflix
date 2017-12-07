@@ -6,21 +6,22 @@ const resizeImage = (url, size) => url.replace('w500', size)
 
 const ShowItem = ({ show, onClick }) => {
   const image = show.images.banner
+  const { slug, title } = show
 
   return (
     <Link
-      to={`/show/${show.slug}`}
+      to={`/show/${slug}`}
       className="show-item__link"
       onClick={() => onClick(show)}
     >
       <div className="show-item">
         <picture className="show-item__image">
           <source srcSet={resizeImage(image, 'w150')} media="(max-width: 768px)" />
-          <img srcSet={resizeImage(image, 'w300')} alt={show.title} />
+          <img srcSet={resizeImage(image, 'w300')} alt={title} />
         </picture>
 
         <span className="show-item__title">
-          {show.title}
+          {title}
         </span>
       </div>
     </Link>

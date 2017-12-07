@@ -17,6 +17,10 @@ body{
   letter-spacing: 1px;
 }
 
+.title{
+  font-size: 1em;
+}
+
 .clearSearch{
   font-size: .8em;
   margin-left: 5px;
@@ -131,59 +135,6 @@ body{
 }
 
 /**
- * Serie View
- */
-.show-featured{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-top: -20px;
-}
-
-.show-featured__image{
-  width: 100vw;
-  order: 0;
-}
-
-.show-featured__image img{
-  max-width: 100%;
-}
-
-.show-featured__data{
-  order: 1;
-  padding: 10px;
-}
-
-.show-featured__title{
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
-  color: #e3e3e3;
-  line-height: 2rem;
-}
-
-.show-feature__metadata{
-  display: block;
-  margin: 10px 0;
-}
-
-.show-feature__metadata__item{
-  display: inline-block;
-  color: #8e8e8d;
-  font-size: 1.1rem;
-  margin-right: 10px;
-}
-
-
-.show-featured__synopsis{
-  color: #8e8e8d;
-  font-size: 1.3rem;
-  color: #e3e3e3;
-  line-height: 2rem;
-  text-align: justify;
-}
-
-/**
  * EPISODES LIST
  */
 .episodes-list{
@@ -241,77 +192,6 @@ body{
   /**
    * Serie Featured
    */
-  .show-featured{
-    position: relative;
-    padding: 20px;
-    padding-left: 60px;
-    min-height: 60vh;
-    background-color: #111;
-  }
-
-  .show-featured__data{
-    width: 50vw;
-    z-index: 2;
-  }
-
-  .show-featured__title{
-    font-size: 3em;
-    line-height: 1em;
-    font-weight: bold;
-  }
-
-  .show-feature__metadata__item{
-    font-size: 1em;
-    letter-spacing: 1px;
-    position: relative;
-    z-index: 10;
-    color: #666;
-  }
-
-  .show-feature__metadata__item:after{
-    font-size: 1em;
-    content: ' / ';
-  }
-
-  .show-feature__metadata__item:last-child:after{
-    content: ''
-  }
-
-  .show-featured__synopsis p{
-    max-width: 35vw;
-    text-align: left;
-    letter-spacing: 1.2px;
-    line-height: 1.5;
-    font-weight: lighter;
-    font-size: 1.2em;
-    color: #999;
-  }
-
-  .show-featured__image{
-    width: 65vw;
-    overflow: hidden;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  .show-featured__image:before{
-    content: '';
-    position: absolute;
-    background: linear-gradient(to right,
-      #111 0%,
-      rgba(17,17,17, .9) 10%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    height: 100%;
-    width: 100%;
-  }
-
-  .show-featured__image img{
-    width: 100%;
-    z-index: -1;
-  }
 
   .serie-featured-player-icon{
     height: 120px;

@@ -8,6 +8,7 @@ import { selectShow } from '../actions/show'
 
 import ShowItem from '../components/ShowItem'
 import Loader from '../components/Loader'
+import FavoriteList from './FavoriteList'
 
 class ShowList extends Component {
 
@@ -22,6 +23,10 @@ class ShowList extends Component {
   renderContent = () => (
     <div className="container">
       <Helmet title={'Dollyflix'} />
+
+      <FavoriteList />
+
+      <h3 className="title">Séries</h3>
 
       <div className="showlist">
         {this.props.items.map(show => (
