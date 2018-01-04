@@ -5,6 +5,7 @@ import {
   FETCH_SHOW_SUCCESS,
   FETCH_SHOW_FAILURE,
   FAVORITE_SHOW,
+  UNFAVORITE_SHOW,
 } from '../actions/show'
 
 import {
@@ -48,6 +49,9 @@ export function favoriteShowItems(state = [], action) {
   switch (action.type) {
     case FAVORITE_SHOW: {
       return [action.show, ...state]
+    }
+    case UNFAVORITE_SHOW: {
+      return state.filter(show => show.slug !== action.show.slug)
     }
     default: {
       return [...state]

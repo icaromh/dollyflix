@@ -4,15 +4,22 @@
   margin: 5px;
 }
 
-.show-item{
+.show-item {
   position: relative;
   height: 100%;
   background-color: #ccc;
+  overflow: hidden;
+  transition: transform .3s ease;
 }
 
 .show-item__image img{
   max-width: 100%;
 }
+
+.show-item:hover {
+  transform: scale(1.05);
+}
+
 
 .show-item__image img:before {
   content: " ";

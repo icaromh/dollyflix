@@ -1,10 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import FavoriteIcon from '../Icons'
+import FavoriteIcon, { FavoritedIcon } from '../Icons'
 
-const ShowHeader = ({ show, onFavoriteClick }) => {
+
+const ShowHeader = ({ show, onFavoriteClick, isFavoritedShow, onUnfavoriteClick }) => {
   if (!show.title) { return false }
+
+  const favoriteButton = (
+    <button
+      onClick={() => onFavoriteClick(show)}
+      className="show-featured__actions__button"
+    >
+      <FavoritedIcon color="#e50914" /> Adicionar aos Favoritos
+    </button>
+  )
+
+  const unfavoriteButton = (
+    <button
+      onClick={() => onUnfavoriteClick(show)}
+      className="show-featured__actions__button"
+    >
+      <FavoriteIcon color="#e50914" /> Remover dos Favoritos
+    </button>
+  )
+
 
   return (
     <div className="show-featured">
@@ -20,12 +40,7 @@ const ShowHeader = ({ show, onFavoriteClick }) => {
         </div>
 
         <div className="show-featured__actions">
-          <button
-            onClick={() => onFavoriteClick(show)}
-            className="show-featured__actions__button"
-          >
-            <FavoriteIcon color="#f00" /> Favoritar
-          </button>
+          { isFavoritedShow ? unfavoriteButton : favoriteButton }
         </div>
       </div>
       <div className="show-featured__image">
@@ -40,6 +55,8 @@ const ShowHeader = ({ show, onFavoriteClick }) => {
 ShowHeader.propTypes = {
   show: PropTypes.object.isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
+  onUnfavoriteClick: PropTypes.func.isRequired,
+  isFavoritedShow: PropTypes.bool.isRequired,
 }
 
 export default ShowHeader

@@ -8,6 +8,7 @@ export const SELECT_SHOW = 'SELECT_SHOW'
 export const SELECT_EPISODE = 'SELECT_EPISODE'
 
 export const FAVORITE_SHOW = 'FAVORITE_SHOW'
+export const UNFAVORITE_SHOW = 'UNFAVORITE_SHOW'
 
 export const showHasErrored = bool => ({
   type: FETCH_SHOW_FAILURE,
@@ -33,6 +34,11 @@ export const selectShow = show => ({
 
 export const doFavoriteShow = show => ({
   type: FAVORITE_SHOW,
+  show,
+})
+
+export const doUnfavoriteShow = show => ({
+  type: UNFAVORITE_SHOW,
   show,
 })
 
