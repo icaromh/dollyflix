@@ -9,6 +9,7 @@ import {
   showFetchData,
   selectEpisode,
   doFavoriteShow,
+  doUnfavoriteShow,
 } from '../actions/show'
 
 import ShowHeader from '../components/ShowHeader'
@@ -73,6 +74,10 @@ class ShowView extends Component {
     this.props.favoriteShow(show)
   }
 
+  handleUnfavoriteClick = (show) => {
+    this.props.unfavoriteShow(show)
+  }
+
   renderContent = () => {
     const show = this.props.show
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
@@ -89,7 +94,9 @@ class ShowView extends Component {
 
         <ShowHeader
           onFavoriteClick={this.handleFavoriteClick}
+          onUnfavoriteClick={this.handleUnfavoriteClick}
           show={show}
+          isFavoritedShow={this.props.isFavoritedShow}
         />
 
         <div className="container container--padding">
@@ -129,13 +136,16 @@ ShowView.propTypes = {
   fetchShow: PropTypes.func.isRequired,
   selectEpisode: PropTypes.func.isRequired,
   favoriteShow: PropTypes.func.isRequired,
+  unfavoriteShow: PropTypes.func.isRequired,
   seasons: PropTypes.array,
   showIsLoading: PropTypes.bool.isRequired,
+  isFavoritedShow: PropTypes.bool,
 }
 
 ShowView.defaultProps = {
   show: {},
   seasons: [],
+  isFavoritedShow: false,
 }
 
 const mapStateToProps = state => ({
@@ -151,12 +161,16 @@ const mapStateToProps = state => ({
     )
     return state.currentItem.episodes ? getSeasons(state.currentItem.episodes) : []
   })(),
+  isFavoritedShow: (() =>
+    state.favoriteItems.find(show => show.slug === state.currentItem.slug) !== undefined
+  )(),
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchShow: slug => dispatch(showFetchData(slug)),
   selectEpisode: episode => dispatch(selectEpisode(episode)),
   favoriteShow: show => dispatch(doFavoriteShow(show)),
+  unfavoriteShow: show => dispatch(doUnfavoriteShow(show)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowView)
