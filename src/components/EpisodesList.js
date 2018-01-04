@@ -6,9 +6,11 @@ import EpisodeBox from './EpisodeBox'
 const EpisodesList = ({ episodes, show, onClick }) => {
   if (!episodes) return false
 
+  const orderedEpisodes = episodes.sort((a, b) => (a.number > b.number))
+
   return (
     <div className="episodes-list">
-      {episodes.map(ep => (
+      {orderedEpisodes.map(ep => (
         <EpisodeBox key={ep.id} episode={ep} show={show} onClick={onClick} />
       ))}
     </div>
