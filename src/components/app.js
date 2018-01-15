@@ -5,7 +5,7 @@ import NavBar from './NavBar'
 
 const App = props => (
   <div>
-    <NavBar />
+    <NavBar location={props.location.pathname} />
     {props.children}
   </div>
   )
