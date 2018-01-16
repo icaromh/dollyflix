@@ -8,7 +8,6 @@ import {
 
 
 class NextEpisode extends Component {
-
   constructor(props) {
     super(props)
 

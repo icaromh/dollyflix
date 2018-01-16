@@ -8,7 +8,7 @@ const App = props => (
     <NavBar location={props.location.pathname} />
     {props.children}
   </div>
-  )
+)
 
 App.propTypes = {
   children: PropTypes.object.isRequired,

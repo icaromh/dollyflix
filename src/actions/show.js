@@ -48,17 +48,17 @@ export function showFetchData(slug, season, episode) {
   return (dispatch) => {
     dispatch(showIsLoading(true))
     fetch(callUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw Error(response.statusText)
-      }
-      dispatch(showIsLoading(false))
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        dispatch(showIsLoading(false))
 
-      return response
-    })
-    .then(response => response.json())
-    .then(show => dispatch(showFetchDataSuccess(show, season, episode)))
-    .catch(() => dispatch(showHasErrored(true)))
+        return response
+      })
+      .then(response => response.json())
+      .then(show => dispatch(showFetchDataSuccess(show, season, episode)))
+      .catch(() => dispatch(showHasErrored(true)))
   }
 }
 

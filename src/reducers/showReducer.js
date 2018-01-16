@@ -56,7 +56,6 @@ export function favoriteShowItems(state = [], action) {
     default: {
       return [...state]
     }
-
   }
 }
 
@@ -71,7 +70,6 @@ export function selectItem(state = {}, action) {
     default: {
       return state
     }
-
   }
 }
 

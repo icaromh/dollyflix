@@ -11,7 +11,6 @@ import Loader from '../components/Loader'
 import FavoriteList from './FavoriteList'
 
 class ShowList extends Component {
-
   componentDidMount() {
     if (!this.props.items.length) { this.props.fetchData() }
   }
@@ -22,7 +21,7 @@ class ShowList extends Component {
 
   renderContent = () => (
     <div className="container">
-      <Helmet title={'Dollyflix'} />
+      <Helmet title="Dollyflix" />
 
       <FavoriteList />
 
@@ -38,7 +37,7 @@ class ShowList extends Component {
           ))}
       </div>
     </div>
-    )
+  )
 
   render() {
     return (

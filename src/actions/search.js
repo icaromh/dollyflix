@@ -26,16 +26,16 @@ export function searchShowFetchData(term) {
   return (dispatch) => {
     dispatch(searchIsLoading(true))
     fetch(callUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw Error(response.statusText)
-      }
-      dispatch(searchIsLoading(false))
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        dispatch(searchIsLoading(false))
 
-      return response
-    })
-    .then(response => response.json())
-    .then(items => dispatch(searchFetchDataSuccess(term, items)))
-    .catch(() => dispatch(showHasErrored(true)))
+        return response
+      })
+      .then(response => response.json())
+      .then(items => dispatch(searchFetchDataSuccess(term, items)))
+      .catch(() => dispatch(showHasErrored(true)))
   }
 }

@@ -10,7 +10,6 @@ import ShowItem from '../components/ShowItem'
 import Loader from '../components/Loader'
 
 class SearchView extends Component {
-
   componentDidMount() {
     if (!this.props.term) {
       this.props.search(this.props.params.slug)

@@ -8,7 +8,6 @@ import { searchShowFetchData } from '../actions/search'
 import SearchForm from '../components/Search'
 
 class SearchBar extends Component {
-
   changePath = (term) => {
     const location = Object.assign({}, browserHistory.getCurrentLocation())
     location.pathname = `/search/${term}`

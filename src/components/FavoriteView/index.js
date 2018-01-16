@@ -5,7 +5,7 @@ import FavoriteList from '../../containers/FavoriteList'
 
 const FavoriteView = () => (
   <div className="container">
-    <Helmet title={'Dollyflix'} />
+    <Helmet title="Dollyflix" />
     <FavoriteList />
   </div>
 )

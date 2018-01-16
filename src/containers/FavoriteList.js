@@ -8,7 +8,6 @@ import { selectShow } from '../actions/show'
 import ShowItem from '../components/ShowItem'
 
 class FavoriteList extends Component {
-
   componentDidMount() {
     // if (!this.props.items.length) { this.props.fetchData() }
   }

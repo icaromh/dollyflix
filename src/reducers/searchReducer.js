@@ -12,7 +12,6 @@ const initialState = {
 
 export default function search(state = initialState, action) {
   switch (action.type) {
-
     case FETCH_SEARCH_REQUEST: {
       return {
         ...state,

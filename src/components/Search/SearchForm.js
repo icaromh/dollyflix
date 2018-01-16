@@ -11,7 +11,6 @@ import {
 } from '../../constants'
 
 class SearchForm extends Component {
-
   constructor(props) {
     super(props)
 
@@ -54,7 +53,6 @@ class SearchForm extends Component {
       </form>
     )
   }
-
 }
 
 SearchForm.propTypes = {

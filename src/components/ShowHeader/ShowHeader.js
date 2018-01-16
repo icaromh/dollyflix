@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import FavoriteIcon, { FavoritedIcon } from '../Icons'
 
 
-const ShowHeader = ({ show, onFavoriteClick, isFavoritedShow, onUnfavoriteClick }) => {
+const ShowHeader = ({
+  show, onFavoriteClick, isFavoritedShow, onUnfavoriteClick,
+}) => {
   if (!show.title) { return false }
 
   const favoriteButton = (

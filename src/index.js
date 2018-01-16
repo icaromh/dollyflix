@@ -30,7 +30,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory} routes={routes} />
   </Provider>
-  , document.querySelector('#dollyflix'))
+  , document.querySelector('#dollyflix'),
+)
 
 
 function loadLinks() {

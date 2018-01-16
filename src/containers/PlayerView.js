@@ -11,7 +11,6 @@ import { showFetchData, selectEpisode } from '../actions/show'
 import { playerChangeVolume } from '../actions/player'
 
 class PlayerView extends Component {
-
   componentWillMount() {
     const { slug, season, episode } = this.props.params
     if (Object.keys(this.props.show).length === 0) {
