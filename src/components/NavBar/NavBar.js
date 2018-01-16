@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import ReactGA from 'react-ga'
 
@@ -8,13 +9,15 @@ import {
   NAVIGATION_HOME_CLICK,
 } from '../../constants'
 
-const NavBar = () => {
+const NavBar = ({ location }) => {
   const handleOnClickNav = () => {
     ReactGA.event({
       category: EVENT_CATEGORY_NAVIGATION,
       action: NAVIGATION_HOME_CLICK,
     })
   }
+
+  const isActive = path => (location === path ? 'active' : false)
 
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -27,6 +30,19 @@ const NavBar = () => {
                 <span className="hidden-xs">DollyFlix</span>
               </Link>
             </div>
+
+            <ul className="nav navbar-nav">
+              <li className={isActive('/favorites')}>
+                <Link to="/favorites" onClick={() => handleOnClickNav()}>
+                  Favoritos
+                </Link>
+              </li>
+              {/* <li className={isActive('/network')}>
+                <Link to="/network" onClick={() => handleOnClickNav()}>
+                  Canais
+                </Link>
+              </li> */}
+            </ul>
           </div>
           <div className="col-md-6 col-xs-7">
             <SearchBar />
@@ -35,6 +51,10 @@ const NavBar = () => {
       </div>
     </nav>
   )
+}
+
+NavBar.propTypes = {
+  location: PropTypes.string.isRequired,
 }
 
 export default NavBar
