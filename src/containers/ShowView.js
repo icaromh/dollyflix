@@ -38,11 +38,11 @@ class ShowView extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.show) {
-      this.setState({ show: nextProps.show })
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.show) {
+  //     this.setState({ show: nextProps.show })
+  //   }
+  // }
 
   changePath = (season) => {
     const { slug } = this.props.params
@@ -79,7 +79,7 @@ class ShowView extends Component {
   }
 
   renderContent = () => {
-    const show = this.props.show
+    const { show } = this.props
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
 
     return (

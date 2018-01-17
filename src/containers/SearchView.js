@@ -62,7 +62,6 @@ SearchView.propTypes = {
 
 SearchView.defaultProps = {
   isLoading: false,
-  term: '',
 }
 
 const mapStateToProps = state => ({

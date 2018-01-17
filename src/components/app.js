@@ -12,6 +12,9 @@ const App = props => (
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default App
