@@ -5,7 +5,10 @@ import FavoriteIcon, { FavoritedIcon } from '../Icons'
 
 
 const ShowHeader = ({
-  show, onFavoriteClick, isFavoritedShow, onUnfavoriteClick,
+  show,
+  onFavoriteClick,
+  isFavoritedShow,
+  onUnfavoriteClick,
 }) => {
   if (!show.title) { return false }
 

@@ -38,11 +38,6 @@ const NavBar = ({ location }) => {
                   Favoritos
                 </Link>
               </li>
-              {/* <li className={isActive('/network')}>
-                <Link to="/network" onClick={() => handleOnClickNav()}>
-                  Canais
-                </Link>
-              </li> */}
             </ul>
           </div>
           <div className="col-md-6 col-xs-7">
