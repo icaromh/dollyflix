@@ -18,7 +18,7 @@ const NavBar = ({ location }) => {
     })
   }
 
-  const isActive = path => (location === path ? 'active' : false)
+  const isActive = path => (location === path ? 'active' : '')
 
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">

@@ -3,7 +3,6 @@ import { mount } from 'enzyme'
 import sinon from 'sinon'
 
 import ShowHeader from './ShowHeader'
-import FavoriteIcon, { FavoritedIcon } from '../Icons'
 
 describe('ShowHeader', () => {
   const show = {
@@ -57,22 +56,27 @@ describe('ShowHeader', () => {
 
   it('should show favorite button when show is favorited', () => {
     // Prepare
+    const onButtonClick = sinon.spy()
     const wrapper = mount(<ShowHeader
       show={show}
       isFavoritedShow={false}
-      onFavoriteClick={jest.fn()}
+      onFavoriteClick={onButtonClick}
       onUnfavoriteClick={jest.fn()}
     />)
 
     // Act
+    const btn = wrapper.find('.show-featured__actions__button')
+    btn.simulate('click')
 
     // Expect
-    expect(wrapper.find(FavoriteIcon).length).toEqual(1)
+    expect(onButtonClick.called).toEqual(true)
+    expect(btn.find('.show-featured__actions__button__icon').text()).toEqual('+')
   })
 
-  it('should show favorite button when show is favorited', () => {
+  it('should show unfavorite button when show is favorited', () => {
     // Prepare
     const onButtonClick = sinon.spy()
+
     const wrapper = mount(<ShowHeader
       show={show}
       onFavoriteClick={jest.fn()}
@@ -86,6 +90,6 @@ describe('ShowHeader', () => {
 
     // Expect
     expect(onButtonClick.called).toEqual(true)
-    expect(wrapper.find(FavoriteIcon).length).toEqual(1)
+    expect(btn.find('.show-featured__actions__button__icon').text()).toEqual('✓')
   })
 })
