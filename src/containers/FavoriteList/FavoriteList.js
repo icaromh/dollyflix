@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { itemsFetchData } from '../actions/shows'
-import { selectShow } from '../actions/show'
-
-import ShowItem from '../components/ShowItem'
+import ShowItem from '../../components/ShowItem'
 
 class FavoriteList extends Component {
-  componentDidMount() {
-    // if (!this.props.items.length) { this.props.fetchData() }
-  }
-
   handleSelectShow = (show) => {
     this.props.selectShow(show)
   }
@@ -39,7 +31,7 @@ class FavoriteList extends Component {
 }
 
 FavoriteList.propTypes = {
-  items: PropTypes.array, // .isRequired,
+  items: PropTypes.array,
   selectShow: PropTypes.func.isRequired,
 }
 
@@ -47,13 +39,4 @@ FavoriteList.defaultProps = {
   items: [],
 }
 
-const mapStateToProps = state => ({
-  items: state.favoriteItems,
-})
-
-const mapDispatchToProps = dispatch => ({
-  fetchData: url => dispatch(itemsFetchData(url)),
-  selectShow: show => dispatch(selectShow(show)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(FavoriteList)
+export default FavoriteList

@@ -9,3 +9,6 @@ build:
 
 run:
 	yarn start:local
+
+test:
+	yarn test
