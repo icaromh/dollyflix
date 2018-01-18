@@ -1,4 +1,4 @@
-.PHONY: setup run build
+.PHONY: setup run build coverage test
 
 setup:
 	yarn || npm install
@@ -12,3 +12,6 @@ run:
 
 test:
 	yarn test
+
+coverage:
+	yarn test --coverage

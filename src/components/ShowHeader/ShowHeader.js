@@ -1,32 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import FavoriteIcon, { FavoritedIcon } from '../Icons'
+const ActionButton = ({ show, handleOnClick, icon }) => (
+  <button
+    onClick={() => handleOnClick(show)}
+    className="show-featured__actions__button"
+  >
+    <span className="show-featured__actions__button__icon">{icon}</span>
+    Favorito
+  </button>
+)
 
+ActionButton.propTypes = {
+  show: PropTypes.object.isRequired,
+  handleOnClick: PropTypes.func.isRequired,
+  icon: PropTypes.string.isRequired,
+}
 
 const ShowHeader = ({
-  show, onFavoriteClick, isFavoritedShow, onUnfavoriteClick,
+  show,
+  onFavoriteClick,
+  isFavoritedShow,
+  onUnfavoriteClick,
 }) => {
   if (!show.title) { return false }
-
-  const favoriteButton = (
-    <button
-      onClick={() => onFavoriteClick(show)}
-      className="show-featured__actions__button"
-    >
-      <FavoritedIcon color="#e50914" /> Adicionar aos Favoritos
-    </button>
-  )
-
-  const unfavoriteButton = (
-    <button
-      onClick={() => onUnfavoriteClick(show)}
-      className="show-featured__actions__button"
-    >
-      <FavoriteIcon color="#e50914" /> Remover dos Favoritos
-    </button>
-  )
-
 
   return (
     <div className="show-featured">
@@ -42,7 +39,9 @@ const ShowHeader = ({
         </div>
 
         <div className="show-featured__actions">
-          { isFavoritedShow ? unfavoriteButton : favoriteButton }
+          { isFavoritedShow ?
+            <ActionButton show={show} handleOnClick={onUnfavoriteClick} icon="✓" />
+            : <ActionButton show={show} handleOnClick={onFavoriteClick} icon="+" /> }
         </div>
       </div>
       <div className="show-featured__image">
