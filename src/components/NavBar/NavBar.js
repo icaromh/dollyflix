@@ -18,7 +18,7 @@ const NavBar = ({ location }) => {
     })
   }
 
-  const isActive = path => (location === path ? 'active' : false)
+  const isActive = path => (location === path ? 'active' : '')
 
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -38,11 +38,6 @@ const NavBar = ({ location }) => {
                   Favoritos
                 </Link>
               </li>
-              {/* <li className={isActive('/network')}>
-                <Link to="/network" onClick={() => handleOnClickNav()}>
-                  Canais
-                </Link>
-              </li> */}
             </ul>
           </div>
           <div className="col-md-6 col-xs-7">

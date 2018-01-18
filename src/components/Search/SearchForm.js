@@ -11,12 +11,8 @@ import {
 } from '../../constants'
 
 class SearchForm extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      term: '',
-    }
+  state = {
+    term: '',
   }
 
   handleInputChange = (ev) => {

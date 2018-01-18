@@ -8,5 +8,5 @@
 ## run
 
 ```
-make setup
+make run
 ```

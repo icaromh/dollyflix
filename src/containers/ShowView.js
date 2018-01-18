@@ -38,12 +38,6 @@ class ShowView extends Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.show) {
-  //     this.setState({ show: nextProps.show })
-  //   }
-  // }
-
   changePath = (season) => {
     const { slug } = this.props.params
     const location = Object.assign({}, browserHistory.getCurrentLocation())
