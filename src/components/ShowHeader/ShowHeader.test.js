@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import sinon from 'sinon'
 
-import ShowHeader from './ShowHeader'
+import ShowHeader from '.'
 
 describe('ShowHeader', () => {
   const show = {

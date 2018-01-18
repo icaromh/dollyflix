@@ -11,6 +11,12 @@ const ActionButton = ({ show, handleOnClick, icon }) => (
   </button>
 )
 
+ActionButton.propTypes = {
+  show: PropTypes.object.isRequired,
+  handleOnClick: PropTypes.func.isRequired,
+  icon: PropTypes.string.isRequired,
+}
+
 const ShowHeader = ({
   show,
   onFavoriteClick,

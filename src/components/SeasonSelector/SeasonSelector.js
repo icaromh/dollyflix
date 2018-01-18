@@ -22,7 +22,7 @@ const SeasonSelector = props => (
 SeasonSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func,
-  seasons: PropTypes.array,
+  seasons: PropTypes.arrayOf(PropTypes.number),
   value: PropTypes.number,
 }
 
