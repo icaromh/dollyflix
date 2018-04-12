@@ -2,5 +2,4 @@
 npm-debug.log
 /storybook-static
 server/
-build/
 coverage/
