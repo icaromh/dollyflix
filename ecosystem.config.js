@@ -6,6 +6,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/icaromh/dollyflix',
       path: '/var/www/',
+      'post-deploy': 'echo "Done"',
     },
   },
 }
