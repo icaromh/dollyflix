@@ -16,7 +16,7 @@ const ShowItem = ({ show, onClick }) => {
     >
       <div className="show-item">
         <picture className="show-item__image">
-          <source srcSet={resizeImage(image, 'w150')} media="(max-width: 768px)" />
+          <source srcSet={resizeImage(image, 'w200')} media="(max-width: 768px)" />
           <img srcSet={resizeImage(image, 'w300')} alt={title} />
         </picture>
 

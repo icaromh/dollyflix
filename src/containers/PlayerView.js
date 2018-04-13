@@ -29,7 +29,7 @@ class PlayerView extends Component {
   renderContent = () => {
     const { show, episode, nextEpisode } = this.props
 
-    const canonicalUrl = `https://dollyflix.herokuapp.com/show/${show.slug}/${episode.season}/${episode.number}`
+    const canonicalUrl = `https://flix.icaromh.com/show/${show.slug}/${episode.season}/${episode.number}`
     const options = {
       poster: episode.image,
       sources: [{

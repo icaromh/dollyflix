@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "DollyFlix Site",
   "main": "index.js",
-  "homepage": "https://dollyflix.herokuapp.com",
+  "homepage": "https://flix.icaromh.com",
   "repository": "git@github.com:icaromh/DollyFlix.git",
   "scripts": {
     "start": "./node_modules/serve/bin/serve.js -s build",
