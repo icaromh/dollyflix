@@ -6,7 +6,7 @@ import EpisodeBox from './EpisodeBox'
 const EpisodesList = ({ episodes, show, onClick }) => {
   if (!episodes) return false
 
-  const orderedEpisodes = episodes.sort((a, b) => (a.number > b.number))
+  const orderedEpisodes = episodes.sort((a, b) => (parseInt(a.number, 10) - parseInt(b.number, 10)))
 
   return (
     <div className="episodes-list">
