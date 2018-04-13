@@ -32,7 +32,7 @@ const NavBar = ({ location }) => {
               </Link>
             </div>
 
-            <ul className="nav navbar-nav">
+            <ul className="nav navbar-nav hidden-xs">
               <li className={isActive('/favorites')}>
                 <Link to="/favorites" onClick={() => handleOnClickNav(NAVIGATION_FAVORITE_CLICK)}>
                   Favoritos
