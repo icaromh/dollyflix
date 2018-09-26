@@ -8,6 +8,7 @@ import {
   EVENT_CATEGORY_NAVIGATION,
   NAVIGATION_FAVORITE_CLICK,
   NAVIGATION_HOME_CLICK,
+  NAVIGATION_NETWORKS_CLICK,
 } from '../../constants'
 
 const NavBar = ({ location }) => {
@@ -36,6 +37,11 @@ const NavBar = ({ location }) => {
               <li className={isActive('/favorites')}>
                 <Link to="/favorites" onClick={() => handleOnClickNav(NAVIGATION_FAVORITE_CLICK)}>
                   Favoritos
+                </Link>
+              </li>
+              <li className={isActive('/networks')}>
+                <Link to="/networks" onClick={() => handleOnClickNav(NAVIGATION_NETWORKS_CLICK)}>
+                  Emissoras
                 </Link>
               </li>
             </ul>

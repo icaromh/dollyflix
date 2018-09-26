@@ -1,4 +1,5 @@
-export const API_URL = 'https://api.icaromh.com'
+// export const API_URL = 'https://api.icaromh.com'
+export const API_URL = 'http://localhost:5000'
 
 export const GOOGLE_ANALYTICS_KEY = 'UA-50597564-8'
 
@@ -20,6 +21,7 @@ export const VIDEO_PAUSE = 'PAUSE'
 export const NAVIGATION_CLICK = 'CLICK'
 export const NAVIGATION_HOME_CLICK = 'HOME CLICK'
 export const NAVIGATION_FAVORITE_CLICK = 'FAVORITE CLICK'
+export const NAVIGATION_NETWORKS_CLICK = 'NETWORKS CLICK'
 export const NAVIGATION_SHOW_CLICK = 'SHOW CLICK'
 export const NAVIGATION_SEASON_SELECT_CLICK = 'SEASON SELECT CLICK'
 export const NAVIGATION_SEASON_CLICK = 'SEASON CLICK'

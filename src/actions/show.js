@@ -43,7 +43,7 @@ export const doUnfavoriteShow = show => ({
 })
 
 export function showFetchData(slug, season, episode) {
-  const callUrl = `${API_URL}/serie/${slug}`
+  const callUrl = `${API_URL}/show/${slug}`
 
   return (dispatch) => {
     dispatch(showIsLoading(true))

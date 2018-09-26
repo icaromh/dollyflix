@@ -79,10 +79,10 @@ class ShowView extends Component {
     return (
       <div>
         <Helmet title={`Dollyflix - assistir ${show.title}`}>
-          <link rel="canonical" href={`https://flix.icaromh.com/serie/${show.slug}`} />
+          <link rel="canonical" href={`https://flix.icaromh.com/show/${show.slug}`} />
           <meta property="og:type" content="video.tv_show" />
           <meta property="og:title" content={show.title} />
-          <meta property="og:url" content={`https://flix.icaromh.com/serie/${show.slug}`} />
+          <meta property="og:url" content={`https://flix.icaromh.com/show/${show.slug}`} />
           <meta property="og:image" content={show.images ? show.images.fanart : ''} />
         </Helmet>
 
