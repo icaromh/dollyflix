@@ -28,7 +28,8 @@
     "redux": "^3.0.4",
     "redux-thunk": "^2.2.0",
     "serve": "^6.4.8",
-    "video.js": "^6.6.0"
+    "video.js": "^6.6.0",
+    "videojs-vjsdownload": "^1.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

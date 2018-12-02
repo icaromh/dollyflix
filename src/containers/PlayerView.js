@@ -33,7 +33,7 @@ class PlayerView extends Component {
     const options = {
       poster: episode.image,
       sources: [{
-        src: `https://www.blogger.com/video-play.mp4?contentId=${episode.id}`,
+        src: `http://www.mitoseries.com/videozin/video-play.mp4/?contentId=${episode.id}`,
         type: 'video/mp4',
       }],
     }
