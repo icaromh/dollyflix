@@ -17,6 +17,7 @@
   "author": "Ícaro Heimig",
   "license": "ISC",
   "dependencies": {
+    "@bnnvara/videojs-chrome-pip": "0.0.4",
     "axios": "^0.17",
     "history": "3",
     "react": "^16",

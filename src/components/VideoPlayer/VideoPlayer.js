@@ -1,7 +1,10 @@
 import React from 'react'
 import videojs from 'video.js'
+import '@bnnvara/videojs-chrome-pip'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
+
+import '@bnnvara/videojs-chrome-pip/dist/videojs-chrome-pip.css'
 
 import {
   EVENT_CATEGORY_VIDEO,
@@ -45,6 +48,11 @@ class VideoPlayer extends React.Component {
     const options = {
       autoplay: false,
       controls: true,
+      preload: 'auto',
+      textTrackSettings: false,
+      html5: {
+        nativeTextTracks: false,
+      },
       ...this.props.options,
     }
 
@@ -52,6 +60,7 @@ class VideoPlayer extends React.Component {
       const player = this
 
       player.volume(component.props.volume) // set default volume
+
 
       ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY })
       player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }))
@@ -64,6 +73,8 @@ class VideoPlayer extends React.Component {
           component.setState({ showNext: true })
         }
       }, 1500)
+
+      player.chromePip()
     })
   }
 
@@ -85,7 +96,6 @@ class VideoPlayer extends React.Component {
           ref={(el) => { this.videoNode = el }}
           className="video-js"
         >
-          <track kind="captions" />
         </video>
 
         {this.state.showNext && this.props.children}
