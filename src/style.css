@@ -148,36 +148,90 @@ body {
 }
 
 .episode {
-    /*flex: 1;*/
+    display: flex;
     width: 100%;
     padding: 5px;
     margin-bottom: 20px;
+    flex-flow: row;
 }
 
 .episode a {
     color: #FFF;
     text-decoration: none;
-}
-
-.episode__bg {
-    background-color: #333;
-    padding-bottom: 50%;
-    background-size: cover;
     position: relative;
-    margin-bottom: 5px;
 }
 
-.episode__number {
+.episode__thumbnail {
+    width: 30vw;
+    margin-right: 10px;
+}
+
+.episode__thumbnail_play {
+    box-sizing: border-box;
+    opacity: 1;
     position: absolute;
-    font-weight: lighter;
-    bottom: 0;
-    padding-left: 5px;
-    text-shadow: #000 1px 1px 1px;
-    font-size: 2em;
+    left: 50%;
+    top: 50%;
+
+    height: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.episode__thumbnail_play path {
+    stroke: #FFF;
+    stroke-width: 1;
 }
 
 .episode__meta {
     font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.episode__meta__runtime {
+    font-size: 0.8em;
+    color: #e3e3e3;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .episodes-list {
+        /* justify-content: space-between; */
+    }
+    .episode {
+        flex: 0 0 25%;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+
+    .episode:last-of-type {
+        margin-right: auto;
+    }
+
+    .episode__thumbnail {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .episode__thumbnail_play{
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .episode:hover .episode__thumbnail_play {
+        opacity: 1;
+    }
+
+    .episode__meta {
+        align-self: flex-start;
+    }
+
+    .episode__meta__runtime {
+        display: none;
+    }
+
 }
 
 @media (min-width: 768px) {
@@ -227,11 +281,6 @@ body {
     }
     .serie-featured-player-icon:hover:before {
         border-color: transparent transparent transparent #e50914;
-    }
-    .episode {
-        flex: 0 0 20%;
-        padding: 5px;
-        margin-bottom: 20px;
     }
 }
 
