@@ -33,9 +33,9 @@ jobs:
 
       - run: yarn test
 
-  deploy:
+  deploy_code:
     steps:
-      - test
+      - deploy_code
 
       - run: yarn install flightplan
       - run: ./node_modules/flightplan/bin/fly.js deploy
@@ -46,6 +46,4 @@ workflows:
     jobs:
       - build
       - test
-      - deploy:
-        requires:
-          - test
+      - deploy_code
