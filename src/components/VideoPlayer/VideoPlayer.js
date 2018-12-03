@@ -1,5 +1,3 @@
-import 'videojs-vjsdownload';
-
 import React from 'react'
 import videojs from 'video.js'
 import ReactGA from 'react-ga'
@@ -47,13 +45,6 @@ class VideoPlayer extends React.Component {
     const options = {
       autoplay: false,
       controls: true,
-      plugins: {
-        vjsdownload:{
-          beforeElement: 'playbackRateMenuButton',
-          textControl: 'Download video',
-          name: 'downloadButton'
-        }
-      },
       ...this.props.options,
     }
 
