@@ -36,6 +36,6 @@ export function searchShowFetchData(term) {
       })
       .then(response => response.json())
       .then(items => dispatch(searchFetchDataSuccess(term, items)))
-      .catch(() => dispatch(showHasErrored(true)))
+      .catch(() => dispatch(searchFetchDataSuccess(term, [])))
   }
 }

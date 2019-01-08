@@ -20,26 +20,34 @@ class SearchView extends Component {
     this.props.selectShow(show)
   }
 
-  renderContent = () => (
-    <div className="container">
-      <Helmet title={`Dollyflix - Results for ${this.props.term}`} />
+  renderContent = () => {
+    const { shows, term } = this.props
+    const hasResults = this.props.shows.length > 0
+    const resultMessage = (size, searchTerm) => {
+      if (size === 0) return `No results for "${searchTerm}"`
+      return `${size} results for "${searchTerm}"`
+    }
 
-      <h1 className="page-title">
-        Results for &quot;{this.props.term}&quot;
-        {/* <a tabIndex={0} role="link" className="clearSearch" onClick={this.handleClearSearch}>(clear search)</a> */}
-      </h1>
+    return (
+      <div className="container">
+        <Helmet title={`Dollyflix - Results for ${term}`} />
 
-      <div className="showlist">
-        {this.props.shows.map(show => (
-          <ShowItem
-            show={show}
-            onClick={this.handleSelectShow}
-            key={show.slug}
-          />
-        ))}
+        <h1 className="page-title">
+          {resultMessage(shows.length, term)}
+        </h1>
+
+        <div className="showlist">
+          {hasResults && this.props.shows.map(show => (
+            <ShowItem
+              show={show}
+              onClick={this.handleSelectShow}
+              key={show.slug}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   render() {
     return (
