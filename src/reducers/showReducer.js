@@ -6,6 +6,8 @@ import {
   FETCH_SHOW_FAILURE,
   FAVORITE_SHOW,
   UNFAVORITE_SHOW,
+  FETCH_MEDIA_SUCCESS,
+  FETCH_MEDIA_LOADING,
 } from '../actions/show'
 
 import {
@@ -55,6 +57,29 @@ export function favoriteShowItems(state = [], action) {
     }
     default: {
       return [...state]
+    }
+  }
+}
+
+export function currentMedia(state = [], action) {
+  switch (action.type) {
+    case FETCH_MEDIA_SUCCESS: {
+      const media = { ...action.media }
+      let urls = []
+      if (media.url) {
+        urls = media.url.map(el => ({
+          src: el.file,
+          type: el.type || 'video/mp4',
+        }))
+      }
+
+      return urls
+    }
+    case FETCH_MEDIA_LOADING: {
+      return [...action.media]
+    }
+    default: {
+      return state
     }
   }
 }

@@ -19,7 +19,7 @@ export const itemsFetchDataSuccess = items => ({
   items,
 })
 
-export function itemsFetchData(url = '/series/1') {
+export function itemsFetchData(url = '/shows/1') {
   const callUrl = `${API_URL}${url}`
 
   return (dispatch) => {

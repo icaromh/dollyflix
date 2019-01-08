@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 
-const resizeImage = (url, size) => url.replace('w500', size)
+const resizeImage = (url, size) => url && url.replace('w500', size)
 
 const ShowItem = ({ show, onClick }) => {
-  const image = show.images.banner
+  const image = show.images && show.images.banner
   const { slug, title } = show
 
   return (

@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
-import VideoPlayer from '../components/VideoPlayer'
-import Loader from '../components/Loader'
-import NextEpisode from '../components/VideoPlayer/NextEpisode'
+import VideoPlayer from '../../components/VideoPlayer'
+import Loader from '../../components/Loader'
+import NextEpisode from '../../components/VideoPlayer/NextEpisode'
 
-import { showFetchData, selectEpisode } from '../actions/show'
-import { playerChangeVolume } from '../actions/player'
 
 class PlayerView extends Component {
   componentWillMount() {
@@ -16,6 +13,7 @@ class PlayerView extends Component {
     if (Object.keys(this.props.show).length === 0) {
       this.props.fetchShowEpisode(slug, season, episode)
     }
+    this.props.fetchShowMedia(slug, season, episode)
   }
 
   handlePlayerVolumeChange = (volume) => {
@@ -27,15 +25,12 @@ class PlayerView extends Component {
   }
 
   renderContent = () => {
-    const { show, episode, nextEpisode } = this.props
+    const { show, episode, nextEpisode, media } = this.props
 
     const canonicalUrl = `https://flix.icaromh.com/show/${show.slug}/${episode.season}/${episode.number}`
     const options = {
       poster: episode.image,
-      sources: [{
-        src: `http://www.mitoseries.com/videozin/video-play.mp4/?contentId=${episode.id}`,
-        type: 'video/mp4',
-      }],
+      sources: media,
     }
 
     return (
@@ -68,10 +63,11 @@ class PlayerView extends Component {
     const hasShow = Object.keys(this.props.show).length !== 0
     const hasEpisode = Object.keys(this.props.episode).length !== 0
     const hasNextEpisode = Object.keys(this.props.nextEpisode).length !== 0
+    const hasMedia = Object.keys(this.props.media).length !== 0
 
     return (
       <Loader
-        for={hasShow && hasEpisode && hasNextEpisode}
+        for={hasShow && hasMedia && hasEpisode && hasNextEpisode}
         render={this.renderContent}
       />
     )
@@ -79,12 +75,14 @@ class PlayerView extends Component {
 }
 
 PlayerView.propTypes = {
+  media: PropTypes.array,
   show: PropTypes.object,
   episode: PropTypes.object,
   nextEpisode: PropTypes.object,
   params: PropTypes.object.isRequired,
   player: PropTypes.object.isRequired,
   fetchShowEpisode: PropTypes.func.isRequired,
+  fetchShowMedia: PropTypes.func.isRequired,
   changeVolume: PropTypes.func.isRequired,
   selectEpisode: PropTypes.func.isRequired,
 }
@@ -93,32 +91,7 @@ PlayerView.defaultProps = {
   show: {},
   episode: {},
   nextEpisode: {},
+  media: [],
 }
 
-const mapStateToProps = state => ({
-  show: state.currentItem,
-  episode: state.currentEpisode,
-  nextEpisode: (() => {
-    if (state.currentItem.episodes && state.currentEpisode.season) {
-      const filterSeason = ep => parseInt(ep.season, 10) === parseInt(state.currentEpisode.season, 10)
-      const filterNextEpisode = ep => parseInt(ep.number, 10) === (parseInt(state.currentEpisode.number, 10) + 1)
-
-      const nextEpisode = state.currentItem.episodes
-        .filter(filterSeason)
-        .filter(filterNextEpisode)
-
-      return nextEpisode[0]
-    }
-
-    return {}
-  })(),
-  player: state.player,
-})
-
-const mapDispathToProps = dispatch => ({
-  fetchShowEpisode: (slug, season, episode) => dispatch(showFetchData(slug, season, episode)),
-  changeVolume: vol => dispatch(playerChangeVolume(vol)),
-  selectEpisode: episode => dispatch(selectEpisode(episode)),
-})
-
-export default connect(mapStateToProps, mapDispathToProps)(PlayerView)
+export default PlayerView

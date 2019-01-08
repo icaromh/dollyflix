@@ -21,7 +21,7 @@ export const searchFetchDataSuccess = (term, results) => ({
 })
 
 export function searchShowFetchData(term) {
-  const callUrl = `${API_URL}/search/?q=${term}`
+  const callUrl = `${API_URL}/search?q=${term}`
 
   return (dispatch) => {
     dispatch(searchIsLoading(true))

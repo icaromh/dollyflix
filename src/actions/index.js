@@ -13,7 +13,7 @@ export const searchTerm = serie => ({
 })
 
 export const searchShow = (show) => {
-  const url = `${API_URL}/search/?q=${show}`
+  const url = `${API_URL}/search?q=${show}`
   const request = axios.get(url)
 
   return {

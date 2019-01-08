@@ -9,6 +9,7 @@ import {
   showHasErrored,
   showIsLoading,
   favoriteShowItems,
+  currentMedia,
 } from './showReducer'
 
 import search from './searchReducer'
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
 
   currentItem: selectItem,
   currentEpisode: selectEpisode,
+  currentMedia,
 
   showHasErrored,
   showIsLoading,

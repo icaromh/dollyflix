@@ -1,27 +1,20 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 
-import {
-  showFetchData,
-  selectEpisode,
-  doFavoriteShow,
-  doUnfavoriteShow,
-} from '../actions/show'
 
-import ShowHeader from '../components/ShowHeader'
-import EpisodesList from '../components/EpisodesList'
-import SeasonSelector from '../components/SeasonSelector'
-import Loader from '../components/Loader'
+import ShowHeader from '../../components/ShowHeader'
+import EpisodesList from '../../components/EpisodesList'
+import SeasonSelector from '../../components/SeasonSelector'
+import Loader from '../../components/Loader'
 
 import {
   EVENT_CATEGORY_NAVIGATION,
   NAVIGATION_SEASON_CLICK,
   NAVIGATION_SEASON_SELECT_CLICK,
-} from '../constants'
+} from '../../constants'
 
 class ShowView extends Component {
   constructor(props) {
@@ -33,9 +26,7 @@ class ShowView extends Component {
   }
 
   componentWillMount() {
-    if (Object.keys(this.props.show).length === 0) {
-      this.props.fetchShow(this.props.params.slug)
-    }
+    this.props.fetchShow(this.props.params.slug)
   }
 
   changePath = (season) => {
@@ -142,29 +133,5 @@ ShowView.defaultProps = {
   isFavoritedShow: false,
 }
 
-const mapStateToProps = state => ({
-  showIsLoading: state.showIsLoading,
-  show: state.currentItem,
-  seasons: (() => {
-    const sortCriteria = (a, b) => a - b
-    const getSeasons = episodes => (
-      episodes
-        .map(ep => parseInt(ep.season, 10))
-        .reduce((acc, el) => (acc.indexOf(el) === -1 ? acc.concat(el) : acc), [])
-        .sort(sortCriteria)
-    )
-    return state.currentItem.episodes ? getSeasons(state.currentItem.episodes) : []
-  })(),
-  isFavoritedShow: (() =>
-    state.favoriteItems.find(show => show.slug === state.currentItem.slug) !== undefined
-  )(),
-})
 
-const mapDispatchToProps = dispatch => ({
-  fetchShow: slug => dispatch(showFetchData(slug)),
-  selectEpisode: episode => dispatch(selectEpisode(episode)),
-  favoriteShow: show => dispatch(doFavoriteShow(show)),
-  unfavoriteShow: show => dispatch(doUnfavoriteShow(show)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShowView)
+export default ShowView
