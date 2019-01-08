@@ -3,8 +3,6 @@ import videojs from 'video.js'
 import ReactGA from 'react-ga'
 import PropTypes from 'prop-types'
 
-import '@bnnvara/videojs-chrome-pip/dist/videojs-chrome-pip.css'
-
 import {
   EVENT_CATEGORY_VIDEO,
   VIDEO_READY,
