@@ -17,6 +17,11 @@
   min-height: 215px;
 }
 
+.show-item__image.--is-episode {
+  max-width: auto;
+  min-height: auto;
+}
+
 .show-item:hover {
   transform: scale(1.05);
 }
@@ -90,6 +95,20 @@
     width: 150px;
     height: 225px;
   }
+
+  .show-item__image.--is-episode {
+    max-height: 155px;
+    overflow: hidden;
+    display: block;
+  }
+
+  .show-item__image.--is-episode img{
+    max-width: auto;
+    min-height: 150px;
+    width: auto;
+    height: auto;
+  }
+
 
   .serielist__item--episode{
     padding-bottom: 0;

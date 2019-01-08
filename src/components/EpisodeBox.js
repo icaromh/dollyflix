@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 
+const resizeImage = (url, size) => url && url.replace('w500', size)
+
 const EpisodeBox = ({ episode, show, onClick }) => {
   const number = parseInt(episode.number, 10)
   const season = parseInt(episode.season, 10)
@@ -29,17 +31,22 @@ const EpisodeBox = ({ episode, show, onClick }) => {
 
   return (
     <div className="episode">
+      <Link key={number} to={linkTo} onClick={() => onClick(episode)}>
+
+          <picture className="show-item__image --is-episode">
+            <source srcSet={resizeImage(episode.image, 'w200')} media="(max-width: 768px)" />
+            <img srcSet={resizeImage(episode.image, 'w300')} alt={episode.title} />
+          </picture>
+
+        <PlayButtonIcon className="episode__thumbnail_play" />
+      </Link>
+      <div className="episode__meta">
         <Link key={number} to={linkTo} onClick={() => onClick(episode)}>
-          <img className="episode__thumbnail" src={episode.image} />
-          <PlayButtonIcon className="episode__thumbnail_play" />
+          <span className="episode__meta__number">{number}. </span>
+          <span className="episode__meta__title">{episode.title}</span>
+          <span className="episode__meta__runtime">{show.runtime}m</span>
         </Link>
-        <div className="episode__meta">
-          <Link key={number} to={linkTo} onClick={() => onClick(episode)}>
-            <span className="episode__meta__number">{number}. </span>
-            <span className="episode__meta__title">{episode.title}</span>
-            <span className="episode__meta__runtime">{show.runtime}m</span>
-          </Link>
-        </div>
+      </div>
     </div>
   )
 }
