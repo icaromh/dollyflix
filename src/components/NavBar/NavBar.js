@@ -24,7 +24,7 @@ const NavBar = ({ location }) => {
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="container">
         <div className="row">
-          <div className="col-md-6 col-xs-5">
+          <div className="col-md-6 col-xs-3">
             <div className="navbar-header">
               <Link to="/" className="navbar-brand" onClick={() => handleOnClickNav(NAVIGATION_HOME_CLICK)}>
                 <img alt="Brand" className="navbar-brand-image" src="/images/dollyflix.png" height="40px" />
@@ -40,7 +40,7 @@ const NavBar = ({ location }) => {
               </li>
             </ul>
           </div>
-          <div className="col-md-6 col-xs-7">
+          <div className="col-md-6 col-xs-9">
             <SearchBar />
           </div>
         </div>

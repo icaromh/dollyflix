@@ -34,7 +34,7 @@
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
-  color: #e3e3e3;
+  color: #fdfdfd;
   line-height: 2rem;
   opacity: 0;
   animation: .6s .1s forwards appear;
@@ -126,7 +126,7 @@
     letter-spacing: 1px;
     position: relative;
     z-index: 10;
-    color: #666;
+    color: #fdfdfd;
   }
 
   .show-feature__metadata__item:after{
@@ -145,7 +145,7 @@
     line-height: 1.5;
     font-weight: lighter;
     font-size: 1.2em;
-    color: #999;
+    color: #fdfdfd;
   }
 
   .show-featured__image{
