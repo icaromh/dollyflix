@@ -16,5 +16,5 @@ test:
 coverage:
 	yarn test --coverage
 
-deploy-prod:
-	pm2 deploy ecosystem.config.js production update
+deploy-prod: build
+	yarn deploy

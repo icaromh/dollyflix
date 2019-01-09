@@ -9,6 +9,7 @@
     "lint": "eslint --ext .js ./src --fix",
     "start:local": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "./node_modules/flightplan/bin/fly.js deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "postinstall": "yarn build"
