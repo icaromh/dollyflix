@@ -1,6 +1,6 @@
 .show-item__link{
-  width: 44%;
-  margin-top: 10px;
+  width: 30%;
+  margin-top: 1rem;
   margin: 5px;
 }
 
@@ -9,24 +9,29 @@
   height: 100%;
   background-color: #ccc;
   overflow: hidden;
-  transition: transform .3s ease;
+  transition: transform .2s ease-in;
 }
 
 .episode__meta {
   margin-left: 1rem;
 }
 
+.show-item__image {
+  min-height: 120px;
+}
+
 .show-item__image img{
-  max-width: 120px;
-  min-height: 60px;
+  max-width: 100%;
+  min-height: 100%;
 }
 
 .show-item__image.--is-episode {
-  max-width: auto;
-  min-height: auto;
+  display: block;
+  width: 120px;
+  min-height: 60px;
 }
 
-.show-item:hover {
+.show-item:hover{
   transform: scale(1.05);
 }
 
@@ -110,6 +115,7 @@
     max-height: 155px;
     overflow: hidden;
     display: block;
+    width: 100%;
   }
 
   .show-item__image.--is-episode img{

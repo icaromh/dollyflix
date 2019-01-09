@@ -31,7 +31,6 @@ body {
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin: 0;
     margin-bottom: 40px;
