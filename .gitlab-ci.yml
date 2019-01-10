@@ -1,0 +1,41 @@
+image: node:8.9
+
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - yarn install
+
+stages:
+  - test
+  - deploy
+
+job_lint:
+  stage: test
+  allow_failure: true
+  script:
+    - yarn lint
+
+job_test:
+  stage: test
+  script:
+    - yarn test
+
+job_deploy:
+  stage: deploy
+  only:
+    - "master"
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which rsync || ( apt-get update -y && apt-get install rsync -y )'
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - ssh-keyscan icaromh.com >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - yarn build
+    - yarn deploy

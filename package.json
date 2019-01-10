@@ -11,8 +11,7 @@
     "build": "react-scripts build",
     "deploy": "./node_modules/flightplan/bin/fly.js deploy",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "postinstall": "yarn build"
+    "eject": "react-scripts eject"
   },
   "author": "Ícaro Heimig",
   "license": "ISC",
