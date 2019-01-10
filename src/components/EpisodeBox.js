@@ -1,8 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
+import axios from 'axios'
+import ReactGA from 'react-ga'
+
+import { API_URL, VIDEO_DOWNLOAD, EVENT_CATEGORY_VIDEO } from '../constants'
+import DownloadButton from './DownloadButton'
 
 const resizeImage = (url, size) => url && url.replace('w500', size)
+
+const getUrlMedia = async (slug, season, number) => {
+  const url = `${API_URL}/show/${slug}/${season}/${number}/media`
+  return axios.get(url)
+}
 
 const PlayButtonIcon = ({ className }) => (
   <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="#FFF" x="0px" y="0px" viewBox="0 0 64 64" xmlSpace="preserve">
@@ -32,6 +42,21 @@ const EpisodeBox = ({ episode, show, onClick }) => {
   const season = parseInt(episode.season, 10)
   const linkTo = `/show/${show.slug}/${season}/${number}`
 
+  const handleOnClick = async (ev) => {
+    ev.preventDefault()
+    const downloadTitle = `${show.slug}.S${number}.E${season}.mp4`
+    const response = await getUrlMedia(show.slug, season, number)
+    ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_DOWNLOAD, label: downloadTitle})
+    if (response.status === 200 && response.data.url[0]) {
+
+      const downloadUrl = response.data.url[0].file
+      window.open(`${downloadUrl}?type=video/mp4&title=${downloadTitle}`, '_blank')
+    } else {
+      alert(`Houve um erro ao tentar baixar o episódio ${downloadTitle}`) // eslint-disable-line no-alert
+    }
+  }
+
+
   return (
     <div className="episode">
       <Link key={number} to={linkTo} onClick={() => onClick(episode)}>
@@ -50,6 +75,7 @@ const EpisodeBox = ({ episode, show, onClick }) => {
           <span className="episode__meta__runtime">{show.runtime}m</span>
         </Link>
       </div>
+      <DownloadButton onClick={handleOnClick} />
     </div>
   )
 }

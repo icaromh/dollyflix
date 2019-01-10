@@ -15,6 +15,7 @@ export const SEARCH_FOCUS = 'FOCUS'
 export const VIDEO_READY = 'READY'
 export const VIDEO_PLAY = 'PLAY'
 export const VIDEO_PAUSE = 'PAUSE'
+export const VIDEO_DOWNLOAD = 'DOWNLOAD'
 
 // NAVIGATION ACTIONS
 export const NAVIGATION_CLICK = 'CLICK'

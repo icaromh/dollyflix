@@ -14,6 +14,8 @@
 
 .episode__meta {
   margin-left: 1rem;
+  flex-grow: 1;
+  justify-content: left;
 }
 
 .show-item__image {
@@ -109,6 +111,10 @@
   .episode__meta {
     margin-left: 0;
     margin-top: 0.8rem;
+  }
+
+  .download-button {
+    padding-top: 0.5rem;
   }
 
   .show-item__image img{
