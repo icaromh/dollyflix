@@ -164,6 +164,7 @@ body {
     padding: 5px;
     margin-bottom: 20px;
     flex-flow: row;
+    align-items: center;
 }
 
 .episode a {
@@ -206,16 +207,27 @@ body {
     display: block;
 }
 
+.download-button {
+    background: none;
+    border: none;
+    opacity: .5;
+}
+
+.download-button:hover,
+.download-button:active,
+.download-button:focus {
+    opacity: 1;
+}
+
 @media (min-width: 768px) {
     .episodes-list {
         /* justify-content: space-between; */
     }
     .episode {
+        flex-wrap: wrap;
         flex: 0 0 25%;
-        flex-direction: column;
         margin-bottom: 10px;
     }
-
 
     .episode:last-of-type {
         margin-right: auto;
@@ -237,15 +249,13 @@ body {
 
     .episode__meta {
         align-self: flex-start;
+        width: 80%;
     }
 
     .episode__meta__runtime {
         display: none;
     }
 
-}
-
-@media (min-width: 768px) {
     .searchbar {
         margin-top: 8px;
         margin-bottom: 8px;
