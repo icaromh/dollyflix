@@ -1,9 +1,8 @@
 # DollyFlix
 
-![GitlabCI](https://gitlab.com/dollyflix/app/badges/master/build.svg)
-
 This site was created in a way to learn new technlogies.
 
+[The CI it's on Gitlab](https://gitlab.com/dollyflix/app/pipelines)
 
 
 
