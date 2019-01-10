@@ -42,6 +42,7 @@ class VideoPlayer extends React.Component {
 
   setupPlayerJs = () => {
     const component = this
+    const { label } = this.props
     const options = {
       autoplay: true,
       controls: true,
@@ -59,9 +60,9 @@ class VideoPlayer extends React.Component {
       player.volume(component.props.volume || 0.5) // set default volume
 
 
-      ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY })
-      player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY }))
-      player.on('pause', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PAUSE }))
+      ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_READY, label })
+      player.on('play', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PLAY, label }))
+      player.on('pause', () => ReactGA.event({ category: EVENT_CATEGORY_VIDEO, action: VIDEO_PAUSE, label }))
       player.on('volumechange', () => component.props.onVolumeChange(player.volume()))
 
       player.setInterval(() => {

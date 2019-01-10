@@ -25,13 +25,16 @@ class PlayerView extends Component {
   }
 
   renderContent = () => {
-    const { show, episode, nextEpisode, media } = this.props
+    const {
+      show, episode, nextEpisode, media,
+    } = this.props
 
     const canonicalUrl = `https://flix.icaromh.com/show/${show.slug}/${episode.season}/${episode.number}`
     const options = {
       poster: episode.image,
       sources: media,
     }
+    const LABEL = `${show.slug}.${episode.season}.${episode.number}`
 
     return (
       <div className="player-area">
@@ -44,6 +47,7 @@ class PlayerView extends Component {
         </Helmet>
 
         <VideoPlayer
+          label={LABEL}
           episodeId={episode.id}
           options={options}
           onVolumeChange={this.handlePlayerVolumeChange}
