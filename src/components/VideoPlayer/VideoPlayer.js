@@ -90,8 +90,7 @@ class VideoPlayer extends React.Component {
         <video
           ref={(el) => { this.videoNode = el }}
           className="video-js"
-        >
-        </video>
+        />
 
         {this.state.showNext && this.props.children}
       </div>
@@ -100,6 +99,7 @@ class VideoPlayer extends React.Component {
 }
 
 VideoPlayer.propTypes = {
+  label: PropTypes.string.isRequired,
   episodeId: PropTypes.string.isRequired,
   options: PropTypes.object.isRequired,
   volume: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
