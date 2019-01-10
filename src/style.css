@@ -17,6 +17,16 @@ body {
     letter-spacing: 1px;
 }
 
+.--center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.--full-height {
+    height: calc(100vh - 50px);
+}
+
 .title {
     font-size: 1em;
 }

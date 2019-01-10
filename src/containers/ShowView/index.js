@@ -10,6 +10,7 @@ import {
 import ShowView from './ShowView'
 
 const mapStateToProps = state => ({
+  showHasErrored: state.showHasErrored,
   showIsLoading: state.showIsLoading,
   show: state.currentItem,
   seasons: (() => {

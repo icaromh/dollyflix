@@ -64,8 +64,18 @@ class ShowView extends Component {
   }
 
   renderContent = () => {
-    const { show } = this.props
+    const { show, showHasErrored } = this.props
     const episodes = show.episodes && show.episodes.filter(ep => parseInt(ep.season, 10) === this.state.seasonSelected)
+
+    if (showHasErrored) {
+      return (
+        <div className="container --center-content --full-height">
+          <h1 className="page-title">
+            Série não encontrada <span role="img" aria-label="sad face emoji">☹️</span>
+          </h1>
+        </div>
+      )
+    }
 
     return (
       <div>
@@ -104,11 +114,12 @@ class ShowView extends Component {
   }
 
   render() {
+    const { showIsLoading, showHasErrored } = this.props
     const hasShow = Object.keys(this.props.show).length !== 0
 
     return (
       <Loader
-        for={!this.props.showIsLoading && hasShow}
+        for={(!showIsLoading && hasShow) || showHasErrored}
         render={this.renderContent}
       />
     )
@@ -125,12 +136,14 @@ ShowView.propTypes = {
   seasons: PropTypes.array,
   showIsLoading: PropTypes.bool.isRequired,
   isFavoritedShow: PropTypes.bool,
+  showHasErrored: PropTypes.bool,
 }
 
 ShowView.defaultProps = {
   show: {},
   seasons: [],
   isFavoritedShow: false,
+  showHasErrored: false,
 }
 
 
