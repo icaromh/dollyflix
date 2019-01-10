@@ -66,13 +66,17 @@ export function showFetchData(slug, season, episode) {
         if (!response.ok) {
           throw Error(response.statusText)
         }
+        dispatch(showHasErrored(false))
         dispatch(showIsLoading(false))
 
         return response
       })
       .then(response => response.json())
       .then(show => dispatch(showFetchDataSuccess(show, season, episode)))
-      .catch(() => dispatch(showHasErrored(true)))
+      .catch(() => {
+        dispatch(showIsLoading(false))
+        dispatch(showHasErrored(true))
+      })
   }
 }
 
